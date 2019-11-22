@@ -12,5 +12,6 @@ Thats it! Its _beautifully simple_, just like Zendesk.
 1. Browse under the folder `master-template` which contains the entire feature set that Zendesk Bootstrapper supports
 2. Analyze the JSON structure
 3. Formulate your own template!
+4. Contact `@lechan` on Slack to get your template published for everyone to use
 
 PS: It supports *ALL* values of the Zendesk APIs (you could refer to https://developer.zendesk.com/rest_api/docs/support/introduction for more details). So you could use values that you don't see within the `master-template` within each functionality.
