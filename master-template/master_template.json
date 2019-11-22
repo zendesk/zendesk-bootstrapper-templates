@@ -1,0 +1,551 @@
+{
+  "bootstrap": {
+    "subdomain": "z3n-leroychan",
+    "auth": {
+      "username": "<<YOUR EMAIL>>",
+      "password": "<<YOUR PASSWORD>>"
+    },
+    "customer": {
+      "name": "Kaws",
+      "locale": "en"
+    }
+  },
+  "settings": {
+    "account_settings": {
+      "tickets": {
+        "emoji_autocompletion": true  
+      },
+      "agents": {
+        "agent_workspace": true
+      },
+      "active_features": {
+        "business_hours": true,
+        "customer_satisfaction": true,
+        "user_tagging": true,
+        "ticket_tagging": true
+      },
+      "api": {
+        "accepted_api_agreement": true,
+        "api_password_access": true,
+        "api_token_access": true
+      }
+    },
+    "security_settings": {
+      "admins_can_set_user_passwords": true,
+      "email_agent_when_sensitive_fields_changed": false,
+        "authentication": {
+            "end_user": {
+                "google_login": true,
+                "office_365_login": true,
+                "twitter_login": true,
+                "facebook_login": true
+            }
+        }
+    },
+    "support_settings": {
+      "update_default_support_email": {
+        "name": "Kaws"
+      },
+      "add_recipient_addresses": [
+        {
+          "email": "billing@z3n-leroychan.zendesk.com",
+          "name": "Billing"
+        },
+        {
+          "email": "sales@z3n-leroychan.zendesk.com",
+          "name": "Sales"
+        },
+        {
+          "email": "vip@z3n-leroychan.zendesk.com",
+          "name": "VIP"
+        }
+      ]
+    }
+  },
+  "ticket_views": {
+    "add_ticket_views": {
+      "options": {
+        "reorder_newly_added_to_first": true
+      },
+      "views": [
+        { 
+          "title": "📧 Email Tickets",
+          "active": true,
+          "position": 1,
+          "output": {
+            "group_by": "status",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "sort_order": "desc",
+            "columns": [
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "assignee"
+            ]
+          },
+          "all": [
+              {
+                  "field": "status",
+                  "operator": "less_than",
+                  "value": "solved"
+              },
+              {
+                  "field": "via_id",
+                  "operator": "is",
+                  "value": "4"
+              }
+          ],
+          "any": []
+        },
+        {
+          "title": "💻 Website Requests",
+          "active": true,
+          "position": 3,
+          "output": {
+            "group_by": "null",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "sort_order": "desc",
+            "columns": [
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "assignee"
+            ]
+          },
+          "all": [
+              {
+                  "field": "status",
+                  "operator": "less_than",
+                  "value": "solved"
+              },
+              {
+                  "field": "via_id",
+                  "operator": "is",
+                  "value": "0"
+              }
+          ],
+          "any": []
+        },
+        {
+          "title": "📶 Rated tickets from the last 7 days",
+          "active": true,
+          "position": 2,
+          "output": {
+            "group_by": "satisfaction_score",
+            "group_order": "desc",
+            "sort_by": "updated",
+            "sort_order": "asc",
+            "columns": [
+                "via",
+                "subject",
+                "requester",
+                "created",
+                "assignee",
+                "satisfaction_score"
+            ]
+          },
+          "all": [
+              {
+                  "field": "status",
+                  "operator": "greater_than",
+                  "value": "new"
+              },
+              {
+                  "field": "SOLVED",
+                  "operator": "less_than",
+                  "value": "169"
+              }
+          ],
+          "any": [
+              {
+                  "field": "satisfaction_score",
+                  "operator": "is",
+                  "value": "good"
+              },
+              {
+                  "field": "satisfaction_score",
+                  "operator": "is",
+                  "value": "good_with_comment"
+              },
+              {
+                  "field": "satisfaction_score",
+                  "operator": "is",
+                  "value": "bad"
+              },
+              {
+                  "field": "satisfaction_score",
+                  "operator": "is",
+                  "value": "bad_with_comment"
+              }
+          ]
+        },
+        {
+          "title": "🔥 Urgent unresolved tickets",
+          "active": true,
+          "position": 3,
+          "output": {
+            "group_by": "null",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "sort_order": "desc",
+            "columns": [
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "assignee"
+            ]
+          },
+          "all": [
+              {
+                  "field": "status",
+                  "operator": "is",
+                  "value": "open"
+              },
+              {
+                  "field": "priority",
+                  "operator": "is",
+                  "value": "urgent"
+              }
+          ],
+          "any": []
+        },
+        {
+          "title": "1️⃣ Tier 1 Support",
+          "active": true,
+          "position": 3,
+          "output": {
+            "group_by": "priority",
+            "group_order": "asc",
+            "sort_by": "created",
+            "sort_order": "desc",
+            "columns": [
+              "via",
+              "subject",
+              "requester",
+              "created",
+              "priority",
+              "sla_next_breach_at",
+              "updated",
+              "attributes_match"
+            ]
+          },
+          "all": [
+              {
+                  "field": "status",
+                  "operator": "less_than",
+                  "value": "solved"
+              }
+          ],
+          "any": []
+        },
+        {
+          "title": "☝️ Your unsolved tickets",
+          "active": true,
+          "position": 3,
+          "output": {
+            "group_by": "status",
+            "group_order": "asc",
+            "sort_by": "nice_id",
+            "sort_order": "desc",
+            "columns": [
+              "via",
+              "subject",
+              "requester",
+              "created",
+              "type",
+              "priority",
+              "satisfaction_score"
+            ]
+          },
+          "all": [
+              {
+                  "field": "status",
+                  "operator": "less_than",
+                  "value": "solved"
+              },
+              {
+                  "field": "assignee_id",
+                  "operator": "is",
+                  "value": "current_user"
+              }
+          ],
+          "any": []
+        },
+        {
+          "title": "🤷 Unassigned tickets (Triage)",
+          "active": true,
+          "position": 3,
+          "output": {
+            "group_by": "null",
+            "group_order": "asc",
+            "sort_by": "created",
+            "sort_order": "desc",
+            "columns": [
+              "brand",
+              "subject",
+              "requester",
+              "created",
+              "priority",
+              "sla_next_breach_at",
+              "group",
+              "attributes_match"
+            ]
+          },
+          "all": [
+            {
+              "field": "assignee_id",
+              "operator": "is",
+              "value": ""
+            },
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            }
+          ],
+          "any": []
+        }
+      ]
+    }
+  },
+  "users": {
+    "add_user_fields": [
+      {
+        "type": "tagger",
+        "title": "Customer Status",
+        "description": "Status of customer",
+        "position": "2",
+        "active": true,
+        "key": "customer_status",
+        "custom_field_options": [
+          {
+            "name": "Normal",
+            "value": "normal_customer"
+          },
+          {
+            "name": "VIP",
+            "value": "vip_customer"
+          },
+          {
+            "name": "Platinum",
+            "value": "platinum_customer"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "title": "Consent to Contact",
+        "description": "Customer has consented to be contacted",
+        "position": "2",
+        "active": true,
+        "key": "contact_consent",
+        "tag": "contact_consent"
+      }
+    ],
+    "add_groups": [
+      {
+        "name": "Tier 1 Support"
+      },
+      {
+        "name": "Tier 2 Support"
+      }
+    ],
+    "add_organizations": {
+      "options": {
+        "generate_count": 3,
+        "locale": "en"
+      },
+      "organizations": [
+        {
+          "name": "Amazing Retail"
+        },
+        {
+          "name": "Wonderful Phone"
+        }
+      ]
+    },
+    "add_organization_fields": [
+      {
+        "type": "tagger",
+        "title": "Industry",
+        "description": "Industry of Organization",
+        "position": "1",
+        "active": true,
+        "key": "customer_status",
+        "custom_field_options": [
+          {
+            "name": "Retail",
+            "value": "Retail_org"
+          },
+          {
+            "name": "Manufacturing",
+            "value": "manufacturing_org"
+          },
+          {
+            "name": "Energy",
+            "value": "energy_org"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "title": "Publicly Listed",
+        "description": "Listed Company",
+        "position": "2",
+        "active": true,
+        "key": "listed_org"
+      }
+    ]
+  },
+  "business_rules": {
+    "add_slas": [
+      {
+        "title": "Urgent Incidents",
+        "description": "For urgent incidents, we will respond to tickets in 10 minutes",
+        "position": 1,
+        "filter": {
+          "all": [
+            { "field": "type", "operator": "is", "value": "incident" }
+          ],
+          "any": []
+        },
+        "policy_metrics": [
+          { "priority": "normal", "metric": "first_reply_time", "target": 30, "business_hours": false },
+          { "priority": "urgent", "metric": "first_reply_time", "target": 10, "business_hours": false },
+          { "priority": "low", "metric": "requester_wait_time", "target": 180, "business_hours": false },
+          { "priority": "normal", "metric": "requester_wait_time", "target": 160, "business_hours": false },
+          { "priority": "high", "metric": "requester_wait_time", "target": 140, "business_hours": false },
+          { "priority": "urgent", "metric": "requester_wait_time", "target": 120, "business_hours": false }
+        ]
+      },
+      {
+        "title": "VIP",
+        "description": "For VIP request, we will respond to tickets in 10 minutes",
+        "position": 2,
+        "filter": {
+          "all": [
+            { "field": "current_tags", "operator": "includes", "value": "VIP" }
+          ],
+          "any": []
+        },
+        "policy_metrics": [
+          { "priority": "normal", "metric": "first_reply_time", "target": 30, "business_hours": false },
+          { "priority": "urgent", "metric": "first_reply_time", "target": 10, "business_hours": false },
+          { "priority": "low", "metric": "requester_wait_time", "target": 180, "business_hours": false },
+          { "priority": "normal", "metric": "requester_wait_time", "target": 160, "business_hours": false },
+          { "priority": "high", "metric": "requester_wait_time", "target": 140, "business_hours": false },
+          { "priority": "urgent", "metric": "requester_wait_time", "target": 120, "business_hours": false }
+        ]
+      }
+    ],
+    "add_triggers": [
+      {
+        "title": "VIP :: Escalate VIP Tickets",
+        "all": [
+          {
+            "field": "update_type",
+            "operator": "is",
+            "value": "Create"
+          },
+          {
+              "field": "current_tags",
+              "operator": "includes",
+              "value": "vip"
+          }
+        ],
+        "actions": [
+          {
+            "field": "priority",
+            "value": "high"
+          }
+        ]
+      },
+      {
+        "title": "CSAT :: Send CSAT Survey",
+        "all": [
+          {
+            "field": "status",
+            "operator": "is",
+            "value": "solved"
+          },
+          {
+              "field": "current_tags",
+              "operator": "includes",
+              "value": "csat"
+          },
+          {
+              "field": "current_tags",
+              "operator": "not_includes",
+              "value": "smooch supportkit"
+          },
+          {
+              "field": "comment_is_public",
+              "operator": "is",
+              "value": "true"
+          }
+        ],
+        "actions": [
+          {
+            "field": "notification_user",
+            "value": [
+                "requester_and_ccs",
+                "Request #{{ticket.id}}: How would you rate the support you received?",
+                "Hello {{ticket.requester.name}},\n\nWe'd love to hear what you think of our customer service. Please take a moment to answer one simple question by clicking either link below:\n\n{{satisfaction.rating_section}}\n\nHere's a reminder of what your ticket was about:\n\n{{ticket.comments_formatted}}"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "apps": {
+    "add_apps": [
+      {
+        "app_id": "6848",
+        "settings": {
+          "name": "Users 5 Most Recent Tickets"
+        }
+      },
+      {
+        "app_id": "6272",
+        "settings": {
+          "name": "Linked Tickets"
+        }
+      },
+      {
+        "app_id": "35111",
+        "settings": {
+          "name": "Time Tracking"
+        }
+      },
+      {
+        "app_id": "42515",
+        "settings": {
+          "name": "Ticket Redaction"
+        }
+      }
+    ]
+  },
+  "tickets": {
+    "generate_tickets": {
+        "statuses": {
+            "solved": 100,
+            "open": 100,
+            "pending": 100
+        },
+        "ticket_payload": {
+          "requester": {
+            "name": "Zendesk Bootstrapper",
+            "email": "kaws@kaws.com"
+          },
+            "tags": [
+                "testing123"
+            ]
+        }
+    }
+  }
+}
