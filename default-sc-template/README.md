@@ -25,4 +25,4 @@ This is the SC default template.
 | Business Rules    | Add 2 SLAs - Urgent Incident, VIP                                                                                                                                                     | Created             |
 | Business Rules    | Add 2 Triggers - Escalate VIP Tickets, Send CSAT Survey                                                                                                                               | Created             |
 | Apps              | Install 4 Apps - User 5 Most Recent Tickets, Linked Tickets, Time Tracking, Ticket Redaction                                                                                          | Installed           |
-| Generate Tickets  | Generate 100 solved tickets, 100 open tickets, 100 pending tickets. All with the tag "retail"                                                                                         | Generated           |
+| Generate Tickets  | Generate 100 open tickets, 100 pending tickets. All with the tag "retail"                                                                                         | Generated           |

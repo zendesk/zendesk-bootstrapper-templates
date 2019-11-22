@@ -71,7 +71,8 @@
         "reorder_newly_added_to_first": true
       },
       "views": [
-           "title": "📧 Email Tickets",
+        { 
+          "title": "📧 Email Tickets",
           "active": true,
           "position": 1,
           "output": {
@@ -295,7 +296,6 @@
               "priority",
               "sla_next_breach_at",
               "group",
-              "attributes_match"
             ]
           },
           "all": [
@@ -527,7 +527,6 @@
   "tickets": {
     "generate_tickets": {
         "statuses": {
-            "solved": 100,
             "open": 100,
             "pending": 100
         },
