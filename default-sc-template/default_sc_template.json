@@ -294,7 +294,7 @@
               "created",
               "priority",
               "sla_next_breach_at",
-              "group",
+              "group"
             ]
           },
           "all": [
