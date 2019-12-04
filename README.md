@@ -27,7 +27,7 @@ You could use the following variables anywhere within your template code and it 
 ### 2.2 Dependencies
 Zendesk Bootstrapper helps you to resolve dependencies automatically with your templates
 
- 1. Provide an **unique** `reference_id` on those objects that you wish to later on
+ 1. Provide an **unique** `reference_id` on those objects that you wish to reference later on
  2. On those that objects that requires the ID to be translated from `reference_id` before it can be created, use the `{{the-unique-value-that-you-provided-in-the-reference-id}}`
 
 For example, I wish to create a **2 Views** that references  **2 Groups**, the sample payload will be:
