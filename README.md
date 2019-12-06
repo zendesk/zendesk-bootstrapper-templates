@@ -30,7 +30,20 @@ Zendesk Bootstrapper helps you to resolve dependencies automatically with your t
  1. Provide an **unique** `reference_id` on those objects that you wish to reference later on
  2. On those that objects that requires the ID to be translated from `reference_id` before it can be created, use the `{{the-unique-value-that-you-provided-in-the-reference-id}}`
 
-For example, I wish to create a **2 Views** that references  **2 Groups**, the sample payload will be:
+#### 2.2.1 Currently Supported
+
+`reference_id`
+ 1. Add Group
+ 2. Add Organizations
+ 3. Add User Fields
+ 4. Add Organization Fields
+
+`{{reference_id_value}}`
+ 1. Add Ticket Views
+ 2. Add SLAs
+
+
+#### Example 1: Create 2 Views that Reference 2 Groups, the sample payload will be:
 
     {
       "bootstrap": {
@@ -122,13 +135,99 @@ For example, I wish to create a **2 Views** that references  **2 Groups**, the s
       }
     }
  
-#### 2.2.1 Currently Supported
+ #### Example 2: Create 1 SLA that Reference Custom User Field and Custom Organization Field, the sample payload will be:
 
-`reference_id`
- 1. Add Group
- 2. Add Organizations
- 3. Add User Fields
- 4. Add Organization Fields
+    {
+      "bootstrap": {
+          "subdomain": "z3n-leroychan",
+          "auth": {
+              "username": "lechan@zendesk.com",
+              "password": "XXXXX"
+          },
+          "customer": {
+              "name": "Kaws",
+              "locale": "en"
+          }
+      },
+      "users": {
+        "add_user_fields": [
+            {
+                "title": "Custom User Field 1",
+                "type": "checkbox",
+                "key": "custom_user_field_1",
+                "reference_id": "userfield-1"
+            }
+        ],
+        "add_organization_fields": [
+            {
+                "title": "Custom Org Field 1",
+                "type": "checkbox",
+                "key": "custom_org_field_1",
+                "reference_id": "orgfield-1"
+            }
+        ]
+    },
+      "business_rules": {
+        "add_slas": [
+            {
+                "title": "Bootstrapper - Dependency SLA",
+                "description": "For VIP request, we will respond to tickets in 10 minutes",
+                "position": 2,
+                "filter": {
+                    "all": [
+                        {
+                            "field": "requester.custom_fields.{{userfield-1}}",
+                            "operator": "is",
+                            "value": "true"
+                        },
+                        {
+                            "field": "organization.custom_fields.{{orgfield-1}}",
+                            "operator": "is",
+                            "value": "true"
+                        }
+                    ],
+                    "any": []
+                },
+                "policy_metrics": [
+                    {
+                        "priority": "normal",
+                        "metric": "first_reply_time",
+                        "target": 30,
+                        "business_hours": false
+                    },
+                    {
+                        "priority": "urgent",
+                        "metric": "first_reply_time",
+                        "target": 10,
+                        "business_hours": false
+                    },
+                    {
+                        "priority": "low",
+                        "metric": "requester_wait_time",
+                        "target": 180,
+                        "business_hours": false
+                    },
+                    {
+                        "priority": "normal",
+                        "metric": "requester_wait_time",
+                        "target": 160,
+                        "business_hours": false
+                    },
+                    {
+                        "priority": "high",
+                        "metric": "requester_wait_time",
+                        "target": 140,
+                        "business_hours": false
+                    },
+                    {
+                        "priority": "urgent",
+                        "metric": "requester_wait_time",
+                        "target": 120,
+                        "business_hours": false
+                    }
+                ]
+            }
+        ]
+    }
+    }
 
-`{{reference_id_value}}`
- 1. Add Ticket Views
