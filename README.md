@@ -28,7 +28,7 @@ You could use the following variables anywhere within your template code and it 
 Zendesk Bootstrapper helps you to resolve dependencies automatically with your templates
 
  1. Provide an **unique** `reference_id` on those objects that you wish to reference later on
- 2. On those that objects that requires the ID to be translated from `reference_id` before it can be created, use the `{{the-unique-value-that-you-provided-in-the-reference-id}}`
+ 2. On those that objects that requires the ID or Key to be translated from `reference_id` before it can be created, use the `{{the-unique-value-that-you-provided-in-the-reference-id}}`
 
 #### 2.2.1 Currently Supported
 
@@ -135,7 +135,7 @@ Zendesk Bootstrapper helps you to resolve dependencies automatically with your t
       }
     }
  
- #### Example 2: Create 1 SLA that Reference Custom User Field and Custom Organization Field, the sample payload will be:
+ #### Example 2: Create 1 SLA that references Custom User Field and Custom Organization Field, the sample payload will be:
 
     {
       "bootstrap": {
