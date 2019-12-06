@@ -127,6 +127,8 @@ For example, I wish to create a **2 Views** that references  **2 Groups**, the s
 `reference_id`
  1. Add Group
  2. Add Organizations
+ 3. Add User Fields
+ 4. Add Organization Fields
 
 `{{reference_id_value}}`
  1. Add Ticket Views
