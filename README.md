@@ -44,6 +44,8 @@ Zendesk Bootstrapper helps you to resolve dependencies automatically with your t
  1. Add Ticket Views
  2. Add SLAs
  3. Add Ticket Forms
+ 4. Add Triggers
+ 5. Add Automations
 
 
 #### Example 1: Create 2 Views that Reference 2 Groups, the sample payload will be:
@@ -169,7 +171,7 @@ Zendesk Bootstrapper helps you to resolve dependencies automatically with your t
                 "reference_id": "orgfield-1"
             }
         ]
-    },
+      },
       "business_rules": {
         "add_slas": [
             {
@@ -231,7 +233,7 @@ Zendesk Bootstrapper helps you to resolve dependencies automatically with your t
                 ]
             }
         ]
-    }
+      }
     }
 
 #### Example 3: Create 1 Ticket Form that references 2 Ticket Fields, the sample payload will be:
@@ -274,5 +276,69 @@ Zendesk Bootstrapper helps you to resolve dependencies automatically with your t
                 ]
             }
         ]
+      }
     }
+
+#### Example 4: Create 1 Trigger that depends on a Ticket Form that depends on Ticket Fields [Nested Dependency]
+
+    {
+      "bootstrap": {
+          "subdomain": "z3n-leroychan",
+          "auth": {
+              "username": "lechan@zendesk.com",
+              "password": "XXXXX"
+          },
+          "customer": {
+              "name": "Kaws",
+              "locale": "en"
+          }
+      },
+      "business_rules": {
+        "add_triggers": [
+            {
+                "title": "Test Bootstrapper Trigger",
+                "all": [
+                    {
+                        "field": "ticket_form_id",
+                        "operator": "is",
+                        "value": "{{form-test-bootstrapper}}"
+                    }
+                ],
+                "actions": [
+                  {
+                    "field": "status",
+                    "value": "solved"
+                  }
+                ]
+            }
+        ]
+      },
+      "tickets": {
+          "add_ticket_fields": [
+              {
+                  "type": "text",
+                  "title": "Age",
+                  "reference_id": "ticket-field-age"
+              },
+              {
+                  "type": "text",
+                  "title": "Device",
+                  "reference_id": "ticket-field-device"
+              }
+          ],
+          "add_ticket_forms": [
+              {
+                  "name": "Test Bootstrapper Form",
+                  "end_user_visible": true,
+                  "active": true,
+                  "in_all_brands": true,
+                  "position": 9999,
+                  "ticket_field_ids": [
+                      "{{ticket-field-age}}",
+                      "{{ticket-field-device}}"
+                  ],
+                  "reference_id": "form-test-bootstrapper"
+              }
+          ]
+      }
     }
