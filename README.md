@@ -9,6 +9,29 @@ Browse here for all the available templates or build you own templates!
 
 Thats it! Its _beautifully simple_, just like Zendesk.
 
+### 1.1 Features List
+
+**You can use any supported request payload that is within Zendesk's API reference specs!**
+
+| Category       | Sub Category      | Functionality                     | API Reference (You can use any supported request payload from Zendesk !)                                        |
+|----------------|-------------------|-----------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| Settings       | Account Settings  | -                                 | https://developer.zendesk.com/rest_api/docs/support/account_settings                                            |
+| Settings       | Security Settings | -                                 | Private API                                                                                                     |
+| Settings       | Support Settings  | Update Default Support Email      | [Bootstrapper's unique Functionality]                                                                           |
+| Settings       | Support Settings  | Add Recipient Addresses           | https://developer.zendesk.com/rest_api/docs/support/support_addresses#create-support-address                    |
+| Ticket Views   | -                 | Add Ticket Views                  | https://developer.zendesk.com/rest_api/docs/support/views#create-view                                           |
+| Users          | -                 | Add User Fields                   | https://developer.zendesk.com/rest_api/docs/support/user_fields#create-user-fields                              |
+| Users          | -                 | Add Groups                        | https://developer.zendesk.com/rest_api/docs/support/groups#create-group                                         |
+| Users          | -                 | Add Organizations                 | https://developer.zendesk.com/rest_api/docs/support/organizations#create-organization                           |
+| Users          | -                 | Add Organization Fields           | https://developer.zendesk.com/rest_api/docs/support/organization_fields#create-organization-fields              |
+| Business Rules | -                 | Add SLAs                          | https://developer.zendesk.com/rest_api/docs/support/sla_policies#create-sla-policy                              |
+| Business Rules | -                 | Add Triggers                      | https://developer.zendesk.com/rest_api/docs/support/triggers#create-trigger                                     |
+| Business Rules | -                 | Add Automations                   | https://developer.zendesk.com/rest_api/docs/support/automations#create-automation                               |
+| Apps           | -                 | Add Apps (Only Marketplace Apps)  | https://developer.zendesk.com/rest_api/docs/support/apps#create-app                                             |
+| Tickets        | -                 | Generate Tickets                  | [Bootstrapper's unique Functionality] https://developer.zendesk.com/rest_api/docs/support/tickets#create-ticket |
+| Tickets        | -                 | Add Ticket Fields                 | https://developer.zendesk.com/rest_api/docs/support/ticket_fields#create-ticket-field                           |
+| Tickets        | -                 | Add Ticket Forms                  | https://developer.zendesk.com/rest_api/docs/support/ticket_forms#create-ticket-forms                            |
+
 ## 2. Don't see the Bootstrapper Template that fit your needs? Create one !
 1. Browse under the folder `master-template` which contains the entire feature set that Zendesk Bootstrapper supports
 2. Analyze the JSON structure
