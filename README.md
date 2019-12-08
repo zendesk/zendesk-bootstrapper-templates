@@ -9,7 +9,15 @@ Browse here for all the available templates or build you own templates!
 
 Thats it! Its _beautifully simple_, just like Zendesk.
 
-### 1.1 Features List
+## 2. Don't see the Bootstrapper Template that fit your needs? Create one !
+1. Browse under the folder `master-template` which contains the entire feature set that Zendesk Bootstrapper supports
+2. Analyze the JSON structure
+3. Formulate your own template!
+4. Contact `@lechan` on Slack to get your template published for everyone to use
+
+PS: It supports *ALL* values of the Zendesk APIs (you could refer to https://developer.zendesk.com/rest_api/docs/support/introduction for more details). So you could use values that you don't see within the `master-template` within each functionality.
+
+### 2.1 Features List
 
 **You can use any supported request payload that is within Zendesk's API reference specs!**
 
@@ -32,28 +40,20 @@ Thats it! Its _beautifully simple_, just like Zendesk.
 | Tickets        | -                 | Add Ticket Fields                 | https://developer.zendesk.com/rest_api/docs/support/ticket_fields#create-ticket-field                           |
 | Tickets        | -                 | Add Ticket Forms                  | https://developer.zendesk.com/rest_api/docs/support/ticket_forms#create-ticket-forms                            |
 
-## 2. Don't see the Bootstrapper Template that fit your needs? Create one !
-1. Browse under the folder `master-template` which contains the entire feature set that Zendesk Bootstrapper supports
-2. Analyze the JSON structure
-3. Formulate your own template!
-4. Contact `@lechan` on Slack to get your template published for everyone to use
-
-PS: It supports *ALL* values of the Zendesk APIs (you could refer to https://developer.zendesk.com/rest_api/docs/support/introduction for more details). So you could use values that you don't see within the `master-template` within each functionality.
-
-### 2.1 Default Variables
+### 2.2 Default Variables
 You could use the following variables anywhere within your template code and it will automatically reference the values that you declare within the `bootstrap` object.
 
  1. `{{customer}}`
  2. `{{customer_name}}`
  3. `{{customer_locale}}`
 
-### 2.2 Dependencies
+### 2.3 Dependencies
 Zendesk Bootstrapper helps you to resolve dependencies automatically with your templates
 
  1. Provide an **unique** `reference_id` on those objects that you wish to reference later on
  2. On those that objects that requires the ID or Key to be translated from `reference_id` before it can be created, use the `{{the-unique-value-that-you-provided-in-the-reference-id}}`
 
-#### 2.2.1 Currently Supported
+#### 2.3.1 Currently Supported
 
 `reference_id`
  1. Add Group
