@@ -37,10 +37,13 @@ Zendesk Bootstrapper helps you to resolve dependencies automatically with your t
  2. Add Organizations
  3. Add User Fields
  4. Add Organization Fields
+ 5. Add Ticket Fields
+ 6. Add Ticket Forms
 
 `{{reference_id_value}}`
  1. Add Ticket Views
  2. Add SLAs
+ 3. Add Ticket Forms
 
 
 #### Example 1: Create 2 Views that Reference 2 Groups, the sample payload will be:
@@ -231,3 +234,45 @@ Zendesk Bootstrapper helps you to resolve dependencies automatically with your t
     }
     }
 
+#### Example 3: Create 1 Ticket Form that references 2 Ticket Fields, the sample payload will be:
+
+    {
+      "bootstrap": {
+          "subdomain": "z3n-leroychan",
+          "auth": {
+              "username": "lechan@zendesk.com",
+              "password": "XXXXX"
+          },
+          "customer": {
+              "name": "Kaws",
+              "locale": "en"
+          }
+      },
+      "tickets": {
+        "add_ticket_fields": [
+            {
+                "type": "text",
+                "title": "Age",
+                "reference_id": "ticket-field-age"
+            },
+            {
+                "type": "text",
+                "title": "Device",
+                "reference_id": "ticket-field-device"
+            }
+        ],
+        "add_ticket_forms": [
+            {
+                "name": "Test Bootstrapper Form",
+                "end_user_visible": true,
+                "active": true,
+                "in_all_brands": true,
+                "position": 9999,
+                "ticket_field_ids": [
+                    "{{ticket-field-age}}",
+                    "{{ticket-field-device}}"
+                ]
+            }
+        ]
+    }
+    }

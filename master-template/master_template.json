@@ -546,6 +546,30 @@
                 "testing123"
             ]
         }
-    }
+    },
+    "add_ticket_fields": [
+      {
+        "type": "text", 
+        "title": "Age",
+        "reference_id": "ticket-field-age"
+      },
+      {
+        "type": "text", 
+        "title": "Device",
+        "reference_id": "ticket-field-device"
+      }
+    ],
+    "add_ticket_forms": [
+      {
+        "name": "Test Bootstrapper Form",
+        "end_user_visible": true,
+        "active": true,
+        "in_all_brands": true,
+        "ticket_field_ids": [
+          "{{ticket-field-age}}",
+          "{{ticket-field-device}}"
+        ]
+      }
+    ]
   }
 }
