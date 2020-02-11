@@ -571,5 +571,18 @@
         ]
       }
     ]
+  },
+  "macros": {
+    "add_macros": [
+      {
+        "title": "Test Macro 2",
+        "actions": [
+          {
+            "field": "status",
+            "value": "solved"
+          }
+        ]
+      }
+    ]
   }
 }

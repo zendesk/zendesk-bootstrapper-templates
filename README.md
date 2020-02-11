@@ -35,6 +35,7 @@ PS: It supports *ALL* values of the Zendesk APIs (you could refer to https://dev
 | Business Rules | -                 | Add SLAs                          | https://developer.zendesk.com/rest_api/docs/support/sla_policies#create-sla-policy                              |
 | Business Rules | -                 | Add Triggers                      | https://developer.zendesk.com/rest_api/docs/support/triggers#create-trigger                                     |
 | Business Rules | -                 | Add Automations                   | https://developer.zendesk.com/rest_api/docs/support/automations#create-automation                               |
+| Macros         | -                 | Add Macros                        | https://developer.zendesk.com/rest_api/docs/support/macros#create-macro  
 | Apps           | -                 | Add Apps (Only Marketplace Apps)  | https://developer.zendesk.com/rest_api/docs/support/apps#create-app                                             |
 | Tickets        | -                 | Generate Tickets                  | [Bootstrapper's unique Functionality] https://developer.zendesk.com/rest_api/docs/support/tickets#create-ticket |
 | Tickets        | -                 | Add Ticket Fields                 | https://developer.zendesk.com/rest_api/docs/support/ticket_fields#create-ticket-field                           |
@@ -69,6 +70,7 @@ Zendesk Bootstrapper helps you to resolve dependencies automatically with your t
  3. Add Ticket Forms
  4. Add Triggers
  5. Add Automations
+ 6. Add Macros
 
 
 #### Example 1: Create 2 Views that Reference 2 Groups, the sample payload will be:
@@ -363,5 +365,69 @@ Zendesk Bootstrapper helps you to resolve dependencies automatically with your t
                   "reference_id": "form-test-bootstrapper"
               }
           ]
+      }
+    }
+
+#### Example 5: Create 1 Macro that depends on a Ticket Field (Dropdown)
+
+    {
+      "bootstrap": {
+          "subdomain": "z3n-leroychan",
+          "auth": {
+              "username": "lechan@zendesk.com",
+              "password": "XXXXX"
+          },
+          "customer": {
+              "name": "Kaws",
+              "locale": "en"
+          }
+      },
+      "macros": {
+        "add_macros": [
+            {
+                "title": "Test Macro 2",
+                "actions": [
+                    {
+                        "field": "status",
+                        "value": "solved"
+                    },
+                    {
+                        "field": "custom_fields_{{piesmacro1}}",
+                        "value": "pecanmacro1"
+                    }
+                ]
+            }
+        ]
+      },
+      "tickets": {
+        "add_ticket_fields": [
+            {
+                "type": "tagger",
+                "title": "Pies macro 1",
+                "custom_field_options": [
+                    {
+                        "name": "Apple Pie",
+                        "value": "applemacro1"
+                    },
+                    {
+                        "name": "Pecan Pie",
+                        "value": "pecanmacro1"
+                    }
+                ],
+                "reference_id": "piesmacro1"
+            }
+        ],
+        "add_ticket_forms": [
+            {
+                "name": "Dropdow Macro 1",
+                "end_user_visible": true,
+                "active": true,
+                "in_all_brands": true,
+                "position": 9999,
+                "ticket_field_ids": [
+                    "{{piesmacro1}}"
+                ]
+            }
+        ]
       }
     }
