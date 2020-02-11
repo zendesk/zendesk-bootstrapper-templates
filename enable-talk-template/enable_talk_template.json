@@ -20,7 +20,7 @@
     },
     "add_ivrs": [
       {
-        "name": "Bootstrapper Sample IVR"
+        "name": "Test Bootstrapper IVR"
       }
     ]
   }
