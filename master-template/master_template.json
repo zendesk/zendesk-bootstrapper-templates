@@ -584,5 +584,19 @@
         ]
       }
     ]
+  },
+  "talk": {
+    "add_number": {
+        "country_code": "US",
+        "purchase_first_available_number": true
+    },
+    "add_talk_agents": {
+      "enable_first_admin": true
+    },
+    "add_ivrs": [
+      {
+        "name": "Bootstrapper Sample IVR"
+      }
+    ]
   }
 }

@@ -35,11 +35,14 @@ PS: It supports *ALL* values of the Zendesk APIs (you could refer to https://dev
 | Business Rules | -                 | Add SLAs                          | https://developer.zendesk.com/rest_api/docs/support/sla_policies#create-sla-policy                              |
 | Business Rules | -                 | Add Triggers                      | https://developer.zendesk.com/rest_api/docs/support/triggers#create-trigger                                     |
 | Business Rules | -                 | Add Automations                   | https://developer.zendesk.com/rest_api/docs/support/automations#create-automation                               |
-| Macros         | -                 | Add Macros                        | https://developer.zendesk.com/rest_api/docs/support/macros#create-macro  
+| Macros         | -                 | Add Macros                        | https://developer.zendesk.com/rest_api/docs/support/macros#create-macro                                         |
 | Apps           | -                 | Add Apps (Only Marketplace Apps)  | https://developer.zendesk.com/rest_api/docs/support/apps#create-app                                             |
 | Tickets        | -                 | Generate Tickets                  | [Bootstrapper's unique Functionality] https://developer.zendesk.com/rest_api/docs/support/tickets#create-ticket |
 | Tickets        | -                 | Add Ticket Fields                 | https://developer.zendesk.com/rest_api/docs/support/ticket_fields#create-ticket-field                           |
 | Tickets        | -                 | Add Ticket Forms                  | https://developer.zendesk.com/rest_api/docs/support/ticket_forms#create-ticket-forms                            |
+| Talk           | -                 | Add Number                        | [Bootstrapper's unique Functionality]                                                                           |
+| Talk           | -                 | Add Talk Agents                   | [Bootstrapper's unique Functionality]                                                                           |
+| Talk           | -                 | Add IVRs                          | https://developer.zendesk.com/rest_api/docs/voice-api/ivrs#create-ivr                                           |                          |
 
 ### 2.2 Default Variables
 You could use the following variables anywhere within your template code and it will automatically reference the values that you declare within the `bootstrap` object.
@@ -431,3 +434,38 @@ Zendesk Bootstrapper helps you to resolve dependencies automatically with your t
         ]
       }
     }
+
+### 2.4 Example Bootstrapper Templates
+The following examples will give you a better idea how to structure a Bootstrapper template. You can easily mix and match and/or combine different examples to achieve your intended usecases.
+
+#### 2.4.1 Enabling Zendesk Talk for Demo Instances
+
+    {
+      "bootstrap": {
+          "subdomain": "z3n-leroychan",
+          "auth": {
+              "username": "lechan@zendesk.com",
+              "password": "XXXXX"
+          },
+          "customer": {
+              "name": "Kaws",
+              "locale": "en"
+          }
+      },
+      "talk": {
+        "add_number": {
+            "country_code": "US",
+            "purchase_first_available_number": true
+        },
+        "add_talk_agents": {
+          "enable_first_admin": true
+        },
+        "add_ivrs": [
+          {
+            "name": "Bootstrapper Sample IVR"
+          }
+        ]
+      }
+    }
+
+
