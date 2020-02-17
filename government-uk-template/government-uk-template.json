@@ -1,0 +1,1047 @@
+{
+  "bootstrap": {
+    "subdomain": "z3n-leroychan",
+    "auth": {
+      "username": "lechan@zendesk.com",
+      "password": "xxx  "
+    },
+    "customer": {
+      "name": "London Borough of Barking and Dagenham",
+      "locale": "en"
+    }
+  },
+  "settings": {
+    "account_settings": {
+      "branding": {
+        "header_color": "ffdc0f"
+      },
+      "tickets": {
+        "emoji_autocompletion": true
+      },
+      "agents": {
+        "agent_workspace": true
+      },
+      "active_features": {
+        "business_hours": true,
+        "customer_satisfaction": true,
+        "user_tagging": true,
+        "ticket_tagging": true
+      },
+      "api": {
+        "accepted_api_agreement": true,
+        "api_password_access": true,
+        "api_token_access": true
+      }
+    },
+    "security_settings": {
+      "admins_can_set_user_passwords": true,
+      "email_agent_when_sensitive_fields_changed": false,
+      "authentication": {
+        "end_user": {
+          "google_login": true,
+          "office_365_login": true,
+          "twitter_login": true,
+          "facebook_login": true
+        }
+      }
+    },
+    "support_settings": {
+      "update_default_support_email": {
+        "name": "enquiries"
+      },
+      "add_recipient_addresses": [
+        {
+          "email": "tax@{{subdomain}}.zendesk.com",
+          "name": "Council Tax"
+        },
+        {
+          "email": "waste@{{subdomain}}.zendesk.com",
+          "name": "Waste"
+        },
+        {
+          "email": "noise@{{subdomain}}.zendesk.com",
+          "name": "Noise"
+        },
+        {
+          "email": "parking@{{subdomain}}.zendesk.com",
+          "name": "Parking"
+        },
+        {
+          "email": "schools@{{subdomain}}.zendesk.com",
+          "name": "Schools"
+        },
+        {
+          "email": "benefits@{{subdomain}}.zendesk.com",
+          "name": "Benefits"
+        }
+      ]
+    }
+  },
+  "ticket_views": {
+    "add_ticket_views": {
+      "options": {
+        "reorder_newly_added_to_first": true
+      },
+      "views": [
+        {
+          "title": "🏠 Council Tax",
+          "active": true,
+          "position": 1,
+          "output": {
+            "group_by": "status",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "sort_order": "desc",
+            "columns": [
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "assignee"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "ticket_form_id",
+              "operator": "is",
+              "value": "{{ticket-form-council-tax}}"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "🗑 Waste",
+          "active": true,
+          "position": 2,
+          "output": {
+            "group_by": "status",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "sort_order": "desc",
+            "columns": [
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "assignee"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "ticket_form_id",
+              "operator": "is",
+              "value": "{{ticket-form-waste}}"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "📢 Noise",
+          "active": true,
+          "position": 3,
+          "output": {
+            "group_by": "status",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "sort_order": "desc",
+            "columns": [
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "assignee"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "ticket_form_id",
+              "operator": "is",
+              "value": "{{ticket-form-noise}}"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "🏫 Schools",
+          "active": true,
+          "position": 4,
+          "output": {
+            "group_by": "status",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "sort_order": "desc",
+            "columns": [
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "assignee"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "ticket_form_id",
+              "operator": "is",
+              "value": "{{ticket-form-schools}}"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "💷 Benefits",
+          "active": true,
+          "position": 5,
+          "output": {
+            "group_by": "status",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "sort_order": "desc",
+            "columns": [
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "assignee"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "ticket_form_id",
+              "operator": "is",
+              "value": "{{ticket-form-benefits}}"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "🚗 Parking",
+          "active": true,
+          "position": 6,
+          "output": {
+            "group_by": "status",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "sort_order": "desc",
+            "columns": [
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "assignee"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "ticket_form_id",
+              "operator": "is",
+              "value": "{{ticket-form-parking}}"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "📶 Rated tickets from the last 7 days",
+          "active": true,
+          "position": 7,
+          "output": {
+            "group_by": "satisfaction_score",
+            "group_order": "desc",
+            "sort_by": "updated",
+            "sort_order": "asc",
+            "columns": [
+              "via",
+              "subject",
+              "requester",
+              "created",
+              "assignee",
+              "satisfaction_score"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "greater_than",
+              "value": "new"
+            },
+            {
+              "field": "SOLVED",
+              "operator": "less_than",
+              "value": "169"
+            }
+          ],
+          "any": [
+            {
+              "field": "satisfaction_score",
+              "operator": "is",
+              "value": "good"
+            },
+            {
+              "field": "satisfaction_score",
+              "operator": "is",
+              "value": "good_with_comment"
+            },
+            {
+              "field": "satisfaction_score",
+              "operator": "is",
+              "value": "bad"
+            },
+            {
+              "field": "satisfaction_score",
+              "operator": "is",
+              "value": "bad_with_comment"
+            }
+          ]
+        },
+        {
+          "title": "🔥 Urgent unresolved tickets",
+          "active": true,
+          "position": 8,
+          "output": {
+            "group_by": "null",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "sort_order": "desc",
+            "columns": [
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "assignee"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "is",
+              "value": "open"
+            },
+            {
+              "field": "priority",
+              "operator": "is",
+              "value": "urgent"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "1️⃣ Tier 1 Support",
+          "active": true,
+          "position": 9,
+          "output": {
+            "group_by": "priority",
+            "group_order": "asc",
+            "sort_by": "created",
+            "sort_order": "desc",
+            "columns": [
+              "via",
+              "subject",
+              "requester",
+              "created",
+              "priority",
+              "sla_next_breach_at",
+              "updated"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "☝️ Your unsolved tickets",
+          "active": true,
+          "position": 10,
+          "output": {
+            "group_by": "status",
+            "group_order": "asc",
+            "sort_by": "nice_id",
+            "sort_order": "desc",
+            "columns": [
+              "via",
+              "subject",
+              "requester",
+              "created",
+              "type",
+              "priority",
+              "satisfaction_score"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "assignee_id",
+              "operator": "is",
+              "value": "current_user"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "🤷 Unassigned tickets (Triage)",
+          "active": true,
+          "position": 11,
+          "output": {
+            "group_by": "null",
+            "group_order": "asc",
+            "sort_by": "created",
+            "sort_order": "desc",
+            "columns": [
+              "brand",
+              "subject",
+              "requester",
+              "created",
+              "priority",
+              "sla_next_breach_at",
+              "group",
+              "attributes_match"
+            ]
+          },
+          "all": [
+            {
+              "field": "assignee_id",
+              "operator": "is",
+              "value": ""
+            },
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            }
+          ],
+          "any": []
+        }
+      ]
+    }
+  },
+  "users": {
+    "add_user_fields": [
+      {
+        "type": "tagger",
+        "title": "Customer Type",
+        "description": "Customer Type",
+        "position": "2",
+        "active": true,
+        "key": "customer_type",
+        "custom_field_options": [
+          {
+            "name": "Resident",
+            "value": "resident"
+          },
+          {
+            "name": "Council Staff",
+            "value": "council_staff"
+          },
+          {
+            "name": "Contractor",
+            "value": "contractor"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "title": "Consent to Contact",
+        "description": "Customer has consented to be contacted",
+        "position": "2",
+        "active": true,
+        "key": "contact_consent",
+        "tag": "contact_consent"
+      }
+    ],
+    "add_groups": [
+      {
+        "name": "Tier 1 Support"
+      },
+      {
+        "name": "Tier 2 Support"
+      }
+    ],
+    "add_organizations": {
+      "organizations": [
+        {
+          "name": "Biffa"
+        },
+        {
+          "name": "Southern Electric"
+        }
+      ]
+    },
+    "add_organization_fields": [
+      {
+        "type": "checkbox",
+        "title": "Publicly Listed",
+        "description": "Listed Company",
+        "position": "2",
+        "active": true,
+        "key": "listed_org"
+      }
+    ]
+  },
+  "business_rules": {
+    "add_slas": [
+      {
+        "title": "Urgent Incidents",
+        "description": "For urgent incidents, we will respond to tickets in 10 minutes",
+        "position": 1,
+        "filter": {
+          "all": [
+            {
+              "field": "type",
+              "operator": "is",
+              "value": "incident"
+            }
+          ],
+          "any": []
+        },
+        "policy_metrics": [
+          {
+            "priority": "normal",
+            "metric": "first_reply_time",
+            "target": 30,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "first_reply_time",
+            "target": 10,
+            "business_hours": false
+          },
+          {
+            "priority": "low",
+            "metric": "requester_wait_time",
+            "target": 180,
+            "business_hours": false
+          },
+          {
+            "priority": "normal",
+            "metric": "requester_wait_time",
+            "target": 160,
+            "business_hours": false
+          },
+          {
+            "priority": "high",
+            "metric": "requester_wait_time",
+            "target": 140,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "requester_wait_time",
+            "target": 120,
+            "business_hours": false
+          }
+        ]
+      },
+      {
+        "title": "VIP",
+        "description": "For VIP request, we will respond to tickets in 10 minutes",
+        "position": 2,
+        "filter": {
+          "all": [
+            {
+              "field": "current_tags",
+              "operator": "includes",
+              "value": "VIP"
+            }
+          ],
+          "any": []
+        },
+        "policy_metrics": [
+          {
+            "priority": "normal",
+            "metric": "first_reply_time",
+            "target": 30,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "first_reply_time",
+            "target": 10,
+            "business_hours": false
+          },
+          {
+            "priority": "low",
+            "metric": "requester_wait_time",
+            "target": 180,
+            "business_hours": false
+          },
+          {
+            "priority": "normal",
+            "metric": "requester_wait_time",
+            "target": 160,
+            "business_hours": false
+          },
+          {
+            "priority": "high",
+            "metric": "requester_wait_time",
+            "target": 140,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "requester_wait_time",
+            "target": 120,
+            "business_hours": false
+          }
+        ]
+      }
+    ],
+    "add_triggers": [
+      {
+        "title": "VIP :: Escalate VIP Tickets",
+        "all": [
+          {
+            "field": "update_type",
+            "operator": "is",
+            "value": "Create"
+          },
+          {
+            "field": "current_tags",
+            "operator": "includes",
+            "value": "vip"
+          }
+        ],
+        "actions": [
+          {
+            "field": "priority",
+            "value": "high"
+          }
+        ]
+      }
+    ]
+  },
+  "apps": {
+    "add_apps": [
+      {
+        "app_id": "6848",
+        "settings": {
+          "name": "Users 5 Most Recent Tickets"
+        }
+      }
+    ]
+  },
+  "tickets": {
+    "generate_tickets": {
+      "statuses": {
+        "solved": 50,
+        "open": 50,
+        "pending": 50
+      },
+      "ticket_payload": {
+        "requester": {
+          "name": "Ben Mendez",
+          "email": "benmendez.demo@gmail.com"
+        },
+        "tags": [
+          "auto_create"
+        ]
+      }
+    },
+    "add_ticket_fields": [
+      {
+        "type": "text",
+        "title": "Postcode",
+        "reference_id": "ticket-field-postcode"
+      },
+      {
+        "type": "tagger",
+        "title": "Waste Issue",
+        "reference_id": "ticket-field-waste-issue",
+        "description": "Waste Issue",
+        "custom_field_options": [
+          {
+            "name": "Missed collection",
+            "value": "waste-issue-missed-collection"
+          },
+          {
+            "name": "Fly Tipping",
+            "value": "waste-issue-fly-tipping"
+          },
+          {
+            "name": "Garden Waste",
+            "value": "waste-issue-garden-waste"
+          },
+          {
+            "name": "Hazardous Waste",
+            "value": "waste-issue-hazardous-waste"
+          },
+          {
+            "name": "Recycling",
+            "value": "waste-issue-recycling"
+          }
+        ]
+      },
+      {
+        "type": "tagger",
+        "title": "Type of School",
+        "reference_id": "ticket-field-type-of-school",
+        "description": "Type of School",
+        "custom_field_options": [
+          {
+            "name": "Primary",
+            "value": "type_of_school_primary"
+          },
+          {
+            "name": "Junior",
+            "value": "type_of_school_junior"
+          },
+          {
+            "name": "Secondary",
+            "value": "type_of_school_secondary"
+          },
+          {
+            "name": "Private",
+            "value": "type_of_school_private"
+          },
+          {
+            "name": "Special",
+            "value": "type_of_school_special"
+          }
+        ]
+      },
+      {
+        "type": "tagger",
+        "title": "Band",
+        "reference_id": "ticket-field-band",
+        "description": "Council Tax Band",
+        "custom_field_options": [
+          {
+            "name": "A",
+            "value": "council_tax_band_a"
+          },
+          {
+            "name": "B",
+            "value": "council_tax_band_b"
+          },
+          {
+            "name": "C",
+            "value": "council_tax_band_c"
+          },
+          {
+            "name": "D",
+            "value": "council_tax_band_d"
+          },
+          {
+            "name": "E",
+            "value": "council_tax_band_e"
+          },
+          {
+            "name": "F",
+            "value": "council_tax_band_f"
+          },
+          {
+            "name": "G",
+            "value": "council_tax_band_g"
+          },
+          {
+            "name": "H",
+            "value": "council_tax_band_h"
+          }
+        ]
+      },
+      {
+        "type": "tagger",
+        "title": "Noise Issue",
+        "reference_id": "ticket-field-noise-issue",
+        "description": "Noise Issue",
+        "custom_field_options": [
+          {
+            "name": "Nuisance Noise",
+            "value": "noise-issue-nuisance"
+          },
+          {
+            "name": "Construction Noise",
+            "value": "noise-issue-construction"
+          },
+          {
+            "name": "Fireworks",
+            "value": "noise-issue-fireworks"
+          }
+        ]
+      },
+      {
+        "type": "tagger",
+        "title": "Benefits Issue",
+        "reference_id": "ticket-field-benefits-issue",
+        "description": "Benefits Issue",
+        "custom_field_options": [
+          {
+            "name": "Universal Credit",
+            "value": "benefits-issue-universal-credit"
+          },
+          {
+            "name": "Housing Benefit",
+            "value": "benefits-issue-housing-benefit"
+          },
+          {
+            "name": "Pupil Support",
+            "value": "benefits-issue-pupil-support"
+          }
+        ]
+      },
+      {
+        "type": "tagger",
+        "title": "Parking Issue",
+        "reference_id": "ticket-field-parking-issue",
+        "description": "Parking Issue",
+        "custom_field_options": [
+          {
+            "name": "Fines",
+            "value": "parking-issue-fines"
+          },
+          {
+            "name": "Permits",
+            "value": "parking-issue-permits"
+          },
+          {
+            "name": "Disabled Blue Badge",
+            "value": "parking-issue-disabled"
+          }
+        ]
+      }
+    ],
+    "add_ticket_forms": [
+      {
+        "name": "Council Tax",
+        "end_user_visible": true,
+        "reference_id": "ticket-form-council-tax",
+        "active": true,
+        "in_all_brands": true,
+        "ticket_field_ids": [
+          "{{ticket-field-postcode}}",
+          "{{ticket-field-band}}"
+        ],
+        "position": 1
+      },
+      {
+        "name": "Waste",
+        "end_user_visible": true,
+        "reference_id": "ticket-form-waste",
+        "active": true,
+        "in_all_brands": true,
+        "ticket_field_ids": [
+          "{{ticket-field-postcode}}",
+          "{{ticket-field-waste-issue}}"
+        ],
+        "position": 2
+      },
+      {
+        "name": "Noise",
+        "end_user_visible": true,
+        "reference_id": "ticket-form-noise",
+        "active": true,
+        "in_all_brands": true,
+        "ticket_field_ids": [
+          "{{ticket-field-postcode}}",
+          "{{ticket-field-noise-issue}}"
+        ],
+        "position": 3
+      },
+      {
+        "name": "Benefits",
+        "end_user_visible": true,
+        "reference_id": "ticket-form-benefits",
+        "active": true,
+        "in_all_brands": true,
+        "ticket_field_ids": [
+          "{{ticket-field-postcode}}",
+          "{{ticket-field-benefits-issue}}"
+        ],
+        "position": 4
+      },
+      {
+        "name": "Schools",
+        "end_user_visible": true,
+        "reference_id": "ticket-form-schools",
+        "active": true,
+        "in_all_brands": true,
+        "ticket_field_ids": [
+          "{{ticket-field-postcode}}",
+          "{{ticket-field-type-of-school}}"
+        ],
+        "position": 5
+      },
+      {
+        "name": "Parking",
+        "end_user_visible": true,
+        "reference_id": "ticket-form-parking",
+        "active": true,
+        "in_all_brands": true,
+        "ticket_field_ids": [
+          "{{ticket-field-postcode}}",
+          "{{ticket-field-parking-issue}}"
+        ],
+        "position": 6
+      }
+    ]
+  },
+  "macros": {
+    "add_macros": [
+      {
+        "title": "Council Tax::Band Adjustment",
+        "actions": [
+          {
+            "field": "status",
+            "value": "solved"
+          },
+          {
+            "field": "comment_value",
+            "value": "Your council tax band has been adjusted in line with council rules. Please refer to our website for more details."
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": true
+          }
+        ]
+      },
+      {
+        "title": "Waste::Fly Tipping Clear Up",
+        "actions": [
+          {
+            "field": "status",
+            "value": "solved"
+          },
+          {
+            "field": "comment_value",
+            "value": "Many thanks for reporting this. We will instruct our waste disposal team to clear this up. Typically this is completed within 48hrs."
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": true
+          }
+        ]
+      },
+      {
+        "title": "Noise::Complaint Accepted",
+        "actions": [
+          {
+            "field": "status",
+            "value": "solved"
+          },
+          {
+            "field": "comment_value",
+            "value": "Many thanks for reporting this. We will make contact with the resident. If there are further instances of this, please reply to this email to let us know."
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": true
+          }
+        ]
+      },
+      {
+        "title": "Benefits::Universal Credit Not Paid",
+        "actions": [
+          {
+            "field": "status",
+            "value": "pending"
+          },
+          {
+            "field": "comment_value",
+            "value": "We are very sorry your Universal Credit has not been paid. Please refer to the Universal Credit potal for more details on why this is. If you continue to have issues, please reply to this email to let us know."
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": true
+          }
+        ]
+      },
+      {
+        "title": "Schools::Change School Process",
+        "actions": [
+          {
+            "field": "status",
+            "value": "solved"
+          },
+          {
+            "field": "comment_value",
+            "value": "The schedule and rules around changing schools depend on the school. Please review our knowledge base for more details."
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": true
+          }
+        ]
+      },
+      {
+        "title": "Parking::Permit Granted",
+        "actions": [
+          {
+            "field": "status",
+            "value": "solved"
+          },
+          {
+            "field": "comment_value",
+            "value": "Thanks for applying for a parking permit. This has been granted and will be sent to you in the post within 7 days."
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": true
+          }
+        ]
+      },
+      {
+        "title": "Parking::Permit Rejected",
+        "actions": [
+          {
+            "field": "status",
+            "value": "pending"
+          },
+          {
+            "field": "comment_value",
+            "value": "Unfortunately your parking permit request has been rejected. Please refer to our knowledgebase to see the rules. If you have any further questions on this, please reply to this email."
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": true
+          }
+        ]
+      }
+    ]
+  },
+  "talk": {
+    "add_number": {
+      "country_code": "UK",
+      "purchase_first_available_number": true
+    },
+    "add_talk_agents": {
+      "enable_first_admin": true
+    }
+  }
+}
