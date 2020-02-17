@@ -913,6 +913,7 @@
     ]
   },
   "macros": {
+    "disable_default_macros": true,
     "add_macros": [
       {
         "title": "Council Tax::Band Adjustment",
