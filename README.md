@@ -62,12 +62,13 @@ Zendesk Bootstrapper helps you to resolve dependencies automatically with your t
 #### 2.3.1 Currently Supported
 
 `reference_id`
- 1. Add Group
- 2. Add Organizations
- 3. Add User Fields
- 4. Add Organization Fields
- 5. Add Ticket Fields
- 6. Add Ticket Forms
+ 1. Add Users
+ 2. Add Groups
+ 3. Add Organizations
+ 4. Add User Fields
+ 5. Add Organization Fields
+ 6. Add Ticket Fields
+ 7. Add Ticket Forms
 
 `{{reference_id_value}}`
  1. Add Ticket Views
