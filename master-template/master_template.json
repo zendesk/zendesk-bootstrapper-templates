@@ -347,6 +347,12 @@
         "tag": "contact_consent"
       }
     ],
+    "add_users": [
+      {
+        "name": "John Tan",
+        "email": "johntan@bootstrapper.com"
+      }
+    ],
     "add_groups": [
       {
         "name": "Tier 1 Support"
@@ -573,6 +579,7 @@
     ]
   },
   "macros": {
+    "disable_default_macros": true,
     "add_macros": [
       {
         "title": "Test Macro 2",
