@@ -21,30 +21,36 @@ PS: It supports *ALL* values of the Zendesk APIs (you could refer to https://dev
 
 **You can use any supported request payload that is within Zendesk's API reference specs!**
 
-| Category       | Sub Category      | Functionality                     | API Reference (You can use any supported request payload from Zendesk !)                                                                      |
-|----------------|-------------------|-----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| Settings       | Account Settings  | -                                 | https://developer.zendesk.com/rest_api/docs/support/account_settings                                                                          |
-| Settings       | Security Settings | -                                 | Private API                                                                                                                                   |
-| Settings       | Support Settings  | Update Default Support Email      | [Bootstrapper's unique Functionality]                                                                                                         |
-| Settings       | Support Settings  | Add Recipient Addresses           | https://developer.zendesk.com/rest_api/docs/support/support_addresses#create-support-address                                                  |
-| Ticket Views   | -                 | Add Ticket Views                  | https://developer.zendesk.com/rest_api/docs/support/views#create-view                                                                         |
-| Users          | -                 | Add User Fields                   | https://developer.zendesk.com/rest_api/docs/support/user_fields#create-user-fields                                                            |
-| Users          | -                 | Add Users                         | https://developer.zendesk.com/rest_api/docs/support/users#create-user                                                                         |
-| Users          | -                 | Add Groups                        | https://developer.zendesk.com/rest_api/docs/support/groups#create-group                                                                       |
-| Users          | -                 | Add Organizations                 | https://developer.zendesk.com/rest_api/docs/support/organizations#create-organization                                                         |
-| Users          | -                 | Add Organization Fields           | https://developer.zendesk.com/rest_api/docs/support/organization_fields#create-organization-fields                                            |
-| Business Rules | -                 | Add SLAs                          | https://developer.zendesk.com/rest_api/docs/support/sla_policies#create-sla-policy                                                            |
-| Business Rules | -                 | Add Triggers                      | https://developer.zendesk.com/rest_api/docs/support/triggers#create-trigger                                                                   |
-| Business Rules | -                 | Add Automations                   | https://developer.zendesk.com/rest_api/docs/support/automations#create-automation                                                             |
-| Macros         | -                 | Add Macros                        | https://developer.zendesk.com/rest_api/docs/support/macros#create-macro                                                                       |
+| Category       | Sub Category      | Functionality                     | API Reference (You can use any supported request payload from Zendesk !)                                                                       |
+|----------------|-------------------|-----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| Settings       | Account Settings  | -                                 | https://developer.zendesk.com/rest_api/docs/support/account_settings                                                                           |
+| Settings       | Security Settings | -                                 | Private API                                                                                                                                    |
+| Settings       | Support Settings  | Update Default Support Email      | [Bootstrapper's unique Functionality]                                                                                                          |
+| Settings       | Support Settings  | Add Recipient Addresses           | https://developer.zendesk.com/rest_api/docs/support/support_addresses#create-support-address                                                   |
+| Ticket Views   | -                 | Add Ticket Views                  | https://developer.zendesk.com/rest_api/docs/support/views#create-view                                                                          |
+| Users          | -                 | Add User Fields                   | https://developer.zendesk.com/rest_api/docs/support/user_fields#create-user-fields                                                             |
+| Users          | -                 | Add Users                         | https://developer.zendesk.com/rest_api/docs/support/users#create-user                                                                          |
+| Users          | -                 | Add Groups                        | https://developer.zendesk.com/rest_api/docs/support/groups#create-group                                                                        |
+| Users          | -                 | Add Organizations                 | https://developer.zendesk.com/rest_api/docs/support/organizations#create-organization                                                          |
+| Users          | -                 | Add Organization Fields           | https://developer.zendesk.com/rest_api/docs/support/organization_fields#create-organization-fields                                             |
+| Business Rules | -                 | Add SLAs                          | https://developer.zendesk.com/rest_api/docs/support/sla_policies#create-sla-policy                                                             |
+| Business Rules | -                 | Add Triggers                      | https://developer.zendesk.com/rest_api/docs/support/triggers#create-trigger                                                                    |
+| Business Rules | -                 | Add Automations                   | https://developer.zendesk.com/rest_api/docs/support/automations#create-automation                                                              |
+| Macros         | -                 | Add Macros                        | https://developer.zendesk.com/rest_api/docs/support/macros#create-macro                                                                        |
 | Macros         | -                 | Disable Default Macros            | [Bootstrapper's unique Functionality] Disables: 1. Close and redirect to topics 2. Customer not responding 3. Downgrade and inform 4. Take it! |
-| Apps           | -                 | Add Apps (Only Marketplace Apps)  | https://developer.zendesk.com/rest_api/docs/support/apps#create-app                                                                           |
-| Tickets        | -                 | Generate Tickets                  | [Bootstrapper's unique Functionality] https://developer.zendesk.com/rest_api/docs/support/tickets#create-ticket                               |
-| Tickets        | -                 | Add Ticket Fields                 | https://developer.zendesk.com/rest_api/docs/support/ticket_fields#create-ticket-field                                                         |
-| Tickets        | -                 | Add Ticket Forms                  | https://developer.zendesk.com/rest_api/docs/support/ticket_forms#create-ticket-forms                                                          |
-| Talk           | -                 | Add Number                        | [Bootstrapper's unique Functionality]                                                                                                         |
-| Talk           | -                 | Add Talk Agents                   | [Bootstrapper's unique Functionality]                                                                                                         |
-| Talk           | -                 | Add IVRs                          | https://developer.zendesk.com/rest_api/docs/voice-api/ivrs#create-ivr                                                                         |
+| Apps           | -                 | Add Apps (Only Marketplace Apps)  | https://developer.zendesk.com/rest_api/docs/support/apps#create-app                                                                            |
+| Tickets        | -                 | Generate Tickets                  | [Bootstrapper's unique Functionality] https://developer.zendesk.com/rest_api/docs/support/tickets#create-ticket                                |
+| Tickets        | -                 | Add Ticket Fields                 | https://developer.zendesk.com/rest_api/docs/support/ticket_fields#create-ticket-field                                                          |
+| Tickets        | -                 | Add Ticket Forms                  | https://developer.zendesk.com/rest_api/docs/support/ticket_forms#create-ticket-forms                                                           |
+| Talk           | -                 | Add Number                        | [Bootstrapper's unique Functionality]                                                                                                          |
+| Talk           | -                 | Add Talk Agents                   | [Bootstrapper's unique Functionality]                                                                                                          |
+| Talk           | -                 | Add IVRs                          | https://developer.zendesk.com/rest_api/docs/voice-api/ivrs#create-ivr                                                                          |
+| Guide          | -                 | Activate Guide                    | [Bootstrapper's unique Functionality] Value has to be "{{bootstrapper-guide-default-brand-id}}"                                                |
+| Guide          | -                 | Publish Theme                     | [Bootstrapper's unique Functionality] Set theme as live                                                                                        |
+| Guide          | -                 | Import Themes                     | Value will be based on a repository of themes that Bootstrapper has. Contact Leroy Chan to add your own HC theme.                              |
+| Guide          | -                 | Add Categories                    | https://developer.zendesk.com/rest_api/docs/help_center/categories#create-category                                                             |
+| Guide          | -                 | Add Sections                      | https://developer.zendesk.com/rest_api/docs/help_center/sections#create-section                                                                |
+| Guide          | -                 | Add Articles                      | https://developer.zendesk.com/rest_api/docs/help_center/articles#create-article                                                                |                                     |
 
 ### 2.2 Default Variables
 You could use the following variables anywhere within your template code and it will automatically reference the values that you declare within the `bootstrap` object.
@@ -62,22 +68,29 @@ Zendesk Bootstrapper helps you to resolve dependencies automatically with your t
 #### 2.3.1 Currently Supported
 
 `reference_id`
- 1. Add Users
- 2. Add Groups
- 3. Add Organizations
- 4. Add User Fields
- 5. Add Organization Fields
- 6. Add Ticket Fields
- 7. Add Ticket Forms
+ 1. [Support] Add Users
+ 2. [Support] Add Groups
+ 3. [Support] Add Organizations
+ 4. [Support] Add User Fields
+ 5. [Support] Add Organization Fields
+ 6. [Support] Add Ticket Fields
+ 7. [Support] Add Ticket Forms
+ 8. [Guide] Import Themes
+ 9. [Guide] Add Sections
+ 10. [Guide] Add Articles
 
 `{{reference_id_value}}`
- 1. Add Ticket Views
- 2. Add SLAs
- 3. Add Ticket Forms
- 4. Add Triggers
- 5. Add Automations
- 6. Add Macros
-
+ 1. [Support] Add Ticket Views
+ 2. [Support] Add SLAs
+ 3. [Support] Add Ticket Forms
+ 4. [Support] Add Triggers
+ 5. [Support] Add Automations
+ 6. [Support] Add Macros
+ 7. [Guide] Publish Theme
+ 8. [Guide] Import Themes
+ 9. [Guide] Add Categories
+ 10. [Guide] Add Sections
+ 11. [Guide] Add Articles
 
 #### Example 1: Create 2 Views that Reference 2 Groups, the sample payload will be:
 
@@ -471,4 +484,71 @@ The following examples will give you a better idea how to structure a Bootstrapp
       }
     }
 
+#### 2.4.2 Guide - Activate Guide + Import Custom Theme + Publish Theme + Add 2 Categories + Add 2 Sections + Add 2 Articles
+
+    {
+      "bootstrap": {
+          "subdomain": "z3n-leroychan",
+          "auth": {
+              "username": "lechan@zendesk.com",
+              "password": "XXXXX"
+          },
+          "customer": {
+              "name": "Kaws",
+              "locale": "en"
+          }
+      },
+      "guide": {
+        "activate_guide": "{{bootstrapper-guide-default-brand-id}}",
+        "publish_theme": "{{generic-template}}",
+        "import_themes": [
+          {
+            "theme_name": "generic-template",
+            "reference_id": "generic-template"
+          }
+        ],
+        "add_categories": [
+          {
+            "locale": "en-us",
+            "name": "Refunds",
+            "description": "Decided to refund? We are here to help.",
+            "reference_id": "category-1"
+          },
+          {
+            "locale": "en-us",
+            "name": "Promotions",
+            "description": "Latest promotions to help save your wallet!",
+            "reference_id": "category-2"
+          }
+        ],
+        "add_sections": [
+          {
+            "locale": "en-us",
+            "category_id": "{{category-1}}",
+            "name": "Required Refund Documents",
+            "description": "Documents that are required to facilitate the refund",
+            "reference_id": "section-1"
+          },
+          {
+            "locale": "en-us",
+            "category_id": "{{category-2}}",
+            "name": "New Joiner Promotion",
+            "description": "For all newbies",
+            "reference_id": "section-2"
+          }
+        ],
+        "add_articles": [
+          {
+            "section_id": "{{section-1}}",
+            "title": "Proof of Purchase",
+            "body": "Your Proof of Purchase must be dated within 14 days of the refund date"
+          },
+          {
+            "section_id": "{{section-2}}",
+            "title": "1 for 1 Deal",
+            "body": "Buy 2 at the price of 1!"
+          }
+        ]
+      }
+    }
 

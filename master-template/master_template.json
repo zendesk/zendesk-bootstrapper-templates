@@ -605,5 +605,57 @@
         "name": "Bootstrapper Sample IVR"
       }
     ]
+  },
+  "guide": {
+    "activate_guide": "{{bootstrapper-guide-default-brand-id}}",
+    "publish_theme": "{{generic-template}}",
+    "import_themes": [
+      {
+        "theme_name": "generic-template",
+        "reference_id": "generic-template"
+      }
+    ],
+    "add_categories": [
+      {
+        "locale": "en-us",
+        "name": "Refunds",
+        "description": "Decided to refund? We are here to help.",
+        "reference_id": "category-1"
+      },
+      {
+        "locale": "en-us",
+        "name": "Promotions",
+        "description": "Latest promotions to help save your wallet!",
+        "reference_id": "category-2"
+      }
+    ],
+    "add_sections": [
+      {
+        "locale": "en-us",
+        "category_id": "{{category-1}}",
+        "name": "Required Refund Documents",
+        "description": "Documents that are required to facilitate the refund",
+        "reference_id": "section-1"
+      },
+      {
+        "locale": "en-us",
+        "category_id": "{{category-2}}",
+        "name": "New Joiner Promotion",
+        "description": "For all newbies",
+        "reference_id": "section-2"
+      }
+    ],
+    "add_articles": [
+      {
+        "section_id": "{{section-1}}",
+        "title": "Proof of Purchase",
+        "body": "Your Proof of Purchase must be dated within 14 days of the refund date"
+      },
+      {
+        "section_id": "{{section-2}}",
+        "title": "1 for 1 Deal",
+        "body": "Buy 2 at the price of 1!"
+      }
+    ]
   }
 }
