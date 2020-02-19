@@ -486,6 +486,8 @@ The following examples will give you a better idea how to structure a Bootstrapp
 
 #### 2.4.2 Guide - Activate Guide + Import Custom Theme + Publish Theme + Add 2 Categories + Add 2 Sections + Add 2 Articles
 
+Note: Value for `activate_guide` MUST be `{{bootstrapper-guide-default-brand-id}}`
+
     {
       "bootstrap": {
           "subdomain": "z3n-leroychan",
