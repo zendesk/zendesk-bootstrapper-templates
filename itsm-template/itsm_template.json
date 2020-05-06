@@ -1,0 +1,1964 @@
+{
+  "bootstrap": {
+    "subdomain": "z3n-leroychan",
+    "auth": {
+      "username": "<<YOUR EMAIL>>",
+      "password": "<<YOUR PASSWORD>>"
+    },
+    "customer": {
+      "name": "IT Demo Account",
+      "locale": "en"
+    }
+  },
+  "settings": {
+    "account_settings": {
+      "tickets": {
+        "emoji_autocompletion": true
+      },
+      "agents": {
+        "agent_workspace": true
+      },
+      "active_features": {
+        "business_hours": true,
+        "customer_satisfaction": true,
+        "user_tagging": true,
+        "ticket_tagging": true
+      },
+      "api": {
+        "accepted_api_agreement": true,
+        "api_password_access": true,
+        "api_token_access": true
+      }
+    },
+    "security_settings": {
+      "admins_can_set_user_passwords": true,
+      "email_agent_when_sensitive_fields_changed": false,
+      "authentication": {
+        "end_user": {
+          "google_login": true,
+          "office_365_login": true,
+          "twitter_login": true,
+          "facebook_login": true
+        }
+      }
+    },
+    "support_settings": {
+      "update_default_support_email": {
+        "name": "IT Support"
+      },
+      "add_recipient_addresses": [
+        {
+          "email": "it@{{subdomain}}.zendesk.com",
+          "name": "IT Support"
+        },
+        {
+          "email": "hr@{{subdomain}}.zendesk.com",
+          "name": "HR Support"
+        },
+        {
+          "email": "payroll@{{subdomain}}.zendesk.com",
+          "name": "Payroll Support"
+        }
+      ]
+    }
+  },
+  "ticket_views": {
+    "add_ticket_views": {
+      "options": {
+        "reorder_newly_added_to_first": true
+      },
+      "views": [
+        {
+          "title": "📬 All Tickets (excluding Solved)",
+          "active": true,
+          "position": 1,
+          "output": {
+            "group_by": "null",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "group": "null",
+            "sort_order": "desc",
+            "columns": [
+              "subject",
+              "requester",
+              "created",
+              "assignee",
+              "sla_next_breach_at",
+              "ticket_form"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "💻 Website Requests",
+          "active": true,
+          "position": 2,
+          "output": {
+            "group_by": "null",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "sort_order": "desc",
+            "columns": [
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "assignee"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "via_id",
+              "operator": "is",
+              "value": "0"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "🔁 IT Change Requests",
+          "active": true,
+          "position": 3,
+          "output": {
+            "group_by": "desc",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "group": "null",
+            "sort_order": "desc",
+            "columns": [
+              "subject",
+              "{{-}}",
+              "created",
+              "{{change_impact}}",
+              "sla_next_breach_at",
+              "{{change_status}}"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "closed"
+            }
+          ],
+          "any": [
+            {
+              "field": "ticket_form_id",
+              "operator": "is",
+              "value": "{{ticket-form-change-request}}"
+            }
+          ]
+        },
+        {
+          "title": "🛡 CAB Weekly Meetings",
+          "active": true,
+          "position": 4,
+          "output": {
+            "group_by": "priority",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "group": {
+              "id": "priority",
+              "title": "Priority",
+              "order": "desc"
+            },
+            "sort": {
+              "id": "ticket_id",
+              "title": "ID",
+              "order": "desc"
+            },
+            "columns": [
+              "subject",
+              "{{-}}",
+              "created",
+              "{{change_type}}",
+              "{{change_impact}}",
+              "sla_next_breach_at",
+              "{{change_status}}"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "closed"
+            }
+          ],
+          "any": [
+            {
+              "field": "ticket_form_id",
+              "operator": "is",
+              "value": "{{ticket-form-change-request}}"
+            },
+            {
+              "field": "group_id",
+              "operator": "is",
+              "value": "{{group-cab}}"
+            }
+          ]
+        },
+        {
+          "title": "🔥 Urgent unresolved tickets",
+          "active": true,
+          "position": 5,
+          "output": {
+            "group_by": "null",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "sort_order": "desc",
+            "columns": [
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "assignee"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "is",
+              "value": "open"
+            },
+            {
+              "field": "priority",
+              "operator": "is",
+              "value": "urgent"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "1️⃣ Tier 1 Support",
+          "active": true,
+          "position": 6,
+          "output": {
+            "group_by": "priority",
+            "group_order": "asc",
+            "sort_by": "created",
+            "sort_order": "desc",
+            "columns": [
+              "via",
+              "subject",
+              "requester",
+              "created",
+              "priority",
+              "sla_next_breach_at",
+              "updated",
+              "attributes_match"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "🔒 Login Issue",
+          "active": true,
+          "position": 7,
+          "output": {
+            "group_by": "status",
+            "group_order": "asc",
+            "sort_by": "nice_id",
+            "sort_order": "desc",
+            "columns": [
+              "via",
+              "subject",
+              "requester",
+              "created",
+              "type",
+              "priority",
+              "satisfaction_score"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "description_includes_word",
+              "operator": "includes",
+              "value": "password, login, locked"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "☝️ Your unsolved tickets",
+          "active": true,
+          "position": 8,
+          "output": {
+            "group_by": "status",
+            "group_order": "asc",
+            "sort_by": "nice_id",
+            "sort_order": "desc",
+            "columns": [
+              "via",
+              "subject",
+              "requester",
+              "created",
+              "type",
+              "priority",
+              "satisfaction_score"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "assignee_id",
+              "operator": "is",
+              "value": "current_user"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "🤷 Unassigned tickets (Triage)",
+          "active": true,
+          "position": 9,
+          "output": {
+            "group_by": "null",
+            "group_order": "asc",
+            "sort_by": "created",
+            "sort_order": "desc",
+            "columns": [
+              "brand",
+              "subject",
+              "requester",
+              "created",
+              "priority",
+              "sla_next_breach_at",
+              "group",
+              "attributes_match"
+            ]
+          },
+          "all": [
+            {
+              "field": "assignee_id",
+              "operator": "is",
+              "value": ""
+            },
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            }
+          ],
+          "any": []
+        }
+      ]
+    }
+  },
+  "users": {
+    "add_user_fields": [
+      {
+        "type": "text",
+        "title": "Employee ID",
+        "description": "Employee ID (syncd from Workday)",
+        "position": "2",
+        "active": true,
+        "key": "employee_ID"
+      },
+      {
+        "type": "text",
+        "title": "Title",
+        "description": "Employee Title (syncd from Workday)",
+        "position": "2",
+        "active": true,
+        "key": "employee_title"
+      },
+      {
+        "type": "tagger",
+        "title": "Employee Status",
+        "description": "Status of Employee",
+        "position": "2",
+        "active": true,
+        "key": "employee_status",
+        "custom_field_options": [
+          {
+            "name": "Full Time",
+            "value": "emp_status_full_time"
+          },
+          {
+            "name": "Part Time",
+            "value": "emp_status_part_time"
+          },
+          {
+            "name": "Consultant",
+            "value": "emp_status_consultant"
+          },
+          {
+            "name": "Temporary",
+            "value": "emp_status_temporary"
+          },
+          {
+            "name": "Intern",
+            "value": "emp_status_intern"
+          },
+          {
+            "name": "No Longer",
+            "value": "emp_status_no_longer"
+          }
+        ]
+      },
+      {
+        "type": "tagger",
+        "title": "Laptop",
+        "description": "Laptop issued to employee",
+        "position": "2",
+        "active": true,
+        "key": "laptop_issued",
+        "custom_field_options": [
+          {
+            "name": "PC::Dell::Inspiron 3000 Series",
+            "value": "pc_dell_3000"
+          },
+          {
+            "name": "PC::Dell::Inspiron 5000 Series",
+            "value": "pc_dell_5000"
+          },
+          {
+            "name": "PC::Dell::Inspiron 7000 Series",
+            "value": "pc_dell_7000"
+          },
+          {
+            "name": "PC::HP::HP Elite Dragonfly",
+            "value": "pc_hp_dragonfly"
+          },
+          {
+            "name": "PC::HP::EliteBook x360 Series",
+            "value": "pc_hp_elitebookx360"
+          },
+          {
+            "name": "PC::HP::HP EliteBook 745",
+            "value": "pc_hp_elitebook745"
+          },
+          {
+            "name": "Mac::Macbook Air",
+            "value": "mac_macbook_air"
+          },
+          {
+            "name": "Mac::Macbook Pro 13",
+            "value": "mac_macbook_pro13"
+          },
+          {
+            "name": "Mac::Macbook Pro 16",
+            "value": "mac_macbook_pro16"
+          },
+          {
+            "name": "Other",
+            "value": "laptop_other"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "title": "Laptop s/n",
+        "description": "Laptop Serial Number (syncd from Device Manager)",
+        "position": "2",
+        "active": true,
+        "key": "laptop_sn"
+      },
+      {
+        "type": "date",
+        "title": "Laptop expiration date",
+        "description": "Laptop expiration date (syncd from Device Manager)",
+        "position": "2",
+        "active": true,
+        "key": "laptop_expire_date"
+      },
+      {
+        "type": "checkbox",
+        "title": "Terminated",
+        "description": "Was employee ever terminated",
+        "position": "2",
+        "active": true,
+        "key": "contact_consent",
+        "tag": "contact_consent"
+      }
+    ],
+    "add_users": [
+      {
+        "name": "John Tan",
+        "email": "johntan@bootstrapper.com"
+      }
+    ],
+    "add_groups": [
+      {
+        "name": "IT - Tier 1 Support",
+        "reference_id": "group_tier_1"
+      },
+      {
+        "name": "IT - Tier 2 Support",
+        "reference_id": "group_tier_2"
+      },
+      {
+        "name": "IT - Hardware Support",
+        "reference_id": "group_hardware"
+      },
+      {
+        "name": "HR Support",
+        "reference_id": "group_hr"
+      },
+      {
+        "name": "Asset Managers",
+        "reference_id": "group_asset_managers"
+      },
+      {
+        "name": "System Admins",
+        "reference_id": "group_syst_admins"
+      },
+      {
+        "name": "Change Advisory Board (CAB)",
+        "reference_id": "group-cab"
+      },
+      {
+        "name": "Payroll Support",
+        "reference_id": "group_payroll"
+      },
+      {
+        "name": "Legal Support",
+        "reference_id": "group_legal"
+      },
+      {
+        "name": "Developers",
+        "reference_id": "group_dev"
+      }
+    ],
+    "add_organizations": {
+      "organizations": [
+        {
+          "name": "Marketing Dept - US"
+        },
+        {
+          "name": "Marketing Dept - EMEA"
+        },
+        {
+          "name": "Marketing Dept - APAC"
+        },
+        {
+          "name": "Sales Dept - US"
+        },
+        {
+          "name": "Sales Dept - EMEA"
+        },
+        {
+          "name": "Sales Dept - APAC"
+        },
+        {
+          "name": "Engineering Dept"
+        },
+        {
+          "name": "Product Management"
+        },
+        {
+          "name": "Human Resources"
+        }
+      ]
+    },
+    "add_organization_fields": [
+      {
+        "type": "tagger",
+        "title": "Department IT Lead",
+        "description": "Industry of Organization",
+        "position": "1",
+        "active": true,
+        "key": "customer_status",
+        "custom_field_options": [
+          {
+            "name": "Jack Smith",
+            "value": "dept_lead_jsmith"
+          },
+          {
+            "name": "Kim Walters",
+            "value": "dept_lead_kwalters"
+          },
+          {
+            "name": "John Sampson",
+            "value": "dept_lead_jsampson"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "title": "Dept ID",
+        "description": "Department ID",
+        "position": "2",
+        "active": true,
+        "key": "department_id"
+      }
+    ]
+  },
+  "business_rules": {
+    "add_slas": [
+      {
+        "title": "Urgent Incidents SLA",
+        "description": "For urgent incidents, we will respond to tickets in 10 minutes",
+        "position": 1,
+        "filter": {
+          "all": [
+            {
+              "field": "type",
+              "operator": "is",
+              "value": "incident"
+            }
+          ],
+          "any": []
+        },
+        "policy_metrics": [
+          {
+            "priority": "normal",
+            "metric": "first_reply_time",
+            "target": 30,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "first_reply_time",
+            "target": 10,
+            "business_hours": false
+          },
+          {
+            "priority": "low",
+            "metric": "requester_wait_time",
+            "target": 180,
+            "business_hours": false
+          },
+          {
+            "priority": "normal",
+            "metric": "requester_wait_time",
+            "target": 160,
+            "business_hours": false
+          },
+          {
+            "priority": "high",
+            "metric": "requester_wait_time",
+            "target": 140,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "requester_wait_time",
+            "target": 120,
+            "business_hours": false
+          }
+        ]
+      },
+      {
+        "title": "VIP Employee SLA",
+        "description": "For VIP request, we will respond to tickets in 10 minutes",
+        "position": 2,
+        "filter": {
+          "all": [
+            {
+              "field": "current_tags",
+              "operator": "includes",
+              "value": "VIP"
+            }
+          ],
+          "any": []
+        },
+        "policy_metrics": [
+          {
+            "priority": "normal",
+            "metric": "first_reply_time",
+            "target": 30,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "first_reply_time",
+            "target": 10,
+            "business_hours": false
+          },
+          {
+            "priority": "low",
+            "metric": "requester_wait_time",
+            "target": 180,
+            "business_hours": false
+          },
+          {
+            "priority": "normal",
+            "metric": "requester_wait_time",
+            "target": 160,
+            "business_hours": false
+          },
+          {
+            "priority": "high",
+            "metric": "requester_wait_time",
+            "target": 140,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "requester_wait_time",
+            "target": 120,
+            "business_hours": false
+          }
+        ]
+      }
+    ],
+    "add_triggers": [
+      {
+        "title": "VIP :: Escalate VIP Tickets",
+        "all": [
+          {
+            "field": "update_type",
+            "operator": "is",
+            "value": "Create"
+          },
+          {
+            "field": "current_tags",
+            "operator": "includes",
+            "value": "vip"
+          }
+        ],
+        "actions": [
+          {
+            "field": "priority",
+            "value": "high"
+          }
+        ]
+      },
+      {
+        "title": "Auto set Priority to Normal (for SLA management)",
+        "all": [
+          {
+            "field": "status",
+            "operator": "is",
+            "value": "new"
+          },
+          {
+            "field": "priority",
+            "operator": "is",
+            "value": ""
+          }
+        ],
+        "actions": [
+          {
+            "field": "priority",
+            "value": "normal"
+          }
+        ]
+      },
+      {
+        "title": "CSAT :: Send CSAT Survey",
+        "all": [
+          {
+            "field": "status",
+            "operator": "is",
+            "value": "solved"
+          },
+          {
+            "field": "current_tags",
+            "operator": "includes",
+            "value": "csat"
+          },
+          {
+            "field": "current_tags",
+            "operator": "not_includes",
+            "value": "smooch supportkit"
+          },
+          {
+            "field": "comment_is_public",
+            "operator": "is",
+            "value": "true"
+          }
+        ],
+        "actions": [
+          {
+            "field": "notification_user",
+            "value": [
+              "requester_and_ccs",
+              "Request #{{ticket.id}}: How would you rate the support you received?",
+              "Hello {{ticket.requester.name}},\n\nWe'd love to hear what you think of our customer service. Please take a moment to answer one simple question by clicking either link below:\n\n{{satisfaction.rating_section}}\n\nHere's a reminder of what your ticket was about:\n\n{{ticket.comments_formatted}}"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "apps": {
+    "add_apps": [
+      {
+        "app_id": "6848",
+        "settings": {
+          "name": "Users 5 Most Recent Tickets"
+        }
+      },
+      {
+        "app_id": "27225",
+        "settings": {
+          "name": "Myndbend Process Manager"
+        }
+      },
+      {
+        "app_id": "6272",
+        "settings": {
+          "name": "Linked Tickets"
+        }
+      },
+      {
+        "app_id": "42515",
+        "settings": {
+          "name": "Ticket Redaction"
+        }
+      }
+    ]
+  },
+  "tickets": {
+    "generate_tickets": {
+      "statuses": {
+        "solved": 100,
+        "open": 100,
+        "pending": 100
+      },
+      "ticket_payload": {
+        "requester": {
+          "name": "Employee Name",
+          "email": "kaws@kaws.com"
+        },
+        "tags": [
+          "testing123"
+        ]
+      }
+    },
+    "add_ticket_fields": [
+      {
+        "type": "checkbox",
+        "title": "Approved",
+        "tag": "approved_yes",
+        "reference_id": "ticket_field_approved"
+      },
+      {
+        "type": "text",
+        "title": "🔃 Division",
+        "reference_id": "change_division"
+      },
+      {
+        "type": "text",
+        "title": "🔃 Business Contact",
+        "reference_id": "business_contact"
+      },
+      {
+        "type": "tagger",
+        "title": "🔃 Change Status",
+        "reference_id": "change_status",
+        "custom_field_options": [
+          {
+            "name": "Assessment",
+            "value": "cm_status_assessment"
+          },
+          {
+            "name": "Submitted",
+            "value": "cm_status_submitted"
+          },
+          {
+            "name": "Scheduled",
+            "value": "cm_status_scheduled"
+          },
+          {
+            "name": "Work In Progress",
+            "value": "cm_status_work_in_progress"
+          },
+          {
+            "name": "Completed",
+            "value": "cm_status_complete"
+          },
+          {
+            "name": "Other",
+            "value": "cm_status_other"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "title": "🔃 QA Required?",
+        "reference_id": "qa_required",
+        "tag": "qa_required_yes"
+      },
+      {
+        "type": "tagger",
+        "title": "-",
+        "reference_id": "-",
+        "custom_field_options": [
+          {
+            "name": "✅",
+            "value": "✅"
+          },
+          {
+            "name": "❌",
+            "value": "❌"
+          },
+          {
+            "name": "🆕",
+            "value": "🆕"
+          }
+        ]
+      },
+      {
+        "type": "tagger",
+        "title": "🔃 Change Type",
+        "reference_id": "change_type",
+        "custom_field_options": [
+          {
+            "name": "Normal Change",
+            "value": "normal_change"
+          },
+          {
+            "name": "Standard Change",
+            "value": "standard_change"
+          },
+          {
+            "name": "Major Change",
+            "value": "major_change"
+          },
+          {
+            "name": "Emergency Change",
+            "value": "emergency_change"
+          },
+          {
+            "name": "Other",
+            "value": "other_change"
+          }
+        ]
+      },
+      {
+        "type": "tagger",
+        "title": "🛠 Issue Type (General IT)",
+        "reference_id": "issue_type_it",
+        "custom_field_options": [
+          {
+            "name": "Login::Password Reset",
+            "value": "it_login__password_reset"
+          },
+          {
+            "name": "Login::Okta Authentication",
+            "value": "it_login__okta_authentication"
+          },
+          {
+            "name": "Login::Locked Out",
+            "value": "it_login__locked_out"
+          },
+          {
+            "name": "Login::Website Issue",
+            "value": "it_login__website_issue"
+          },
+          {
+            "name": "Lost or stolen Equipment",
+            "value": "it_lost_stolen_equipment"
+          },
+          {
+            "name": "Hardware::New Equipment Request::Laptop",
+            "value": "it_hardware__new_equipment_request__laptop"
+          },
+          {
+            "name": "Hardware::New Equipment Request::Desktop",
+            "value": "it_hardware__new_equipment_request__desktop"
+          },
+          {
+            "name": "Hardware::New Equipment Request::Phone",
+            "value": "it_hardware__new_equipment_request__phone"
+          },
+          {
+            "name": "Hardware::New Equipment Request::Monitor",
+            "value": "it_hardware__new_equipment_request__monitor"
+          },
+          {
+            "name": "Hardware::New Equipment Request::Other",
+            "value": "it_hardware__new_equipment_request__other"
+          },
+          {
+            "name": "Hardware::Lost or Stolen",
+            "value": "it_hardware__lost_or_stolen"
+          },
+          {
+            "name": "Hardware::Damaged",
+            "value": "it_hardware__damaged"
+          },
+          {
+            "name": "Hardware::Other",
+            "value": "it_hardware__other"
+          },
+          {
+            "name": "Software::Update Required",
+            "value": "it_software__update_required"
+          },
+          {
+            "name": "Software::Revert Version",
+            "value": "it_software__revert_version"
+          },
+          {
+            "name": "Software::User Error",
+            "value": "it_software__user_error"
+          },
+          {
+            "name": "Software::Other",
+            "value": "it_software__other"
+          },
+          {
+            "name": "Network::Switch",
+            "value": "it_network__switch"
+          },
+          {
+            "name": "Network::Server",
+            "value": "it_network__server"
+          },
+          {
+            "name": "Network::Other",
+            "value": "it_network__other"
+          },
+          {
+            "name": "Other",
+            "value": "it_issue_type_other"
+          }
+        ]
+      },
+      {
+        "type": "tagger",
+        "title": "🏢 Category (Facilities Request)",
+        "reference_id": "category_facilities_request",
+        "custom_field_options": [
+          {
+            "name": "AV Equipment::TV / Monitor",
+            "value": "av_equipment__tv_/_monitor"
+          },
+          {
+            "name": "AV Equipment::Computer",
+            "value": "av_equipment__computer"
+          },
+          {
+            "name": "AV Equipment::Podium",
+            "value": "av_equipment__podium"
+          },
+          {
+            "name": "AV Equipment::Projector",
+            "value": "av_equipment__projector"
+          },
+          {
+            "name": "AV Equipment::Other",
+            "value": "av_equipment_other"
+          },
+          {
+            "name": "Furniture::Table",
+            "value": "facilities__table"
+          },
+          {
+            "name": "Furniture::Chairs",
+            "value": "facilities__chairs"
+          },
+          {
+            "name": "Furniture::Podium",
+            "value": "facilities__podium"
+          },
+          {
+            "name": "Furniture::Other",
+            "value": "facilities_furniture_other"
+          },
+          {
+            "name": "HVAC",
+            "value": "facilities_hvac"
+          },
+          {
+            "name": "Lighting",
+            "value": "facilities_lighting"
+          },
+          {
+            "name": "Plumbing",
+            "value": "facilities_plumbing"
+          },
+          {
+            "name": "Other",
+            "value": "facilities_other"
+          }
+        ]
+      },
+      {
+        "type": "tagger",
+        "title": "🏢 Building / Room (Facilities Request)",
+        "reference_id": "building_facilities_request",
+        "custom_field_options": [
+          {
+            "name": "Bascom Hall::Conference Room 52",
+            "value": "bascom_hall__conference_room_52"
+          },
+          {
+            "name": "Bascom Hall::Conference Room 53",
+            "value": "bascom_hall__conference_room_53"
+          },
+          {
+            "name": "Bascom Hall::Conference Room 54",
+            "value": "bascom_hall__conference_room_54"
+          },
+          {
+            "name": "Bascom Hall::Conference Room 210",
+            "value": "bascom_hall__conference_room_210"
+          },
+          {
+            "name": "Bascom Hall::Conference Room 300",
+            "value": "bascom_hall__conference_room_300"
+          },
+          {
+            "name": "Chamberlin Hall::Conference Room 300",
+            "value": "chamberlin_hall__conference_room_300"
+          },
+          {
+            "name": "Chamberlin Hall::Conference Room 210",
+            "value": "chamberlin_hall__conference_room_210"
+          },
+          {
+            "name": "Chamberlin Hall::Conference Room 54",
+            "value": "chamberlin_hall__conference_room_54"
+          },
+          {
+            "name": "Chamberlin Hall::Conference Room 53",
+            "value": "chamberlin_hall__conference_room_53"
+          },
+          {
+            "name": "Memorial Union::Conference Room 52",
+            "value": "memorial_union__conference_room_52"
+          },
+          {
+            "name": "Memorial Union::Conference Room 203",
+            "value": "memorial_union__conference_room_203"
+          },
+          {
+            "name": "Memorial Union::Conference Room 205",
+            "value": "memorial_union__conference_room_205"
+          },
+          {
+            "name": "Other",
+            "value": "conference_room_other"
+          }
+        ]
+      },
+      {
+        "type": "tagger",
+        "title": "💼 HR Issue Type",
+        "reference_id": "hr_issue_type",
+        "custom_field_options": [
+          {
+            "name": "Benefits::Workers Compensation",
+            "value": "benefits__workers_compensation"
+          },
+          {
+            "name": "Benefits::Disability Insurance",
+            "value": "benefits__disability_insurance"
+          },
+          {
+            "name": "Benefits::Family and Medical Leave",
+            "value": "benefits__family_and_medical_leave"
+          },
+          {
+            "name": "Benefits::Health Insurance",
+            "value": "benefits__health_insurance"
+          },
+          {
+            "name": "Benefits::Unemployment Insurance",
+            "value": "benefits__unemployment_insurance"
+          },
+          {
+            "name": "Benefits::401K",
+            "value": "benefits__401k"
+          },
+          {
+            "name": "Benefits::Flex Spending",
+            "value": "benefits__flex_spending"
+          },
+          {
+            "name": "Recruiting::New Hire",
+            "value": "recruiting__new_hire"
+          },
+          {
+            "name": "Recruiting::Termination",
+            "value": "recruiting__termination"
+          },
+          {
+            "name": "Recruiting::Referral",
+            "value": "Recruiting::Referral"
+          },
+          {
+            "name": "Recruiting::Drug Screening",
+            "value": "recruiting__drug_screening"
+          },
+          {
+            "name": "HR Violation::Report Incident",
+            "value": "hr_violation__report_incident"
+          },
+          {
+            "name": "HR Violation::File Grievance",
+            "value": "hr_violation__file_grievance"
+          },
+          {
+            "name": "Other",
+            "value": "hr_other"
+          }
+        ]
+      },
+      {
+        "type": "tagger",
+        "title": "💼 Office Location",
+        "reference_id": "hr_office_location",
+        "custom_field_options": [
+          {
+            "name": "San Francisco, CA",
+            "value": "office_location_sf"
+          },
+          {
+            "name": "Madison, WI",
+            "value": "office_location_madison"
+          },
+          {
+            "name": "London, UK",
+            "value": "office_location_london"
+          },
+          {
+            "name": "São Paulo",
+            "value": "office_location_sp"
+          },
+          {
+            "name": "Singapore",
+            "value": "office_location_singapore"
+          },
+          {
+            "name": "Remote",
+            "value": "office_location_remote"
+          }
+        ]
+      },
+      {
+        "type": "tagger",
+        "title": "🔃 Change Urgency",
+        "reference_id": "change_urgency",
+        "custom_field_options": [
+          {
+            "name": "High",
+            "value": "cm_urgency_high"
+          },
+          {
+            "name": "Medium",
+            "value": "cm_urgency_medium"
+          },
+          {
+            "name": "Low",
+            "value": "cm_urgency_low"
+          },
+          {
+            "name": "N/A",
+            "value": "cm_urgency_na"
+          }
+        ]
+      },
+      {
+        "type": "tagger",
+        "title": "🔃 Impact",
+        "reference_id": "change_impact",
+        "custom_field_options": [
+          {
+            "name": "🔴1 - Critical",
+            "value": "🔴1_-_critical"
+          },
+          {
+            "name": "🔶2 - High",
+            "value": "🔶2_-_high"
+          },
+          {
+            "name": "✴️3 - Average",
+            "value": "✴️3_-_average"
+          },
+          {
+            "name": "❇️4 - Low",
+            "value": "❇️4_-_low"
+          }
+        ]
+      },
+      {
+        "type": "tagger",
+        "title": "🏢 Building / Room (Facilities Request)",
+        "reference_id": "building_room",
+        "custom_field_options": [
+          {
+            "name": "High",
+            "value": "building_cm_urgency_high"
+          },
+          {
+            "name": "Medium",
+            "value": "building_cm_urgency_medium"
+          },
+          {
+            "name": "Low",
+            "value": "building_cm_urgency_low"
+          },
+          {
+            "name": "N/A",
+            "value": "building_cm_urgency_na"
+          }
+        ]
+      }
+    ],
+    "add_ticket_forms": [
+      {
+        "name": "🛠 General IT Support",
+        "end_user_visible": true,
+        "active": true,
+        "in_all_brands": true,
+        "ticket_field_ids": [
+          "{{change_status}}",
+          "{{ticket_field_approved}}"
+        ],
+        "reference_id": "ticket-form-general-support"
+      },
+      {
+        "name": "🔄 Change Request",
+        "end_user_visible": true,
+        "active": true,
+        "in_all_brands": true,
+        "ticket_field_ids": [
+          "{{change_type}}",
+          "{{change_status}}",
+          "{{qa_required}}",
+          "{{-}}",
+          "{{change_impact}}",
+          "{{change_urgency}}",
+          "{{change_division}}",
+          "{{business_contact}}"
+        ],
+        "reference_id": "ticket-form-change-request"
+      },
+      {
+        "name": "🚻 HR Support",
+        "end_user_visible": true,
+        "active": true,
+        "in_all_brands": true,
+        "ticket_field_ids": [
+          "{{hr_issue_type}}"
+        ],
+        "reference_id": "ticket-form-hr-support"
+      },
+      {
+        "name": "🏢 Facilities Support",
+        "end_user_visible": true,
+        "active": true,
+        "in_all_brands": true,
+        "ticket_field_ids": [
+          "{{category_facilities_request}}",
+          "{{building_facilities_request}}"
+        ],
+        "reference_id": "ticket-form-facilities-support"
+      }
+    ]
+  },
+  "macros": {
+    "disable_default_macros": true,
+    "add_macros": [
+      {
+        "title": "🔁 Change Request::Normal Change",
+        "actions": [
+          {
+            "field": "status",
+            "value": "open"
+          },
+          {
+            "field": "priority",
+            "value": "normal"
+          },
+          {
+            "field": "custom_fields_{{change_type}}",
+            "value": "normal_change"
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": "false"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "<p><b>Description:</b><br></p><pre style=\"white-space: pre-wrap;\"><p>&lt;insert notes here&gt;</p><p><br></p><p><br></p></pre><p><b>Justification:</b></p><pre style=\"white-space: pre-wrap;\"><p>&lt;insert notes here&gt;</p><p><br></p><p><br></p></pre><p><b>Cause:</b><b><br></b></p><pre style=\"white-space: pre-wrap;\"><p>&lt;insert notes here&gt;<br></p><p><br></p><p><br></p></pre><p><br></p><p><br></p><p><br></p>"
+          },
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket-form-change-request}}"
+          },
+          {
+            "field": "group_id",
+            "value": "{{group-cab}}"
+          },
+          {
+            "field": "subject",
+            "value": "Change Request - {{current_user.name}}"
+          }
+        ]
+      },
+      {
+        "title": "🔁 Change Request::Standard Change",
+        "actions": [
+          {
+            "field": "status",
+            "value": "open"
+          },
+          {
+            "field": "priority",
+            "value": "normal"
+          },
+          {
+            "field": "custom_fields_{{change_type}}",
+            "value": "standard_change"
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": "false"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "<p><b>Description:</b><br></p><pre style=\"white-space: pre-wrap;\"><p>&lt;insert notes here&gt;</p><p><br></p><p><br></p></pre><p><b>Justification:</b></p><pre style=\"white-space: pre-wrap;\"><p>&lt;insert notes here&gt;</p><p><br></p><p><br></p></pre><p><b>Cause:</b><b><br></b></p><pre style=\"white-space: pre-wrap;\"><p>&lt;insert notes here&gt;<br></p><p><br></p><p><br></p></pre><p><br></p><p><br></p><p><br></p>"
+          },
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket-form-change-request}}"
+          },
+          {
+            "field": "group_id",
+            "value": "{{group-cab}}"
+          },
+          {
+            "field": "subject",
+            "value": "Change Request - {{current_user.name}}"
+          }
+        ]
+      },
+      {
+        "title": "🔁 Change Request::Major Change",
+        "actions": [
+          {
+            "field": "status",
+            "value": "open"
+          },
+          {
+            "field": "priority",
+            "value": "normal"
+          },
+          {
+            "field": "custom_fields_{{change_type}}",
+            "value": "major_change"
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": "false"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "<p><b>Description:</b><br></p><pre style=\"white-space: pre-wrap;\"><p>&lt;insert notes here&gt;</p><p><br></p><p><br></p></pre><p><b>Justification:</b></p><pre style=\"white-space: pre-wrap;\"><p>&lt;insert notes here&gt;</p><p><br></p><p><br></p></pre><p><b>Cause:</b><b><br></b></p><pre style=\"white-space: pre-wrap;\"><p>&lt;insert notes here&gt;<br></p><p><br></p><p><br></p></pre><p><br></p><p><br></p><p><br></p>"
+          },
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket-form-change-request}}"
+          },
+          {
+            "field": "group_id",
+            "value": "{{group-cab}}"
+          },
+          {
+            "field": "subject",
+            "value": "Change Request - {{current_user.name}}"
+          }
+        ]
+      },
+      {
+        "title": "🔁 Change Request::Emergency Change",
+        "actions": [
+          {
+            "field": "status",
+            "value": "open"
+          },
+          {
+            "field": "priority",
+            "value": "normal"
+          },
+          {
+            "field": "custom_fields_{{change_type}}",
+            "value": "emergency_change"
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": "false"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "<p><b>Description:</b><br></p><pre style=\"white-space: pre-wrap;\"><p>&lt;insert notes here&gt;</p><p><br></p><p><br></p></pre><p><b>Justification:</b></p><pre style=\"white-space: pre-wrap;\"><p>&lt;insert notes here&gt;</p><p><br></p><p><br></p></pre><p><b>Cause:</b><b><br></b></p><pre style=\"white-space: pre-wrap;\"><p>&lt;insert notes here&gt;<br></p><p><br></p><p><br></p></pre><p><br></p><p><br></p><p><br></p>"
+          },
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket-form-change-request}}"
+          },
+          {
+            "field": "group_id",
+            "value": "{{group-cab}}"
+          },
+          {
+            "field": "subject",
+            "value": "Change Request - {{current_user.name}}"
+          }
+        ]
+      },
+      {
+        "title": "Hardware Request::New Laptop Request",
+        "actions": [
+          {
+            "field": "status",
+            "value": "open"
+          },
+          {
+            "field": "priority",
+            "value": "normal"
+          },
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket-form-general-support}}"
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": "true"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "<p>{{ticket.requester.first_name}},</p><p><br></p><p>Your new laptop is on order pending approval from your manager. You will receive notification once approved.<br></p><p><br></p><p>Please let me know if you have any additional questions.<br></p><p><br></p><p>Regards,<br></p><p><br></p><p>{{ticket.assignee.first_name}}<br></p><p><br></p>"
+          },
+          {
+            "field": "custom_fields_{{issue_type_it}}",
+            "value": "it_hardware__new_equipment_request__laptop"
+          },
+          {
+            "field": "type",
+            "value": "task"
+          },
+          {
+            "field": "group_id",
+            "value": "{{group_hardware}}"
+          }
+        ]
+      },
+      {
+        "title": "Hardware Request::New Laptop Approved",
+        "actions": [
+          {
+            "field": "status",
+            "value": "open"
+          },
+          {
+            "field": "priority",
+            "value": "normal"
+          },
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket-form-general-support}}"
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": "true"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "<p>Laptop has been approved. Please provision and send laptop to {{ticket.requester.name}}.</p><p><br></p><p>Thanks,<br></p><p><br></p><p>{{ticket.assignee.name}}<br></p><p><br></p><p><br></p><p><br></p>"
+          },
+          {
+            "field": "custom_fields_{{issue_type_it}}",
+            "value": "it_hardware__new_equipment_request__laptop"
+          },
+          {
+            "field": "type",
+            "value": "task"
+          },
+          {
+            "field": "group_id",
+            "value": "{{group_hardware}}"
+          },
+          {
+            "field": "custom_fields_{{ticket_field_approved}}",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "title": "Hardware Request::New Phone",
+        "actions": [
+          {
+            "field": "status",
+            "value": "open"
+          },
+          {
+            "field": "priority",
+            "value": "normal"
+          },
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket-form-general-support}}"
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": "true"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "<p>New Phone has been approved. Please provision and send Phone to {{ticket.requester.name}}.</p><p><br></p><p>Thanks,<br></p><p><br></p><p>{{ticket.assignee.name}}<br></p><p><br></p><p><br></p><p><br></p>"
+          },
+          {
+            "field": "custom_fields_{{issue_type_it}}",
+            "value": "it_hardware__new_equipment_request__phone"
+          },
+          {
+            "field": "type",
+            "value": "task"
+          },
+          {
+            "field": "group_id",
+            "value": "{{group_hardware}}"
+          },
+          {
+            "field": "custom_fields_{{ticket_field_approved}}",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "title": "Hardware Request::New Monitor",
+        "actions": [
+          {
+            "field": "status",
+            "value": "open"
+          },
+          {
+            "field": "priority",
+            "value": "normal"
+          },
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket-form-general-support}}"
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": "true"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "<p>New Monitor has been approved. Please provision and send Monitor to {{ticket.requester.name}}.</p><p><br></p><p>Thanks,<br></p><p><br></p><p>{{ticket.assignee.name}}<br></p><p><br></p><p><br></p><p><br></p>"
+          },
+          {
+            "field": "custom_fields_{{issue_type_it}}",
+            "value": "it_hardware__new_equipment_request__phone"
+          },
+          {
+            "field": "type",
+            "value": "task"
+          },
+          {
+            "field": "group_id",
+            "value": "{{group_hardware}}"
+          },
+          {
+            "field": "custom_fields_{{ticket_field_approved}}",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "title": "HR::New Employee Onboarding",
+        "actions": [
+          {
+            "field": "status",
+            "value": "open"
+          },
+          {
+            "field": "priority",
+            "value": "normal"
+          },
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket-form-hr-support}}"
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": "false"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "<p>New Employee has been hire. Please provision and send onboarding material to {{ticket.requester.name}}.</p><p><br></p><p>Thanks,<br></p><p><br></p><p>{{ticket.assignee.name}}<br></p><p><br></p><p><br></p><p><br></p>"
+          },
+          {
+            "field": "type",
+            "value": "task"
+          },
+          {
+            "field": "group_id",
+            "value": "{{group_hr}}"
+          },
+          {
+            "field": "custom_fields_{{ticket_field_approved}}",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "title": "HR::Recruiting Referral",
+        "actions": [
+          {
+            "field": "status",
+            "value": "open"
+          },
+          {
+            "field": "priority",
+            "value": "normal"
+          },
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket-form-hr-support}}"
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": "false"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "<p>{{ticket.requester.name}} has a recuriting referral. See notes for more details.</p><p><br></p><p>Thanks,<br></p><p><br></p><p>{{ticket.assignee.name}}<br></p><p><br></p><p><br></p><p><br></p>"
+          },
+          {
+            "field": "type",
+            "value": "task"
+          },
+          {
+            "field": "group_id",
+            "value": "{{group_hr}}"
+          },
+          {
+            "field": "custom_fields_{{ticket_field_approved}}",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "title": "HR::Benefits::401K",
+        "actions": [
+          {
+            "field": "status",
+            "value": "open"
+          },
+          {
+            "field": "priority",
+            "value": "normal"
+          },
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket-form-hr-support}}"
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": "false"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "<p>Hi {{ticket.requester.first_name}} ‍,<br></p><p><br></p><p>Thanks for reaching out. </p><p><br></p><p>Have you seen our newest 401K Guide for 2019 (attached)? A lot of details are in there about your available options, and I think you'll find the answers you'll need inside. Additionally, I'm happy to clarify anything specific for you. Please let me know!</p><p><br></p><p>Best,</p><p>{{ticket.assignee.first_name}}‍ </p><p><br></p>"
+          },
+          {
+            "field": "type",
+            "value": "task"
+          },
+          {
+            "field": "group_id",
+            "value": "{{group_hr}}"
+          }
+        ]
+      },
+      {
+        "title": "HR::Benefits::Employee Stock Purchase Plan",
+        "actions": [
+          {
+            "field": "status",
+            "value": "open"
+          },
+          {
+            "field": "priority",
+            "value": "normal"
+          },
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket-form-hr-support}}"
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": "false"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "<p>Hi {{ticket.requester.first_name}},</p><p><br></p><p>I understand you want to opt out of the ESPP program.</p><p><br></p><p>Please follow the instructions in our Help Center article, Cancel ESPP, to do so.</p><p><br></p><p>We are here if you have any specific questions about this procedure.</p><p><br></p><p>Best,</p><p><br></p><p><span class=\"atwho-inserted\">{{ticket.assignee.name}}</span>‍</p>"
+          },
+          {
+            "field": "type",
+            "value": "task"
+          },
+          {
+            "field": "group_id",
+            "value": "{{group_hr}}"
+          }
+        ]
+      }
+    ]
+  },
+  "talk": {
+    "add_number": {
+      "country_code": "US",
+      "purchase_first_available_number": true
+    },
+    "add_talk_agents": {
+      "enable_first_admin": true
+    },
+    "add_ivrs": [
+      {
+        "name": "Sample IVR"
+      }
+    ]
+  },
+  "guide": {
+    "activate_guide": "{{bootstrapper-guide-default-brand-id}}",
+    "publish_theme": "{{generic-template}}",
+    "import_themes": [
+      {
+        "theme_name": "demo-builder",
+        "reference_id": "generic-template"
+      }
+    ],
+    "add_categories": [
+      {
+        "locale": "en-us",
+        "name": "IT Support",
+        "description": "ITSM",
+        "reference_id": "category-1"
+      },
+      {
+        "locale": "en-us",
+        "name": "HR Support",
+        "description": "ITSM",
+        "reference_id": "category-2"
+      },
+      {
+        "locale": "en-us",
+        "name": "Facilities Support",
+        "description": "ITSM",
+        "reference_id": "category-3"
+      }
+    ],
+    "add_sections": [
+      {
+        "locale": "en-us",
+        "category_id": "{{category-1}}",
+        "name": "IT Software / Hardware Support",
+        "description": "All things IT related (Outlook, Slack, Okta, etc)",
+        "reference_id": "section-1"
+      },
+      {
+        "locale": "en-us",
+        "category_id": "{{category-2}}",
+        "name": "HR Support",
+        "description": "All things HR Related",
+        "reference_id": "section-2"
+      },
+      {
+        "locale": "en-us",
+        "category_id": "{{category-3}}",
+        "name": "Facilities Support",
+        "description": "All things Facilities Related",
+        "reference_id": "section-3"
+      }
+    ],
+    "add_articles": [
+      {
+        "section_id": "{{section-1}}",
+        "title": "Requesting a new PC",
+        "body": "Follow the steps below to acquire a PC if you are in one of the following departments that have been approved by Finance and IT....",
+        "reference_id": "article-1"
+      },
+      {
+        "section_id": "{{section-1}}",
+        "title": "Report a lost or stolen piece of equipment",
+        "body": "If you have lost a computer or laptop, the first thing you should do is re-trace your steps, to try and remember where you may have left it. If you think you may have lost it at a retail store or at a school, check with the store's employees or the school' staff to see if they found a computer laying around. After re-tracing your steps, if you are unable to find your computer, you can try contacting the authorities and reporting your laptop as lost. Might be a long shot, but your computer may get turned in by someone that finds it.",
+        "ignore": "{{article-1}}",
+        "reference_id": "article-2"
+      },
+      {
+        "section_id": "{{section-1}}",
+        "title": "Forgot my Password",
+        "body": "If you need help resetting you password, we can help by sending you a link to reset it. \n\nVisit Forgot Password. \n\nEnter either the email address or username on the account. \n\nSelect Submit. \n\nCheck your inbox for a password reset email. \n\nClick on the URL provided in the email and enter a new password ",
+        "ignore": "{{article-2}}",
+        "reference_id": "article-3"
+      },
+      {
+        "section_id": "{{section-1}}",
+        "title": "Okta Account Services and Two Step Login",
+        "body": "Logging into your Notre Dame account with Okta\n\nYou will access services by the same URL or link as you always have, but the login screen will look different.  The background will be a blue sky with the golden dome appearing on the right hand side. Enter your NetID and password at this screen. You will likely be required to respond to two step authentication to complete the login process.",
+        "ignore": "{{article-3}}",
+        "reference_id": "article-4"
+      },
+      {
+        "section_id": "{{section-2}}",
+        "title": "2020 Employee Benefits Guide",
+        "body": "To access our 2017 benefits guide please click here",
+        "ignore": "{{article-4}}",
+        "reference_id": "article-5"
+      },
+      {
+        "section_id": "{{section-2}}",
+        "title": "Reference & Background Checks Policy ",
+        "body": "A job candidate's offer of employment is contingent upon his or her proper completion of the online application, satisfactory reference checks, and satisfactory pre-employment qualifications - including background checks, governmental sanction checks and required health and drug screens. The hiring supervisor is responsible for verification of the applicant's work background, attendance, performance, credentials, and health and drug screenings (where required). We are responsible for conducting the criminal history, government sanctions, and motor vehicle checks (when required) at the offer stage for each finalist who has been recommended for hire.",
+        "ignore": "{{article-5}}",
+        "reference_id": "article-6"
+      },
+      {
+        "section_id": "{{section-2}}",
+        "title": "401K Match Program",
+        "body": "What it is:\n\nThe term matching contribution refers to a matching dollar amount contributed by an employer to the retirement savings account of an employee who makes a similar contribution, usually to a 401(k) plan.These are contributions made by a company in addition to and conditional upon the salary deferral contributions made by the participating employee. \n\n How it works (Example):\n\nMatching contributions can be made to 401(k) plans including the SIMPLE, SIMPLE IRA'S, and the 403(b) plans. These contributions are generally based on a percentage of the participant's compensation.\n\nFor example, these contributions usually take the form of one of the two following scenarios:\n\nOne possibility is a dollar-for-dollar contribution up to a certain percentage (i.e. 3%) of employee compensation. The employer matches a dollar for every dollar employee invests up to a certain percentage of the employee's compensation.\n\nThe other possibility is a lower amount, such as a $0.50 match on every dollar up to a certain percentage (i.e. 6%) of the employee's salary. The employer invests $0.50 for every dollar invested by the employee up to this maximum percentage. \n\n\n\nWhy it Matters:\n\nIt is important for an employee to know what percentage the employer matches for budgeting/and tax planning purposes. An employee can contribute up to a certain amount based on certain considerations including the company's matching contributions, the employee's other budget needs, and his tax status.",
+        "ignore": "{{article-6}}",
+        "reference_id": "article-7"
+      },
+      {
+        "section_id": "{{section-3}}",
+        "title": "Conference Rooms",
+        "body": "You will need to provide your own laptop, tablet, or presentation-capable smartphone.  Depending on your brand or model, you will need to bring an appropriate VGA adapter to connect your device to the LCD projector.  You can order these adapters online or from various chain stores. (our A/V service provider is not responsible for supplying these.)\n\nOr check your device’s user manual or the manufacturer’s website.  See more information below.",
+        "ignore": "{{article-7}}",
+        "reference_id": "article-8"
+      },
+      {
+        "section_id": "{{section-3}}",
+        "title": "Heating & Cooling",
+        "body": "The college’s air conditioning system is controlled through a sophisticated computer network that monitors building and outdoor temperatures and campus electrical load demands. Estrella Mountain’s HVAC technicians are able to monitor and modify room temperatures as well as make other program adjustments remotely using this system. In keeping with the College's Climate Action Plan every effort is taken to keep office spaces, classrooms and work areas comfortable while recognizing the need to maintain room temperature setpoints that are consistent with this effort. \n\nReport Problems\n\nTo report problems or to request room temperatures changes, please use the FACILITIES HELP DESK, or call 623-935-8296",
+        "ignore": "{{article-8}}",
+        "reference_id": "article-9"
+      },
+      {
+        "section_id": "{{section-3}}",
+        "title": "Custodial Services",
+        "body": "Briefly here is what to expect from housekeeping.\n\nDaily: The carpets are vacuumed, rest room and tile floors cleaned and sanitized.  All countertops and classroom furniture will be cleared off and washed or dusted. White boards and chalkboard surfaces are cleaned. All paper supplies are filled and trash is emptied.\n\nWeekly:  Tile floors in lab areas and galley kitchens are spray buffed, and waxed.\n\nBi-weekly:  Spider webs are removed and blinds dusted. Walls are wiped clean and rooms and offices are dusted at above eye level.\n\nSemi-annually or as needed:  Carpets extracted, light fixtures cleaned and dusted, furniture finishes repaired, ceiling tiles dusted, HVAC vents cleaned.",
+        "ignore": "{{article-9}}"
+      }
+    ]
+  }
+}

@@ -75,22 +75,31 @@ Zendesk Bootstrapper helps you to resolve dependencies automatically with your t
  5. [Support] Add Organization Fields
  6. [Support] Add Ticket Fields
  7. [Support] Add Ticket Forms
- 8. [Guide] Import Themes
- 9. [Guide] Add Sections
- 10. [Guide] Add Articles
+ 8. [Support] Add Targets
+ 9. [Sunshine] Add Custom Object Types
+ 10. [Sunshine] Add Custom Object Records
+ 12. [Sunshine] Add Relationship Types
+ 13. [Sunshine] Add Relationship Records
+ 14. [Guide] Import Themes
+ 15. [Guide] Add Sections
+ 16. [Guide] Add Articles
 
 `{{reference_id_value}}`
- 1. [Support] Add Ticket Views
- 2. [Support] Add SLAs
- 3. [Support] Add Ticket Forms
- 4. [Support] Add Triggers
- 5. [Support] Add Automations
- 6. [Support] Add Macros
- 7. [Guide] Publish Theme
- 8. [Guide] Import Themes
- 9. [Guide] Add Categories
- 10. [Guide] Add Sections
- 11. [Guide] Add Articles
+ 1. [Support] Add Organizations
+ 2. [Support] Add Ticket Views
+ 3. [Support] Add SLAs
+ 4. [Support] Add Ticket Forms
+ 5. [Support] Add Triggers
+ 6. [Support] Add Automations
+ 7. [Support] Add Macros
+ 8. [Sunshine] Add Custom Object Records
+ 9. [Sunshine] Add Relationship Types
+ 10. [Sunshine] Add Relationship Records
+ 11. [Guide] Publish Theme
+ 12. [Guide] Import Themes
+ 13. [Guide] Add Categories
+ 14. [Guide] Add Sections
+ 15. [Guide] Add Articles
 
 #### Example 1: Create 2 Views that Reference 2 Groups, the sample payload will be:
 
@@ -454,7 +463,138 @@ Zendesk Bootstrapper helps you to resolve dependencies automatically with your t
 ### 2.4 Example Bootstrapper Templates
 The following examples will give you a better idea how to structure a Bootstrapper template. You can easily mix and match and/or combine different examples to achieve your intended usecases.
 
-#### 2.4.1 Enabling Zendesk Talk for Demo Instances
+#### 2.4.1 Support - Add Private Apps - Configurable Customer 360 App
+
+Note: `app-name` must be one of the following values: `configurable-customer-360-v1`, `related-objects-with-settings-v1`
+If you would like your private apps to be included in Bootstrapper, please contact #ask-bootstrapper
+
+    {
+      "bootstrap": {
+          "subdomain": "z3n-leroychan",
+          "auth": {
+              "username": "lechan@zendesk.com",
+              "password": "XXXXX"
+          },
+          "customer": {
+              "name": "Kaws",
+              "locale": "en"
+          }
+      },
+      "apps": {
+        "add_private_apps": [
+          {
+            "app_name": "configurable-customer-360-v1",
+            "name": "Customer 360",
+            "short_description": "Configurable Customer 360 App with Management Pane to configure static data"
+          }
+        ]
+      }
+    }
+
+#### 2.4.2 Sunshine - Add 1 Product (Custom Object), Add 1 Order (Custom Object) and Create 1 Relationship (order_contains_products)
+
+    {
+      "bootstrap": {
+          "subdomain": "z3n-leroychan",
+          "auth": {
+              "username": "lechan@zendesk.com",
+              "password": "XXXXX"
+          },
+          "customer": {
+              "name": "Kaws",
+              "locale": "en"
+          }
+      },
+      "sunshine": {
+        "add_custom_object_types": [
+            {
+                "key": "product",
+                "schema": {
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "description": "product id"
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "product name"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "name"
+                    ]
+                },
+                "reference_id": "co-product"
+            },
+            {
+                "key": "order",
+                "schema": {
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "description": "order id"
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "order name"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "name"
+                    ]
+                },
+                "reference_id": "co-order"
+            }
+        ],
+        "add_relationship_types": [
+          {
+            "key": "user_has_orders",
+            "source": "zen:user",
+            "target": "{{co-order}}",
+            "reference_id": "rs-order"
+          },
+          {
+            "key": "order_contains_products",
+            "source": "{{co-order}}",
+            "target": "{{co-product}}",
+            "reference_id": "rs-product"
+          }
+        ],
+        "add_custom_object_records": [
+          {
+            "type": "{{co-product}}",
+            "external_id": "1717",
+            "attributes": {
+              "id": "1717",
+              "name": "Test Bootstrapper Product 1"
+            },
+            "reference_id": "co-record-1"
+            
+          },
+          {
+            "type": "{{co-order}}",
+            "external_id": "order-1717",
+            "attributes": {
+              "id": "order-1717",
+              "name": "Test Bootstrapper Order 1"
+            },
+            "reference_id": "co-record-2"
+          }
+        ],
+        "add_relationship_records": [
+          {
+            "relationship_type": "{{rs-product}}",
+            "source": "{{co-record-2}}",
+            "destination": "{{co-record-1}}"
+          }
+        ]
+    }
+    }
+
+
+#### 2.4.3 Enabling Zendesk Talk for Demo Instances
 
     {
       "bootstrap": {
@@ -484,7 +624,7 @@ The following examples will give you a better idea how to structure a Bootstrapp
       }
     }
 
-#### 2.4.2 Guide - Activate Guide + Import Custom Theme + Publish Theme + Add 2 Categories + Add 2 Sections + Add 2 Articles
+#### 2.4.4 Guide - Activate Guide + Import Custom Theme + Publish Theme + Add 2 Categories + Add 2 Sections + Add 2 Articles
 
 Note: Value for `activate_guide` MUST be `{{bootstrapper-guide-default-brand-id}}`
 
