@@ -31,6 +31,7 @@ PS: It supports *ALL* values of the Zendesk APIs (you could refer to https://dev
 | Users          | -                 | Add User Fields                   | https://developer.zendesk.com/rest_api/docs/support/user_fields#create-user-fields                                                             |
 | Users          | -                 | Add Users                         | https://developer.zendesk.com/rest_api/docs/support/users#create-user                                                                          |
 | Users          | -                 | Add Groups                        | https://developer.zendesk.com/rest_api/docs/support/groups#create-group                                                                        |
+| Users          | -                 | Add Group Memberships             | https://developer.zendesk.com/rest_api/docs/support/group_memberships#create-membership                                                                       |
 | Users          | -                 | Add Organizations                 | https://developer.zendesk.com/rest_api/docs/support/organizations#create-organization                                                          |
 | Users          | -                 | Add Organization Fields           | https://developer.zendesk.com/rest_api/docs/support/organization_fields#create-organization-fields                                             |
 | Business Rules | -                 | Add SLAs                          | https://developer.zendesk.com/rest_api/docs/support/sla_policies#create-sla-policy                                                             |
@@ -92,14 +93,15 @@ Zendesk Bootstrapper helps you to resolve dependencies automatically with your t
  5. [Support] Add Triggers
  6. [Support] Add Automations
  7. [Support] Add Macros
- 8. [Sunshine] Add Custom Object Records
- 9. [Sunshine] Add Relationship Types
- 10. [Sunshine] Add Relationship Records
- 11. [Guide] Publish Theme
- 12. [Guide] Import Themes
- 13. [Guide] Add Categories
- 14. [Guide] Add Sections
- 15. [Guide] Add Articles
+ 8. [Support] Add Group Memberships
+ 9. [Sunshine] Add Custom Object Records
+ 10. [Sunshine] Add Relationship Types
+ 11. [Sunshine] Add Relationship Records
+ 12. [Guide] Publish Theme
+ 13. [Guide] Import Themes
+ 14. [Guide] Add Categories
+ 15. [Guide] Add Sections
+ 16. [Guide] Add Articles
 
 #### Example 1: Create 2 Views that Reference 2 Groups, the sample payload will be:
 
@@ -455,6 +457,58 @@ Zendesk Bootstrapper helps you to resolve dependencies automatically with your t
                 "ticket_field_ids": [
                     "{{piesmacro1}}"
                 ]
+            }
+        ]
+      }
+    }
+
+#### Example 5: Create Agents, Groups and Adding Agents to a Group
+
+    {
+      "bootstrap": {
+          "subdomain": "z3n-leroychan",
+          "auth": {
+              "username": "lechan@zendesk.com",
+              "password": "XXXXX"
+          },
+          "customer": {
+              "name": "Kaws",
+              "locale": "en"
+          }
+      },
+      "users": {
+        "add_users": [
+            {
+                "name": "Test Agent 7",
+                "email": "testagent7@zendesk.com",
+                "role": "agent",
+                "reference_id": "user-agent-7"
+            },
+            {
+                "name": "Test Agent 8",
+                "email": "testagent8@zendesk.com",
+                "role": "agent",
+                "reference_id": "user-agent-8"
+            }
+        ],
+        "add_groups": [
+            {
+                "name": "Test Group 7",
+                "reference_id": "group-test-7"
+            },
+            {
+                "name": "Test Group 8",
+                "reference_id": "group-test-8"
+            }
+        ],
+        "add_group_memberships": [
+            {
+                "user_id": "{{user-agent-7}}",
+                "group_id": "{{group-test-7}}"
+            },
+            {
+                "user_id": "{{user-agent-8}}",
+                "group_id": "{{group-test-8}}"
             }
         ]
       }
