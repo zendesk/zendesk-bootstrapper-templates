@@ -31,7 +31,7 @@ PS: It supports *ALL* values of the Zendesk APIs (you could refer to https://dev
 | Users          | -                 | Add User Fields                   | https://developer.zendesk.com/rest_api/docs/support/user_fields#create-user-fields                                                             |
 | Users          | -                 | Add Users                         | https://developer.zendesk.com/rest_api/docs/support/users#create-user                                                                          |
 | Users          | -                 | Add Groups                        | https://developer.zendesk.com/rest_api/docs/support/groups#create-group                                                                        |
-| Users          | -                 | Add Group Memberships             | https://developer.zendesk.com/rest_api/docs/support/group_memberships#create-membership                                                                       |
+| Users          | -                 | Add Group Memberships             | https://developer.zendesk.com/rest_api/docs/support/group_memberships#create-membership                                                        |
 | Users          | -                 | Add Organizations                 | https://developer.zendesk.com/rest_api/docs/support/organizations#create-organization                                                          |
 | Users          | -                 | Add Organization Fields           | https://developer.zendesk.com/rest_api/docs/support/organization_fields#create-organization-fields                                             |
 | Business Rules | -                 | Add SLAs                          | https://developer.zendesk.com/rest_api/docs/support/sla_policies#create-sla-policy                                                             |
@@ -51,7 +51,13 @@ PS: It supports *ALL* values of the Zendesk APIs (you could refer to https://dev
 | Guide          | -                 | Import Themes                     | Value will be based on a repository of themes that Bootstrapper has. Contact Leroy Chan to add your own HC theme.                              |
 | Guide          | -                 | Add Categories                    | https://developer.zendesk.com/rest_api/docs/help_center/categories#create-category                                                             |
 | Guide          | -                 | Add Sections                      | https://developer.zendesk.com/rest_api/docs/help_center/sections#create-section                                                                |
-| Guide          | -                 | Add Articles                      | https://developer.zendesk.com/rest_api/docs/help_center/articles#create-article                                                                |                                     |
+| Guide          | -                 | Add Articles                      | https://developer.zendesk.com/rest_api/docs/help_center/articles#create-article                                                                |                                     
+| Sunshine       | -                 | Add Custom Object Types           | https://developer.zendesk.com/rest_api/docs/sunshine/resource_types#create-object-type                                                         | 
+| Sunshine       | -                 | Add Relationship Types            | https://developer.zendesk.com/rest_api/docs/sunshine/relationship_types#create-relationship-type                                               | 
+| Sunshine       | -                 | Add Custom Object Records         | https://developer.zendesk.com/rest_api/docs/sunshine/resources#create-object-record                                                            | 
+| Sunshine       | -                 | Add Relationship Records          | https://developer.zendesk.com/rest_api/docs/sunshine/relationships#create-relationship-record                                                  | 
+| Sunshine       | -                 | Add Profiles                      | https://developer.zendesk.com/rest_api/docs/sunshine/profiles_api#create-or-update-profile-by-identifier                                       | 
+| Sunshine       | -                 | Add Events                        | https://developer.zendesk.com/rest_api/docs/sunshine/events_api#track-event-against-a-sunshine-profile                                         | 
 
 ### 2.2 Default Variables
 You could use the following variables anywhere within your template code and it will automatically reference the values that you declare within the `bootstrap` object.
@@ -81,9 +87,10 @@ Zendesk Bootstrapper helps you to resolve dependencies automatically with your t
  10. [Sunshine] Add Custom Object Records
  12. [Sunshine] Add Relationship Types
  13. [Sunshine] Add Relationship Records
- 14. [Guide] Import Themes
- 15. [Guide] Add Sections
- 16. [Guide] Add Articles
+ 14. [Sunshine] Add Profiles
+ 15. [Guide] Import Themes
+ 16. [Guide] Add Sections
+ 17. [Guide] Add Articles
 
 `{{reference_id_value}}`
  1. [Support] Add Organizations
@@ -97,11 +104,12 @@ Zendesk Bootstrapper helps you to resolve dependencies automatically with your t
  9. [Sunshine] Add Custom Object Records
  10. [Sunshine] Add Relationship Types
  11. [Sunshine] Add Relationship Records
- 12. [Guide] Publish Theme
- 13. [Guide] Import Themes
- 14. [Guide] Add Categories
- 15. [Guide] Add Sections
- 16. [Guide] Add Articles
+ 12. [Sunshine] Add Events
+ 13. [Guide] Publish Theme
+ 14. [Guide] Import Themes
+ 15. [Guide] Add Categories
+ 16. [Guide] Add Sections
+ 17. [Guide] Add Articles
 
 #### Example 1: Create 2 Views that Reference 2 Groups, the sample payload will be:
 
