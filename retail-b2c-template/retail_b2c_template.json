@@ -1,0 +1,1178 @@
+{
+    "bootstrap": {
+      "subdomain": "z3n-leroychan",
+      "auth": {
+        "username": "<<YOUR EMAIL>>",
+        "password": "<<YOUR PASSWORD>>"
+      },
+      "customer": {
+        "name": "B2C Retail Demo Account",
+        "locale": "en"
+      },
+      "require_support_ent": true
+    },
+    "settings": {
+      "account_settings": {
+        "tickets": {
+          "emoji_autocompletion": true
+        },
+        "agents": {
+          "agent_workspace": true
+        },
+        "active_features": {
+          "business_hours": true,
+          "customer_satisfaction": true,
+          "user_tagging": true,
+          "ticket_tagging": true
+        },
+        "api": {
+          "accepted_api_agreement": true,
+          "api_password_access": true,
+          "api_token_access": true
+        }
+      },
+      "security_settings": {
+        "admins_can_set_user_passwords": true,
+        "email_agent_when_sensitive_fields_changed": false,
+        "authentication": {
+          "end_user": {
+            "google_login": true,
+            "office_365_login": true,
+            "twitter_login": true,
+            "facebook_login": true
+          }
+        }
+      },
+      "support_settings": {
+        "update_default_support_email": {
+          "name": "Customer Support"
+        }
+      }
+    },
+    "ticket_views": {
+      "add_ticket_views": {
+        "options": {
+          "reorder_newly_added_to_first": true
+        },
+        "views": [
+          {
+            "title": "☀️ Created Today",
+            "active": true,
+            "position": 1,
+            "output": {
+              "group_by": "current_via_id",
+              "group_order": "desc",
+              "sort_by": "nice_id",
+              "group": "null",
+              "sort_order": "desc",
+              "columns": [
+                "subject",
+                "requester",
+                "created",
+                "assignee",
+                "sla_next_breach_at",
+                "ticket_form"
+              ]
+            },
+            "all": [
+              {
+                "field": "status",
+                "operator": "less_than",
+                "value": "solved"
+              },
+              {
+                "field": "NEW",
+                "operator": "less_than",
+                "value": "24"
+              }
+            ],
+            "any": []
+          },
+          {
+            "title": "🆕All New Tickets",
+            "active": true,
+            "position": 2,
+            "output": {
+              "group_by": "null",
+              "group_order": "desc",
+              "sort_by": "nice_id",
+              "sort_order": "desc",
+              "columns": [
+                "subject",
+                "requester",
+                "created",
+                "assignee",
+                "sla_next_breach_at",
+                "ticket_form"
+              ]
+            },
+            "all": [
+              {
+                "field": "status",
+                "operator": "is",
+                "value": "New"
+              },
+              {
+                "field": "NEW",
+                "operator": "less_than",
+                "value": "48"
+              }
+            ],
+            "any": []
+          },
+          {
+            "title": "🚨Urgent and High Priority",
+            "active": true,
+            "position": 3,
+            "output": {
+              "group_by": "desc",
+              "group_order": "desc",
+              "sort_by": "nice_id",
+              "group": "null",
+              "sort_order": "desc",
+              "columns": [
+                "subject",
+                "requester",
+                "created",
+                "assignee",
+                "sla_next_breach_at",
+                "ticket_form"
+              ]
+            },
+            "all": [
+              {
+                "field": "status",
+                "operator": "less_than",
+                "value": "solved"
+              }
+            ],
+            "any": [
+              {
+                "field": "priority",
+                "operator": "is",
+                "value": "urgent"
+              },
+              {
+                "field": "priority",
+                "operator": "is",
+                "value": "high"
+              }
+            ]
+          },
+          {
+            "title": "❗Escalations to Team Leads",
+            "active": true,
+            "position": 4,
+            "output": {
+              "group_by": "priority",
+              "group_order": "desc",
+              "sort_by": "nice_id",
+              "group": {
+                "id": "priority",
+                "title": "Priority",
+                "order": "desc"
+              },
+              "sort": {
+                "id": "ticket_id",
+                "title": "ID",
+                "order": "desc"
+              },
+              "columns": [
+                "subject",
+                "requester",
+                "created",
+                "assignee",
+                "sla_next_breach_at",
+                "ticket_form"
+              ]
+            },
+            "all": [
+              {
+                "field": "status",
+                "operator": "less_than",
+                "value": "solved"
+              },
+              {
+                "field": "group",
+                "operator": "is",
+                "value": "{{group_teamleaders}}"
+              }
+            ],
+            "any": []
+          },
+          {
+            "title": "🚚Delivery Issues",
+            "active": true,
+            "position": 5,
+            "output": {
+              "group_by": "null",
+              "group_order": "desc",
+              "sort_by": "nice_id",
+              "sort_order": "desc",
+              "columns": [
+                "subject",
+                "requester",
+                "created",
+                "assignee",
+                "sla_next_breach_at",
+                "ticket_form"
+              ]
+            },
+            "all": [
+              {
+                "field": "status",
+                "operator": "less_than",
+                "value": "solved"
+              },
+              {
+                "field": "ticket_form",
+                "operator": "is",
+                "value": "{{ticket-form-delivery}}"
+              }
+            ],
+            "any": []
+          },
+          {
+            "title": "📱Social Media and Messaging",
+            "active": true,
+            "position": 6,
+            "output": {
+              "group_by": "priority",
+              "group_order": "asc",
+              "sort_by": "created",
+              "sort_order": "desc",
+              "columns": [
+                "subject",
+                "requester",
+                "created",
+                "assignee",
+                "sla_next_breach_at",
+                "ticket_form"
+              ]
+            },
+            "all": [
+              {
+                "field": "status",
+                "operator": "less_than",
+                "value": "solved"
+              }
+            ],
+            "any": [
+                {
+                    "field": "via_id",
+                    "operator": "is",
+                    "value": "30"
+                  },
+                  {
+                    "field": "via_id",
+                    "operator": "is",
+                    "value": "26"
+                  },
+                  {
+                    "field": "via_id",
+                    "operator": "is",
+                    "value": "23"
+                  },
+                  {
+                    "field": "via_id",
+                    "operator": "is",
+                    "value": "38"
+                  },
+                  {
+                    "field": "via_id",
+                    "operator": "is",
+                    "value": "41"
+                  },
+                  {
+                    "field": "via_id",
+                    "operator": "is",
+                    "value": "55"
+                  }
+            ]
+          },
+          {
+            "title": "📧Email and Contact Forms",
+            "active": true,
+            "position": 7,
+            "output": {
+              "group_by": "status",
+              "group_order": "asc",
+              "sort_by": "nice_id",
+              "sort_order": "desc",
+              "columns": [
+                "subject",
+                "requester",
+                "created",
+                "assignee",
+                "sla_next_breach_at",
+                "ticket_form"
+              ]
+            },
+            "all": [
+              {
+                "field": "status",
+                "operator": "less_than",
+                "value": "solved"
+              }
+            ],
+            "any": [
+              {
+                "field": "via_id",
+                "operator": "is",
+                "value": "0"
+              },
+              {
+                "field": "via_id",
+                "operator": "is",
+                "value": "4"
+              },
+              {
+                "field": "via_id",
+                "operator": "is",
+                "value": "48"
+              }
+            ]
+          },
+          {
+            "title": "☎️ Calls and SMS",
+            "active": true,
+            "position": 8,
+            "output": {
+              "group_by": "status",
+              "group_order": "asc",
+              "sort_by": "nice_id",
+              "sort_order": "desc",
+              "columns": [
+                "subject",
+                "requester",
+                "created",
+                "assignee",
+                "sla_next_breach_at",
+                "ticket_form"
+              ]
+            },
+            "all": [
+              {
+                "field": "status",
+                "operator": "less_than",
+                "value": "solved"
+              }
+            ],
+            "any": [
+              {
+                "field": "via_id",
+                "operator": "is",
+                "value": "34"
+              },
+              {
+                "field": "via_id",
+                "operator": "is",
+                "value": "35"
+              },
+              {
+                "field": "via_id",
+                "operator": "is",
+                "value": "57"
+              }
+            ]
+          },
+          {
+            "title": "💬Recent Chats",
+            "active": true,
+            "position": 9,
+            "output": {
+              "group_by": "null",
+              "group_order": "asc",
+              "sort_by": "created",
+              "sort_order": "desc",
+              "columns": [
+                "subject",
+                "requester",
+                "created",
+                "assignee",
+                "sla_next_breach_at",
+                "ticket_form"
+              ]
+            },
+            "all": [
+              {
+                "field": "status",
+                "operator": "less_than",
+                "value": "solved"
+              }
+            ],
+            "any": [
+              {
+                "field": "via_id",
+                "operator": "is",
+                "value": "29"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "users": {
+      "add_user_fields": [
+        {
+          "type": "text",
+          "title": "Loyalty Card Number",
+          "description": "Loyalty Card Number",
+          "position": "2",
+          "active": true,
+          "key": "loyalty_card_number"
+        },
+        {
+          "type": "checkbox",
+          "title": "VIP",
+          "description": "Is user VIP?",
+          "position": "2",
+          "active": true,
+          "key": "vip_user",
+          "tag": "vip_user"
+        },
+        {
+          "type": "checkbox",
+          "title": "Consent",
+          "description": "Does user consent to be contacted?",
+          "position": "2",
+          "active": true,
+          "key": "consent",
+          "tag": "consent"
+        }
+      ],
+      "add_groups": [
+        {
+          "name": "Tier 1 Support",
+          "reference_id": "group_tier_1"
+        },
+        {
+          "name": "Tier 2 Support",
+          "reference_id": "group_tier_2"
+        },
+        {
+          "name": "Team Leads",
+          "reference_id": "group_teamleaders"
+        }
+      ],
+      "add_organizations": {
+        "organizations": [
+          {
+            "name": "Supplier 1"
+          }
+        ]
+      },
+      "add_organization_fields": [
+        {
+          "type": "checkbox",
+          "title": "Supplier",
+          "description": "Is this organisation a supplier?",
+          "position": "2",
+          "active": true,
+          "key": "consent",
+          "tag": "consent"
+        }
+      ]
+    },
+    "business_rules": {
+      "add_slas": [
+        {
+          "title": "Non-realtime channels",
+          "description": "General SLA for non-realtime channels",
+          "position": 1,
+          "filter": {
+            "all": [],
+            "any": [
+              {
+                "field": "via_id",
+                "operator": "is",
+                "value": "0"
+              },
+              {
+                "field": "via_id",
+                "operator": "is",
+                "value": "4"
+              },
+              {
+                "field": "via_id",
+                "operator": "is",
+                "value": "48"
+              },
+              {
+                "field": "via_id",
+                "operator": "is",
+                "value": "50"
+              }
+            ]
+          },
+          "policy_metrics": [
+            {
+              "priority": "urgent",
+              "metric": "first_reply_time",
+              "target": 240,
+              "business_hours": false
+            },
+            {
+              "priority": "high",
+              "metric": "first_reply_time",
+              "target": 480,
+              "business_hours": false
+            },
+            {
+              "priority": "normal",
+              "metric": "first_reply_time",
+              "target": 1440,
+              "business_hours": false
+            },
+            {
+              "priority": "low",
+              "metric": "first_reply_time",
+              "target": 2880,
+              "business_hours": false
+            }
+          ]
+        },
+        {
+          "title": "Realtime channels",
+          "description": "General SLA for realtime channels",
+          "position": 1,
+          "filter": {
+            "all": [],
+            "any": [
+              {
+                "field": "via_id",
+                "operator": "is",
+                "value": "30"
+              },
+              {
+                "field": "via_id",
+                "operator": "is",
+                "value": "26"
+              },
+              {
+                "field": "via_id",
+                "operator": "is",
+                "value": "29"
+              },
+              {
+                "field": "via_id",
+                "operator": "is",
+                "value": "34"
+              },
+              {
+                "field": "via_id",
+                "operator": "is",
+                "value": "57"
+              },
+              {
+                "field": "via_id",
+                "operator": "is",
+                "value": "55"
+              },
+              {
+                "field": "via_id",
+                "operator": "is",
+                "value": "49"
+              },
+              {
+                "field": "via_id",
+                "operator": "is",
+                "value": "38"
+              },
+              {
+                "field": "via_id",
+                "operator": "is",
+                "value": "41"
+              }
+            ]
+          },
+          "policy_metrics": [
+            {
+              "priority": "urgent",
+              "metric": "first_reply_time",
+              "target": 120,
+              "business_hours": false
+            },
+            {
+              "priority": "high",
+              "metric": "first_reply_time",
+              "target": 240,
+              "business_hours": false
+            },
+            {
+              "priority": "normal",
+              "metric": "first_reply_time",
+              "target": 720,
+              "business_hours": false
+            },
+            {
+              "priority": "low",
+              "metric": "first_reply_time",
+              "target": 1440,
+              "business_hours": false
+            }
+          ]
+        }
+      ],
+      "add_triggers": [
+        {
+          "title": "VIP :: Escalate VIP Tickets",
+          "all": [
+            {
+              "field": "update_type",
+              "operator": "is",
+              "value": "Create"
+            },
+            {
+              "field": "current_tags",
+              "operator": "includes",
+              "value": "vip"
+            }
+          ],
+          "actions": [
+            {
+              "field": "priority",
+              "value": "high"
+            }
+          ]
+        },
+        {
+          "title": "Auto set Priority to Normal (for SLA management)",
+          "all": [
+            {
+              "field": "status",
+              "operator": "is",
+              "value": "new"
+            },
+            {
+              "field": "priority",
+              "operator": "is",
+              "value": ""
+            }
+          ],
+          "actions": [
+            {
+              "field": "priority",
+              "value": "normal"
+            }
+          ]
+        },
+        {
+          "title": "CSAT :: Send CSAT Survey",
+          "all": [
+            {
+              "field": "status",
+              "operator": "is",
+              "value": "solved"
+            },
+            {
+              "field": "current_tags",
+              "operator": "includes",
+              "value": "csat"
+            },
+            {
+              "field": "current_tags",
+              "operator": "not_includes",
+              "value": "smooch supportkit"
+            },
+            {
+              "field": "comment_is_public",
+              "operator": "is",
+              "value": "true"
+            }
+          ],
+          "actions": [
+            {
+              "field": "notification_user",
+              "value": [
+                "requester_and_ccs",
+                "Request #{{ticket.id}}: How would you rate the support you received?",
+                "Hello {{ticket.requester.name}},\n\nWe'd love to hear what you think of our customer service. Please take a moment to answer one simple question by clicking either link below:\n\n{{satisfaction.rating_section}}\n\nHere's a reminder of what your ticket was about:\n\n{{ticket.comments_formatted}}"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "apps": {
+      "add_apps": [
+        {
+          "app_id": "42515",
+          "settings": {
+            "name": "Ticket Redaction"
+          }
+        }
+      ]
+    },
+    "tickets": {
+      "generate_tickets": {
+        "statuses": {
+          "solved": 100,
+          "open": 100,
+          "pending": 100
+        },
+        "ticket_payload": {
+          "requester": {
+            "name": "Ben Mendez",
+            "email": "benmendez.demo@gmail.com"
+          },
+          "tags": [
+            "testing123"
+          ]
+        }
+      },
+      "add_ticket_fields": [
+        {
+          "type": "text",
+          "title": "Order Number",
+          "reference_id": "order_number"
+        },
+        {
+          "type": "tagger",
+          "title": "Order Status",
+          "reference_id": "order_status",
+          "custom_field_options": [
+            {
+              "name": "Placed",
+              "value": "order_status_placed"
+            },
+            {
+              "name": "Dispatched",
+              "value": "order_status_dispatched"
+            },
+            {
+              "name": "Received",
+              "value": "order_status_received"
+            },
+            {
+              "name": "Returned",
+              "value": "order_status_returned"
+            },
+            {
+              "name": "Cancelled",
+              "value": "order_status_cancelled"
+            }
+          ]
+        }
+      ],
+      "add_ticket_forms": [
+        {
+          "name": "General Enquiries",
+          "end_user_visible": true,
+          "active": true,
+          "in_all_brands": true,
+          "ticket_field_ids": [
+            "{{order_number}}",
+            "{{order_status}}"
+          ],
+          "reference_id": "ticket-form-general-enquiries"
+        },
+        {
+          "name": "Payment and Online Shopping",
+          "end_user_visible": true,
+          "active": true,
+          "in_all_brands": true,
+          "ticket_field_ids": [
+            "{{order_number}}",
+            "{{order_status}}"
+          ],
+          "reference_id": "ticket-form-payment-and-online-shopping"
+        },
+        {
+          "name": "Delivery",
+          "end_user_visible": true,
+          "active": true,
+          "in_all_brands": true,
+          "ticket_field_ids": [
+            "{{order_number}}",
+            "{{order_status}}"
+          ],
+          "reference_id": "ticket-form-delivery"
+        },
+        {
+          "name": "Returns and Refunds",
+          "end_user_visible": true,
+          "active": true,
+          "in_all_brands": true,
+          "ticket_field_ids": [
+            "{{order_number}}"
+          ],
+          "reference_id": "ticket-form-returns"
+        },
+        {
+          "name": "Agent Only:Call Form",
+          "end_user_visible": false,
+          "active": true,
+          "in_all_brands": true,
+          "ticket_field_ids": [
+            "{{order_number}}",
+            "{{order_status}}"
+          ],
+          "reference_id": "ticket-form-agent-only-call-form"
+        },
+        {
+          "name": "Agent Only:Chat Form",
+          "end_user_visible": false,
+          "active": true,
+          "in_all_brands": true,
+          "ticket_field_ids": [
+            "{{order_number}}",
+            "{{order_status}}"
+          ],
+          "reference_id": "ticket-form-agent-only-chat-form"
+        }
+      ]
+    },
+    "macros": {
+      "disable_default_macros": true,
+      "add_macros": [
+        {
+          "title": "General Enquiries::Opening Hours",
+          "actions": [
+            {
+              "field": "status",
+              "value": "solved"
+            },
+            {
+              "field": "priority",
+              "value": "normal"
+            },
+            {
+              "field": "comment_mode_is_public",
+              "value": "true"
+            },
+            {
+              "field": "comment_value_html",
+              "value": "Thanks for enquiring about our opening hours. We are currently open:<br/><p>Monday 9-5<br/>Tuesday 9-5<br/>Wednesday 9-5<br/>Thursday 9-5<br/>Friday 9-5<br/>Saturday 9-12<br/>Sunday Closed</p>"
+            },
+            {
+              "field": "ticket_form_id",
+              "value": "{{ticket-form-general-enquiries}}"
+            }
+          ]
+        },
+        {
+          "title": "Delivery::Change Address",
+          "actions": [
+            {
+              "field": "status",
+              "value": "solved"
+            },
+            {
+              "field": "priority",
+              "value": "normal"
+            },
+            {
+              "field": "comment_mode_is_public",
+              "value": "true"
+            },
+            {
+              "field": "comment_value_html",
+              "value": "Thanks for enquiring about changing your address. You can do this by going to our web site, logging in and clicking on My Account&gt;Change Address. Please let us know if you have any issue with doing this."
+            },
+            {
+              "field": "ticket_form_id",
+              "value": "{{ticket-form-delivery}}"
+            }
+          ]
+        },
+        {
+          "title": "Delivery::Resend",
+          "actions": [
+            {
+              "field": "status",
+              "value": "solved"
+            },
+            {
+              "field": "priority",
+              "value": "normal"
+            },
+            {
+              "field": "comment_mode_is_public",
+              "value": "true"
+            },
+            {
+              "field": "comment_value_html",
+              "value": "We are sorry to hear you have not received your delivery. We will resend it straight away."
+            },
+            {
+              "field": "ticket_form_id",
+              "value": "{{ticket-form-delivery}}"
+            }
+          ]
+        },
+        {
+          "title": "Escalate::To Team Leads",
+          "actions": [
+            {
+              "field": "status",
+              "value": "open"
+            },
+            {
+              "field": "priority",
+              "value": "high"
+            },
+            {
+              "field": "comment_mode_is_public",
+              "value": "false"
+            },
+            {
+              "field": "group_id",
+              "value": "{{group_teamleaders}}"
+            },
+            {
+              "field": "comment_value_html",
+              "value": "Unable to handle this in Tier 1. Please can you review."
+            }
+          ]
+        },
+        {
+          "title": "Returns::Lost Returns Form",
+          "actions": [
+            {
+              "field": "status",
+              "value": "solved"
+            },
+            {
+              "field": "priority",
+              "value": "normal"
+            },
+            {
+              "field": "comment_mode_is_public",
+              "value": "true"
+            },
+            {
+              "field": "comment_value_html",
+              "value": "Sorry to hear you have lost your returns form. Feel free to download a copy by going to My Account&gt;Orders, choosing the order you are returning and clicking on the Returns Form option."
+            },
+            {
+              "field": "ticket_form_id",
+              "value": "{{ticket-form-returns}}"
+            }
+          ]
+        },
+        {
+          "title": "Returns::Replace and Discount",
+          "actions": [
+            {
+              "field": "status",
+              "value": "solved"
+            },
+            {
+              "field": "priority",
+              "value": "normal"
+            },
+            {
+              "field": "comment_mode_is_public",
+              "value": "true"
+            },
+            {
+              "field": "comment_value_html",
+              "value": "Sorry to hear your item was defective. We have sent out a replacement along with a 10% discount off your next order as a gesture of goodwill."
+            },
+            {
+              "field": "ticket_form_id",
+              "value": "{{ticket-form-returns}}"
+            }
+          ]
+        }
+      ]
+    },
+    "talk": {
+      "add_number": {
+        "country_code": "US",
+        "purchase_first_available_number": true
+      },
+      "add_talk_agents": {
+        "enable_first_admin": true
+      },
+      "add_ivrs": [
+        {
+          "name": "Sample IVR"
+        }
+      ]
+    },
+    "guide": {
+      "activate_guide": "{{bootstrapper-guide-default-brand-id}}",
+      "publish_theme": "{{generic-template}}",
+      "import_themes": [
+        {
+          "theme_name": "demo-builder",
+          "reference_id": "generic-template"
+        }
+      ],
+      "add_categories": [
+        {
+          "locale": "en-us",
+          "name": "Delivery",
+          "description": "For all questions related to delivery",
+          "reference_id": "category-1"
+        },
+        {
+          "locale": "en-us",
+          "name": "Payments and Online Shopping",
+          "description": "For all questions relating to methods of payment or accessing our online shop",
+          "ignore": "{{category-1}}",
+          "reference_id": "category-2"
+        },
+        {
+          "locale": "en-us",
+          "name": "Returns and Refunds",
+          "description": "For all questions relating to returning goods and obtaining refunds",
+          "ignore": "{{category-2}}",
+          "reference_id": "category-3"
+        }
+      ],
+      "add_sections": [
+        {
+          "locale": "en-us",
+          "category_id": "{{category-1}}",
+          "name": "Premium Delivery Options",
+          "description": "Everything from click and collect to next day and weekend deliveries",
+          "reference_id": "section-1"
+        },
+        {
+          "locale": "en-us",
+          "category_id": "{{category-1}}",
+          "name": "Order Tracking",
+          "description": "Find out where your order currently is and make any modifications needed",
+          "reference_id": "section-2"
+        },
+        {
+          "locale": "en-us",
+          "category_id": "{{category-2}}",
+          "name": "Payments",
+          "description": "Adding/removing cards, gift cards, promotions",
+          "reference_id": "section-3"
+        },
+        {
+          "locale": "en-us",
+          "category_id": "{{category-2}}",
+          "name": "Online Shopping",
+          "description": "Find out about all the ways you can shop with us",
+          "reference_id": "section-4"
+        },
+        {
+          "locale": "en-us",
+          "category_id": "{{category-3}}",
+          "name": "Returns",
+          "description": "Got an issue? Check out the ways you can return your item(s)",
+          "reference_id": "section-5"
+        },
+        {
+          "locale": "en-us",
+          "category_id": "{{category-3}}",
+          "name": "Refunds",
+          "description": "Find out how you can get a refund if you are not satisfied",
+          "reference_id": "section-6"
+        }
+      ],
+      "add_articles": [
+        {
+          "section_id": "{{section-1}}",
+          "title": "Click and Collect",
+          "body": "Click and Collect",
+          "reference_id": "article-1"
+        },
+        {
+          "section_id": "{{section-1}}",
+          "title": "Next Day Delivery",
+          "body": " Next Day Delivery",
+          "ignore": "{{article-1}}",
+          "reference_id": "article-2"
+        },
+        {
+          "section_id": "{{section-1}}",
+          "title": "Saturday Delivery",
+          "body": "Saturady Delivery",
+          "ignore": "{{article-2}}",
+          "reference_id": "article-3"
+        },
+        {
+          "section_id": "{{section-2}}",
+          "title": "Where is my order?",
+          "body": "Where is my order?",
+          "ignore": "{{article-3}}",
+          "reference_id": "article-4"
+        },
+        {
+          "section_id": "{{section-2}}",
+          "title": "How do I track my order?",
+          "body": "How do I track my order?",
+          "ignore": "{{article-4}}",
+          "reference_id": "article-5"
+        },
+        {
+          "section_id": "{{section-2}}",
+          "title": "How do I make a change to my order?",
+          "body": "How do I make a change to my order?",
+          "ignore": "{{article-5}}",
+          "reference_id": "article-6"
+        },
+        {
+          "section_id": "{{section-3}}",
+          "title": "How do I add another card to my account?",
+          "body": "How do I add another card to my account?",
+          "ignore": "{{article-6}}",
+          "reference_id": "article-7"
+        },
+        {
+          "section_id": "{{section-3}}",
+          "title": "How do I use a promo code?",
+          "body": "How do I use a promo code?",
+          "ignore": "{{article-7}}",
+          "reference_id": "article-8"
+        },
+        {
+          "section_id": "{{section-3}}",
+          "title": "Do you sell gift cards?",
+          "body": "Do you sell gift cards?",
+          "ignore": "{{article-8}}",
+          "reference_id": "article-9"
+        },
+        {
+          "section_id": "{{section-4}}",
+          "title": "Our mobile app",
+          "body": "Our mobile app",
+          "ignore": "{{article-9}}",
+          "reference_id": "article-10"
+        },
+        {
+          "section_id": "{{section-4}}",
+          "title": "Supported devices",
+          "body": "Supported devices",
+          "ignore": "{{article-10}}",
+          "reference_id": "article-11"
+        },
+        {
+          "section_id": "{{section-5}}",
+          "title": "Can I return a web order in store?",
+          "body": "Can I return a web order in store?",
+          "ignore": "{{article-11}}",
+          "reference_id": "article-12"
+        },
+        {
+          "section_id": "{{section-5}}",
+          "title": "I’ve lost my returns form, what do I do?",
+          "body": "I’ve lost my returns form, what do I do?",
+          "ignore": "{{article-12}}",
+          "reference_id": "article-13"
+        },
+        {
+          "section_id": "{{section-6}}",
+          "title": "Can I get a refund if I don’t like my item?",
+          "body": "Can I get a refund if I don’t like my item?",
+          "ignore": "{{article-13}}",
+          "reference_id": "article-14"
+        },
+        {
+          "section_id": "{{section-6}}",
+          "title": "Can I get a refund if my item is damaged?",
+          "body": "Can I get a refund if my item is damaged?",
+          "ignore": "{{article-14}}",
+          "reference_id": "article-15"
+        }
+      ]
+    }
+  }
+  
