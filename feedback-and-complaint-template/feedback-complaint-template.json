@@ -1,0 +1,1186 @@
+{
+    "bootstrap": {
+      "subdomain": "z3n-leroychan",
+      "auth": {
+        "username": "<<YOUR EMAIL>>",
+        "password": "<<YOUR PASSWORD>>"
+      },
+      "customer": {
+        "name": "Complaints Demo Account",
+        "locale": "en"
+      },
+      "require_support_ent": true
+    },
+    "settings": {
+      "account_settings": {
+        "tickets": {
+          "emoji_autocompletion": true
+        },
+        "agents": {
+          "agent_workspace": true
+        },
+        "active_features": {
+          "business_hours": true,
+          "customer_satisfaction": true,
+          "user_tagging": true,
+          "ticket_tagging": true
+        },
+        "api": {
+          "accepted_api_agreement": true,
+          "api_password_access": true,
+          "api_token_access": true
+        }
+      },
+      "security_settings": {
+        "admins_can_set_user_passwords": true,
+        "email_agent_when_sensitive_fields_changed": false,
+        "authentication": {
+          "end_user": {
+            "google_login": true,
+            "office_365_login": true,
+            "twitter_login": true,
+            "facebook_login": true
+          }
+        }
+      },
+      "support_settings": {
+        "update_default_support_email": {
+          "name": "Complaints Support"
+        },
+        "add_recipient_addresses": [
+          {
+            "email": "complaints@{{subdomain}}.zendesk.com",
+            "name": "Complaints Support"
+          },
+          {
+            "email": "ombudsman@{{subdomain}}.zendesk.com",
+            "name": "Ombudsman Support"
+          }
+        ]
+      }
+    },
+    "ticket_views": {
+      "add_ticket_views": {
+        "options": {
+          "reorder_newly_added_to_first": true
+        },
+        "views": [
+          {
+            "title": "All Feedback - Open compliments & complaints",
+            "active": true,
+            "position": 1,
+            "output": {
+              "group_by": "{{feedback_type}}",
+              "group_order": "asc",
+              "sort_by": "sla_next_breach_at",
+              "sort_order": "asc",
+              "group": [
+                {
+                  "id": "{{feedback_type}}",
+                  "title": "Feedback type",
+                  "type": "tagger",
+                  "url": "https://{{subdomain}}.zendesk.com/api/v2/ticket_fields/{{feedback_type}}.json",
+                  "order": "asc"
+                }
+              ],
+              "columns": [
+                "via",
+                "subject",
+                "requester",
+                "created",
+                "sla_next_breach_at",
+                "assignee"
+              ]
+            },
+            "all": [
+              {
+                "field": "status",
+                "operator": "less_than",
+                "value": "solved"
+              }
+            ],
+            "any": [
+              {
+                "field": "recipient",
+                "operator": "is",
+                "value": "complaints@{{subdomain}}.zendesk.com"
+              },
+              {
+                "field": "ticket_form_id",
+                "operator": "is",
+                "value": "{{ticket_form_feedback}}"
+              }
+            ]
+          },
+          {
+            "title": "Complaints - Open",
+            "active": true,
+            "position": 2,
+            "output": {
+              "group_by": "priority",
+              "group_order": "desc",
+              "sort_by": "sla_next_breach_at",
+              "sort_order": "asc",
+              "group": [
+                {
+                  "id": "priority",
+                  "title": "Priority",
+                  "order": "desc"
+                }
+              ],
+              "columns": [
+                "sla_next_breach_at",
+                "requester",
+                "subject",
+                "requester_updated_at",
+                "{{complaint_reason}}",
+                "created",
+                "assignee"
+              ]
+            },
+            "all": [
+              {
+                "field": "status",
+                "operator": "less_than",
+                "value": "solved"
+              }
+            ],
+            "any": [
+              {
+                "field": "recipient",
+                "operator": "is",
+                "value": "complaints@{{subdomain}}.zendesk.com"
+              },
+              {
+                "field": "custom_fields_{{feedback_type}}",
+                "operator": "is",
+                "value": "complaint"
+              }
+            ]
+          },
+          {
+            "title": "Ombudsman Disputes - Open",
+            "active": true,
+            "position": 3,
+            "output": {
+              "group_by": null,
+              "group_order": "desc",
+              "sort_by": "created",
+              "sort_order": "desc",
+              "group": null,
+              "columns": [
+                "sla_next_breach_at",
+                "subject",
+                "requester",
+                "created",
+                "assignee",
+                "{{dispute_reason}}"
+              ]
+            },
+            "all": [
+              {
+                "field": "status",
+                "operator": "less_than",
+                "value": "solved"
+              }
+            ],
+            "any": [
+              {
+                "field": "recipient",
+                "operator": "is",
+                "value": "ombudsman@{{subdomain}}.zendesk.com"
+              },
+              {
+                "field": "ticket_form_id",
+                "operator": "is",
+                "value": "{{ticket_form_dispute}}"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "users": {
+      "add_users": [
+        {
+          "name": "Ombudsman Officer",
+          "email": "ombudsman@regulatorybody.com"
+        }
+      ],
+      "add_groups": [
+        {
+          "name": "Complaints Team",
+          "reference_id": "group_complaints_team"
+        },
+        {
+          "name": "Dispute Team",
+          "reference_id": "group_dispute_team"
+        }
+      ],
+      "add_organizations": {
+        "organizations": [
+          {
+            "name": "Ombudsman",
+            "domain_names": [
+              "regulatorybody.com"
+            ]
+          }
+        ]
+      }
+    },
+    "business_rules": {
+      "add_slas": [
+        {
+          "title": "Complaints SLA",
+          "description": "SLA used by the Complaint management process",
+          "position": 1,
+          "filter": {
+            "all": [],
+            "any": [
+              {
+                "field": "recipient",
+                "operator": "is",
+                "value": "complaints@{{subdomain}}.zendesk.com"
+              },
+              {
+                "field": "ticket_fields_{{feedback_type}}",
+                "operator": "is",
+                "value": "complaint"
+              }
+            ]
+          },
+          "policy_metrics": [
+            {
+              "priority": "low",
+              "metric": "first_reply_time",
+              "target": 12000,
+              "business_hours": false
+            },
+            {
+              "priority": "low",
+              "metric": "requester_wait_time",
+              "target": 43200,
+              "business_hours": false
+            },
+            {
+              "priority": "normal",
+              "metric": "first_reply_time",
+              "target": 7200,
+              "business_hours": false
+            },
+            {
+              "priority": "normal",
+              "metric": "requester_wait_time",
+              "target": 43200,
+              "business_hours": false
+            },
+            {
+              "priority": "high",
+              "metric": "first_reply_time",
+              "target": 4320,
+              "business_hours": false
+            },
+            {
+              "priority": "high",
+              "metric": "requester_wait_time",
+              "target": 43200,
+              "business_hours": false
+            },
+            {
+              "priority": "urgent",
+              "metric": "first_reply_time",
+              "target": 2880,
+              "business_hours": false
+            },
+            {
+              "priority": "urgent",
+              "metric": "requester_wait_time",
+              "target": 43200,
+              "business_hours": false
+            }
+          ]
+        },
+        {
+          "title": "Dispute SLA",
+          "description": "Track SLA of dispute enquiries",
+          "position": 2,
+          "filter": {
+            "all": [
+              {
+                "field": "ticket_form_id",
+                "operator": "is",
+                "value": "{{ticket_form_dispute}}"
+              }
+            ],
+            "any": []
+          },
+          "policy_metrics": [
+            {
+              "priority": "low",
+              "metric": "first_reply_time",
+              "target": 480,
+              "business_hours": false
+            },
+            {
+              "priority": "low",
+              "metric": "requester_wait_time",
+              "target": 480,
+              "business_hours": false
+            },
+            {
+              "priority": "low",
+              "metric": "agent_work_time",
+              "target": 12000,
+              "business_hours": false
+            },
+            {
+              "priority": "low",
+              "metric": "pausable_update_time",
+              "target": 2400,
+              "business_hours": false
+            },
+            {
+              "priority": "normal",
+              "metric": "first_reply_time",
+              "target": 480,
+              "business_hours": false
+            },
+            {
+              "priority": "normal",
+              "metric": "requester_wait_time",
+              "target": 480,
+              "business_hours": false
+            },
+            {
+              "priority": "normal",
+              "metric": "agent_work_time",
+              "target": 12000,
+              "business_hours": false
+            },
+            {
+              "priority": "normal",
+              "metric": "pausable_update_time",
+              "target": 2400,
+              "business_hours": false
+            },
+            {
+              "priority": "high",
+              "metric": "first_reply_time",
+              "target": 480,
+              "business_hours": false
+            },
+            {
+              "priority": "high",
+              "metric": "requester_wait_time",
+              "target": 480,
+              "business_hours": false
+            },
+            {
+              "priority": "high",
+              "metric": "agent_work_time",
+              "target": 12000,
+              "business_hours": false
+            },
+            {
+              "priority": "high",
+              "metric": "pausable_update_time",
+              "target": 2400,
+              "business_hours": false
+            },
+            {
+              "priority": "urgent",
+              "metric": "first_reply_time",
+              "target": 480,
+              "business_hours": false
+            },
+            {
+              "priority": "urgent",
+              "metric": "requester_wait_time",
+              "target": 480,
+              "business_hours": false
+            },
+            {
+              "priority": "urgent",
+              "metric": "agent_work_time",
+              "target": 12000,
+              "business_hours": false
+            },
+            {
+              "priority": "urgent",
+              "metric": "pausable_update_time",
+              "target": 2400,
+              "business_hours": false
+            }
+          ]
+        }
+      ],
+      "add_triggers": [
+        {
+          "title": "Complaints - Notify requester of received Complaint",
+          "active": true,
+          "position": 1,
+          "all": [
+            {
+              "field": "update_type",
+              "operator": "is",
+              "value": "Create"
+            },
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "ticket_is_public",
+              "operator": "is",
+              "value": "public"
+            },
+            {
+              "field": "comment_is_public",
+              "operator": "is",
+              "value": "true"
+            }
+          ],
+          "any": [
+            {
+              "field": "recipient",
+              "operator": "is",
+              "value": "complaints@{{subdomain}}.zendesk.com"
+            },
+            {
+              "field": "custom_fields_{{feedback_type}}",
+              "operator": "is",
+              "value": "complaint"
+            }
+          ],
+          "actions": [
+            {
+              "field": "priority",
+              "value": "normal"
+            },
+            {
+              "field": "notification_user",
+              "value": [
+                "requester_id",
+                "Your complaint has been received by our team",
+                "Dear {{ticket.requester.name}}, Thank you for your email. We have received your complaint, your reference number is: (#{{ticket.id}}) {{ticket.link}}. Your matter is very important to us and we will be contacting you within the next 5 business days. <br /><br />To add additional comments, please simply reply to this email. Your customer service team"
+              ]
+            },
+            {
+              "field": "group_id",
+              "value": "{{group_complaints_team}}"
+            },
+            {
+              "field": "ticket_form_id",
+              "value": "{ticket_form_feedback}"
+            },
+            {
+              "field": "type",
+              "value": "question"
+            }
+          ]
+        },
+        {
+          "title": "Complaints - No Contact",
+          "active": true,
+          "position": 2,
+          "all": [
+            {
+              "field": "update_type",
+              "operator": "is",
+              "value": "Create"
+            },
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "ticket_is_public",
+              "operator": "is",
+              "value": "public"
+            },
+            {
+              "field": "comment_is_public",
+              "operator": "is",
+              "value": "true"
+            },
+            {
+              "field": "custom_fields_{{feedback_type}}",
+              "operator": "is",
+              "value": "complaint"
+            },
+            {
+              "field": "custom_fields_{{complaint_contact_options}}",
+              "operator": "is",
+              "value": "don_t_contact_me__i_just_want_to_inform_you."
+            }
+          ],
+          "actions": [
+            {
+              "field": "type",
+              "value": "question"
+            },
+            {
+              "field": "current_tags",
+              "value": "complaints_solved_nocontact"
+            },
+            {
+              "field": "custom_fields_{{complaint_reason_code}}",
+              "value": "crc-1"
+            },
+            {
+              "field": "custom_fields_{{complaint_reason}}",
+              "value": "other"
+            },
+            {
+              "field": "status",
+              "value": "solved"
+            }
+          ]
+        },
+        {
+          "title": "Assign new emails from Ombudsman to Dispute Team",
+          "active": true,
+          "position": 3,
+          "all": [
+            {
+              "field": "update_type",
+              "operator": "is",
+              "value": "Create"
+            },
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            }
+          ],
+          "any": [
+            {
+              "field": "recipient",
+              "operator": "is",
+              "value": "ombudsman@{{subdomain}}.zendesk.com"
+            },
+            {
+              "field": "ticket_form_id",
+              "operator": "is",
+              "value": "{{ticket_form_dispute}}"
+            }
+          ],
+          "actions": [
+            {
+              "field": "group_id",
+              "value": "{{group_dispute_team}}"
+            },
+            {
+              "field": "ticket_form_id",
+              "value": "{{ticket_form_dispute}}"
+            },
+            {
+              "field": "priority",
+              "value": "high"
+            },
+            {
+              "field": "current_tags",
+              "value": "dispute"
+            }
+          ]
+        }
+      ],
+      "add_automations": [
+        {
+          "title": "Pending notification 24 hours",
+          "active": true,
+          "all": [
+            {
+              "field": "PENDING",
+              "operator": "is",
+              "value": "24"
+            },
+            {
+              "field": "ticket_is_public",
+              "operator": "is",
+              "value": "public"
+            }
+          ],
+          "actions": [
+            {
+              "field": "notification_user",
+              "value": [
+                "requester_and_ccs",
+                "[{{ticket.account}}] Pending request: {{ticket.title}}",
+                "This is an email to remind you that your request (#{{ticket.id}}) is pending and awaits your feedback. {{ticket.comments_formatted}}"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Complaints - 8 hours before breach",
+          "active": true,
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "until_sla_next_breach_at",
+              "operator": "is",
+              "value": "8"
+            }
+          ],
+          "any": [
+            {
+              "field": "recipient",
+              "operator": "is",
+              "value": "complaints@{{subdomain}}.zendesk.com"
+            },
+            {
+              "field": "custom_fields_{{feedback_type}}",
+              "operator": "is",
+              "value": "complaint"
+            }
+          ],
+          "actions": [
+            {
+              "field": "priority",
+              "value": "urgent"
+            },
+            {
+              "field": "notification_group",
+              "value": [
+                "{{group_complaints_team}}",
+                "This complaint SLA will breach in 8 hours",
+                "Please look after this complaint ticket ASAP: {{ticket.id}} - {{ticket.title}}"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Complaints - Pending notification 24 hours",
+          "active": true,
+          "all": [
+            {
+              "field": "PENDING",
+              "operator": "is",
+              "value": "24"
+            },
+            {
+              "field": "ticket_is_public",
+              "operator": "is",
+              "value": "public"
+            }
+          ],
+          "any": [
+            {
+              "field": "recipient",
+              "operator": "is",
+              "value": "complaints@{{subdomain}}.zendesk.com"
+            },
+            {
+              "field": "custom_fields_{{feedback_type}}",
+              "operator": "is",
+              "value": "complaint"
+            }
+          ],
+          "actions": [
+            {
+              "field": "notification_user",
+              "value": [
+                "requester_and_ccs",
+                "We are waiting to hear back from you: {{ticket.title}}",
+                "Hi {{ticket.requester.name}}, This is an email to remind you that we are waiting to hear back from you concerning your request (#{{ticket.id}}). {{ticket.comments_formatted}}"
+              ]
+            },
+            {
+              "field": "current_tags",
+              "value": "Complaint_Pending_notified"
+            }
+          ]
+        }
+      ]
+    },
+    "apps": {
+      "add_apps": []
+    },
+    "tickets": {
+      "generate_tickets": {
+        "statuses": {
+          "open": 200,
+          "pending": 100
+        },
+        "ticket_payload": {
+          "requester": {
+            "name": "Ombudsman",
+            "email": "ombudsman@regulartorybody.com"
+          },
+          "tags": [
+            "ombudsman"
+          ]
+        }
+      },
+      "add_ticket_fields": [
+        {
+          "type": "tagger",
+          "title": "Dispute reason",
+          "reference_id": "dispute_reason",
+          "active": true,
+          "required": true,
+          "custom_field_options": [
+            {
+              "name": "Advertisement",
+              "value": "advertisement"
+            },
+            {
+              "name": "Customer Service",
+              "value": "customer_service"
+            },
+            {
+              "name": "Product",
+              "value": "product"
+            }
+          ]
+        },
+        {
+          "type": "tagger",
+          "title": "Dispute outcome",
+          "reference_id": "dispute_outcome",
+          "active": true,
+          "required": true,
+          "custom_field_options": [
+            {
+              "name": "Reason A",
+              "value": "reason_a"
+            },
+            {
+              "name": "Reason B",
+              "value": "reason_b"
+            }
+          ]
+        },
+        {
+          "type": "tagger",
+          "title": "Feedback type",
+          "reference_id": "feedback_type",
+          "active": true,
+          "required": true,
+          "title_in_portal": "Please tell us more about your feedback",
+          "editable_in_portal": true,
+          "visible_in_portal": true,
+          "required_in_portal": true,
+          "custom_field_options": [
+            {
+              "name": "I'd like to make a suggestion for improvement",
+              "value": "improvement"
+            },
+            {
+              "name": "I'd like to give a compliment",
+              "value": "compliment"
+            },
+            {
+              "name": "I'd like to lodge a complaint",
+              "value": "complaint"
+            }
+          ]
+        },
+        {
+          "type": "tagger",
+          "title": "Complaint reason",
+          "reference_id": "complaint_reason",
+          "active": true,
+          "required": true,
+          "title_in_portal": "Could you please specify the reason category of your complaint?",
+          "editable_in_portal": true,
+          "visible_in_portal": true,
+          "required_in_portal": true,
+          "custom_field_options": [
+            {
+              "name": "Quality of Customer Service",
+              "value": "quality_of_customer_service"
+            },
+            {
+              "name": "Quality of Product",
+              "value": "quality_of_product"
+            },
+            {
+              "name": "Payment",
+              "value": "payment"
+            },
+            {
+              "name": "Fees",
+              "value": "fees"
+            },
+            {
+              "name": "Advertising",
+              "value": "advertising"
+            },
+            {
+              "name": "Other",
+              "value": "other"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "title": "Complaint - Outcome sought",
+          "reference_id": "complaint_outcome_sought",
+          "active": true,
+          "required": false,
+          "title_in_portal": "What outcome do you expect?",
+          "editable_in_portal": true,
+          "visible_in_portal": true
+        },
+        {
+          "type": "tagger",
+          "title": "Complaint - Contact options",
+          "reference_id": "complaint_contact_options",
+          "active": true,
+          "required": false,
+          "title_in_portal": "How would you like us to contact you?",
+          "editable_in_portal": true,
+          "visible_in_portal": true,
+          "required_in_portal": false,
+          "custom_field_options": [
+            {
+              "name": "Phone me",
+              "value": "phone_me"
+            },
+            {
+              "name": "Email me",
+              "value": "email_me"
+            },
+            {
+              "name": "Don't contact me, I just want to inform you.",
+              "value": "don_t_contact_me__i_just_want_to_inform_you."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "title": "Complaint - Outcome",
+          "reference_id": "complaint_outcome",
+          "active": true,
+          "required": true,
+          "editable_in_portal": false
+        },
+        {
+          "type": "tagger",
+          "title": "Complaint - Reason Code",
+          "reference_id": "complaint_reason_code",
+          "active": true,
+          "required": true,
+          "custom_field_options": [
+            {
+              "name": "CRC-1",
+              "value": "crc-1"
+            },
+            {
+              "name": "CRC-2",
+              "value": "crc-2"
+            },
+            {
+              "name": "CRC-3",
+              "value": "crc-3"
+            },
+            {
+              "name": "CRC-4",
+              "value": "crc-4"
+            },
+            {
+              "name": "CRC-5",
+              "value": "crc-5"
+            },
+            {
+              "name": "CRC-6",
+              "value": "crc-6"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "title": "Customer ID",
+          "reference_id": "customer_ID",
+          "active": true,
+          "required": true,
+          "editable_in_portal": false
+        }
+      ],
+      "add_ticket_forms": [
+        {
+          "name": "Feedback",
+          "active": true,
+          "in_all_brands": true,
+          "end_user_visible": true,
+          "display_name": "Leave us a feedback or make a complaint?",
+          "ticket_field_ids": [
+            "{{feedback_type}}",
+            "{{complaint_reason}}",
+            "{{complaint_outcome_sought}}",
+            "{{complaint_contact_options}}",
+            "{{complaint_reason_code}}",
+            "{{complaint_outcome}}"
+          ],
+          "end_user_conditions": [
+            {
+              "parent_field_id": "{{feedback_type}}",
+              "value": "complaint",
+              "child_fields": [
+                {
+                  "id": "{{complaint_reason}}",
+                  "is_required": true
+                },
+                {
+                  "id": "{{complaint_outcome_sought}}",
+                  "is_required": false
+                },
+                {
+                  "id": "{{complaint_contact_options}}",
+                  "is_required": false
+                }
+              ]
+            }
+          ],
+          "reference_id": "ticket_form_feedback"
+        },
+        {
+          "name": "Dispute",
+          "active": true,
+          "in_all_brands": true,
+          "end_user_visible": false,
+          "ticket_field_ids": [
+            "{{customer_ID}}",
+            "{{dispute_reason}}",
+            "{{dispute_outcome}}"
+          ],
+          "reference_id": "ticket_form_dispute"
+        }
+      ]
+    },
+    "macros": {
+      "disable_default_macros": true,
+      "add_macros": [
+        {
+          "title": "Complaints :: Additional Information needed",
+          "active": true,
+          "actions": [
+            {
+              "field": "comment_mode_is_public",
+              "value": "true"
+            },
+            {
+              "field": "comment_value_html",
+              "value": "<p>Dear {{ticket.requester.name}},</p><p><br></p><p>We are currently carefully reviewing your complaint. </p><p><br></p><p>We are committed to find the best outcome possible. We would need to ask you the following additional information please:</p><p><br></p><p><br></p><p><br></p><p><br></p><p>Best Regards,</p><p><br></p><p>{{current_user.name}}</p><p><br></p><p><br></p>"
+            },
+            {
+              "field": "status",
+              "value": "pending"
+            }
+          ]
+        },
+        {
+          "title": "Complaints :: Complaint solved",
+          "active": true,
+          "actions": [
+            {
+              "field": "comment_mode_is_public",
+              "value": "false"
+            },
+            {
+              "field": "comment_value_html",
+              "value": "<p>This complaint has now been solved.</p><p><br></p><p>Complaint Reason, Reason Code and Complaint Outcome fields have been entered. </p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p>"
+            },
+            {
+              "field": "set_tags",
+              "value": "complaints_solved"
+            },
+            {
+              "field": "status",
+              "value": "solved"
+            }
+          ]
+        },
+        {
+          "title": "Complaints :: Escalation to Complaints Team",
+          "active": true,
+          "actions": [
+            {
+              "field": "group_id",
+              "value": "{{group_complaints_team}}"
+            },
+            {
+              "field": "comment_mode_is_public",
+              "value": "false"
+            },
+            {
+              "field": "comment_value_html",
+              "value": "<p>Hi complaints team,</p><p><br></p><p>Could you take over the following ticket, please?</p><p><br></p><p>Ticket: #{{ticket.id}} - It meets all the criteria to be escalated to you.</p><p><br></p><p>Many thanks,<br></p><p>{{current_user.name}}</p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p>"
+            },
+            {
+              "field": "current_tags",
+              "value": "Complaints_escalated"
+            },
+            {
+              "field": "status",
+              "value": "open"
+            }
+          ]
+        },
+        {
+          "title": "Dispute :: Escalation to Disputes Team",
+          "active": true,
+          "actions": [
+            {
+              "field": "group_id",
+              "value": "{{group_dispute_team}}"
+            },
+            {
+              "field": "comment_mode_is_public",
+              "value": "false"
+            },
+            {
+              "field": "comment_value_html",
+              "value": "<p>Hi Dispute Team,</p><p><br></p><p>Could you take over the following ticket, please?<br></p><p><br></p><p>Ticket: #{{ticket.id}} - It meets all the criteria to be escalated to you.<br></p><p><br></p><p>Many thanks,<br></p><p>{{current_user.name}}</p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p>"
+            },
+            {
+              "field": "current_tags",
+              "value": "dispute_escalated"
+            },
+            {
+              "field": "status",
+              "value": "open"
+            }
+          ]
+        },
+        {
+          "title": "Dispute :: Information needed",
+          "active": true,
+          "actions": [
+            {
+              "field": "subject",
+              "value": "Dispute Team - Request for Additional Information"
+            },
+            {
+              "field": "comment_value_html",
+              "value": "<p>Thank you for your dispute submission.</p><p><br></p><p>Please provide the following related documentation to process your file accordingly.</p><p><br></p><p>* Contracts and Application forms related to the case</p><p>* If required, customer contact information</p><p>* Desired outcome post processing</p><p><br></p><p>The Dispute Management Team </p>"
+            },
+            {
+              "field": "status",
+              "value": "pending"
+            }
+          ],
+          "restriction": {
+            "type": "Group",
+            "id": "{{group_dispute_team}}",
+            "ids": [
+              "{{group_dispute_team}}"
+            ]
+          }
+        },
+        {
+          "title": "Dispute :: Resolved",
+          "active": true,
+          "actions": [
+            {
+              "field": "subject",
+              "value": "Dispute Team - Status Update"
+            },
+            {
+              "field": "comment_value_html",
+              "value": "<p>Thank you for your dispute submission.</p><p><br></p><p>Please be advised that your claim has been resolved. </p><p><br></p><p>The Dispute Management Team </p><p><br></p>"
+            },
+            {
+              "field": "status",
+              "value": "solved"
+            }
+          ],
+          "restriction": {
+            "type": "Group",
+            "id": "{{group_dispute_team}}",
+            "ids": [
+              "{{group_dispute_team}}"
+            ]
+          }
+        }
+      ]
+    },
+    "talk": {
+      "add_number": {
+        "country_code": "US",
+        "purchase_first_available_number": true
+      },
+      "add_talk_agents": {
+        "enable_first_admin": true
+      },
+      "add_ivrs": [
+        {
+          "name": "Sample IVR"
+        }
+      ]
+    },
+    "guide": {
+      "activate_guide": "{{bootstrapper-guide-default-brand-id}}",
+      "publish_theme": "{{generic-template}}",
+      "import_themes": [
+        {
+          "theme_name": "demo-builder",
+          "reference_id": "generic-template"
+        }
+      ],
+      "add_categories": [
+        {
+          "locale": "en-us",
+          "name": "Complaints Management",
+          "reference_id": "category-1"
+        }
+      ],
+      "add_sections": [
+        {
+          "locale": "en-us",
+          "category_id": "{{category-1}}",
+          "name": "General Complaints",
+          "reference_id": "section-1"
+        },
+        {
+          "locale": "en-us",
+          "category_id": "{{category-1}}",
+          "name": "Dispute Management",
+          "reference_id": "section-2"
+        }
+      ],
+      "add_articles": [
+        {
+          "section_id": "{{section-1}}",
+          "title": "How to provide feedback or lodge a complaint?",
+          "body": "<p><span style=\"font-weight: 400;\">We want to make sure you enjoy being a customer of ours and welcome your feedback, be it positive or negative. So if you’re not happy with the service you’re receiving from us, please let our team know as soon as you can so we can start resolving it for you.</span></p> <p><span style=\"font-weight: 400;\">We have made the feedback process very easy with our </span><strong><a href=\"https://{{subdomain}}.zendesk.com/hc/en-us/requests/new?ticket_form_id={{ticket_form_feedback}}\" target=\"_self\">ONLINE FORM</a>.</strong><span style=\"font-weight: 400;\"> </span></p> <p> </p> <p><strong>When to expect a response?</strong></p> <p><span style=\"font-weight: 400;\">We will acknowledge your enquiry, complaint or dispute as soon as practicable but <strong>within 24 hours of receipt</strong>.</span></p> <p><span style=\"font-weight: 400;\">Our commitment is to carefully start reviewing your complaint and <strong>first respond to you within 5 business days</strong>. </span></p> <p><span style=\"font-weight: 400;\">Our aim is to <strong>resolve your query or complaint within 30 business days</strong>, in a fair and reasonable manner. However, where we need more time to find the answer or solution, we will be sure to contact you to give you an update and advise you of the time within which we expect to find the answer or solution. We will also confirm how frequently you’d like to be updated moving forward.</span></p> <p><span style=\"font-weight: 400;\">When we respond to your query or complaint, we will ask you to let us know whether you are satisfied with our response within 10 business days. If we don’t hear back from you within this time, we will assume the matter has been resolved satisfactorily.</span></p> <p><big><br><br></big></p>",
+          "reference_id": "article-1"
+        },
+        {
+          "section_id": "{{section-1}}",
+          "title": "How to escalate a complaint to the Complaints Team?",
+          "body": "<p>Please first ensure the following criteria are met:</p> <p>- Criteria 1: The complaint reason is clearly specified and the \"Complaint Reason\" field is filled in.</p> <p>- Criteria 2: The \"Complaint Reason Code\" filed is filled in. </p> <p>- Criteria 3: The \"Complaint - Outcome\" field is filled in AND the outcome can only be achieved via the Complaints Team.</p> <p>If so, simply use the <strong>COMPLAINTS: ESCALATION TO COMPLAINTS TEAM</strong> macro</p> <p>Go to Macros, select \"Complaints\" - \"Escalation to Complaints Team\"</p> <p><img src=\"https://z3nbootstrapperanz.zendesk.com/hc/article_attachments/360061275571/Screen_Shot_2020-07-06_at_8.25.05_am.png\" alt=\"Screen_Shot_2020-07-06_at_8.25.05_am.png\" width=\"336\" height=\"182\"></p> <p> </p> <p> </p> <p>Preview the Macro: </p> <p><img src=\"https://z3nbootstrapperanz.zendesk.com/hc/article_attachments/360060003692/mceclip0.png\" alt=\"mceclip0.png\"></p> <p> </p> <p>and click on <strong>APPLY MACRO</strong>, close the ticket.</p> <p> </p> <p> </p> <p> </p>",
+          "reference_id": "article-2",
+          "ignore": "{{article-1}}"
+        },
+        {
+          "section_id": "{{section-2}}",
+          "title": "Dispute Handling Process Overview",
+          "label_names": [
+            "dispute"
+          ],
+          "body": "<p>There are <strong>five key stages</strong> to handling complaints, from receiving the initial complaint to providing an outcome. </p> <h2>Key stages of complaint handling process</h2> <h3 id=\"comlainReceived\"><span id=\"complaint-received\">Complaint is received</span></h3> <p>Complaints may be received in various ways, such as by phone, online complaint form, email, social media, or in person.</p> <h3 id=\"recordComplain\"><span id=\"record-complaint\">Record the complaint and relevant information</span></h3> <ul> <li>the complainant, ie contact details and information such as any additional support required</li> <li>the complaint, such as the issues raised, the outcome the complainant is seeking, and other relevant information.</li> </ul> <h3 id=\"acknowledgeComplain\"><span id=\"acknowledge-complaint\">Acknowledge the complaint</span></h3> <ul> <li>include a contact point for the complainant, timeframe in which action will be taken, and the likely next steps</li> <li>agencies should consider the most appropriate medium for acknowledging the complaint ie whether an acknowledgement given by phone or email.</li> </ul> <h3 id=\"assessComplain\"><span id=\"assess-complaint\">Assess the complaint</span></h3> <p>As part of the initial assessment consider the following factors:</p> <ul> <li>are the issue/s raised within your control?</li> <li>are the outcomes sought by the complainant viable?</li> <li>if  more than one issue is raised, consider whether these will need to be separately addressed</li> <li>the seriousness of the complaint and whether it should be resolved urgently</li> <li>if the complaint involves a person’s health and safety</li> <li>how is the complainant being affected by the issue/s raised?</li> <li>are there are any risks involved if resolution is delayed?</li> <li>do other organisations need to be involved?</li> <li>does the complainant need to be given further information?</li> <li>is further information needed from the complainant in order to properly assess and resolve the complaint?</li> </ul> <h3>Complaint does not warrant an investigation</h3> <p><strong><span id=\"provide-outcome\">Provide an outcome and options of redress - if relevant or applicable</span></strong></p> <ul> <li>inform the complainant about the investigation and advise them of the outcome</li> <li>include reasons for the decision, remedies available, and options for review.</li> </ul> <p><strong><span id=\"close-complaint\">Close the complaint</span></strong></p> <p>Close the complaint and keep comprehensive records about how the complaint was managed, the outcome, any recommendations, and any outstanding actions that need to be followed up.</p> <h3>Complaint warrants an investigation</h3> <p><strong><span id=\"investigate-complaint\">Investigate the complaint</span></strong></p> <p>You may not need to follow all these steps in consecutive order, but in general is it important to:</p> <ul> <li>assess the complaint and determine what action is required</li> <li>select the appropriate investigative approach by looking at any statutory requirements, the nature of the issue, and the likely outcome of the investigation</li> <li>develop an investigation plan</li> <li>ensure proper powers and authority</li> <li>obtain evidence</li> <li>report the findings.</li> </ul> <p>For more information, see the Investigation of complaints fact sheet.</p> <p><strong><span id=\"provide-update\">Provide an update to the complainant</span></strong></p> <ul> <li>let the complainant know what is happening with their complaint, when they can expect to hear from you next and who to contact if they want to provide further information</li> <li>check your agency’s policy on when to provide an update, keeping in mind that an update may need to be provided earlier than the policy specifies if there are any significant changes.</li> </ul> <p><strong><span id=\"provide-final-outcome\">Provide the final outcome</span></strong></p> <ul> <li>inform the complainant about the investigation and advise them of the outcome</li> <li>include reasons for the decision, remedies available and options for review.</li> </ul> <p><strong><span id=\"option-redress-and-close\">Options for redress and close the complaint</span></strong></p> <ul> <li>provide available options for redress, and if possible</li> <li>close the complaint and keep comprehensive records about how the complaint was managed, the outcome, any recommendations, and any outstanding actions that need to be followed up. It is also a good idea to make a record of any systemic issues identified.</li> </ul> <h2>Complaint handling process flowchart</h2> <p><img src=\"https://www.ombo.nsw.gov.au/__data/assets/image/0017/55043/Complaint-Handling-Flowchart.png\" alt=\"\" width=\"430\" height=\"700\"></p>",
+          "reference_id": "article-3",
+          "ignore": "{{article-2}}"
+        },
+        {
+          "section_id": "{{section-2}}",
+          "title": "Internal Dispute Handling Process",
+          "label_names": [
+            "dispute"
+          ],
+          "body": "<p>There are <strong>five key stages</strong> to handling complaints, from receiving the initial complaint to providing an outcome. </p> <h2>Key stages of complaint handling process</h2> <h3 id=\"comlainReceived\"><span id=\"complaint-received\">Complaint is received</span></h3> <p>Complaints may be received in various ways, such as by phone, online complaint form, email, social media, or in person.</p> <h3 id=\"recordComplain\"><span id=\"record-complaint\">Record the complaint and relevant information</span></h3> <ul> <li>the complainant, ie contact details and information such as any additional support required</li> <li>the complaint, such as the issues raised, the outcome the complainant is seeking, and other relevant information.</li> </ul> <h3 id=\"acknowledgeComplain\"><span id=\"acknowledge-complaint\">Acknowledge the complaint</span></h3> <ul> <li>include a contact point for the complainant, timeframe in which action will be taken, and the likely next steps</li> <li>agencies should consider the most appropriate medium for acknowledging the complaint ie whether an acknowledgement given by phone or email.</li> </ul> <h3 id=\"assessComplain\"><span id=\"assess-complaint\">Assess the complaint</span></h3> <p>As part of the initial assessment consider the following factors:</p> <ul> <li>are the issue/s raised within your control?</li> <li>are the outcomes sought by the complainant viable?</li> <li>if  more than one issue is raised, consider whether these will need to be separately addressed</li> <li>the seriousness of the complaint and whether it should be resolved urgently</li> <li>if the complaint involves a person’s health and safety</li> <li>how is the complainant being affected by the issue/s raised?</li> <li>are there are any risks involved if resolution is delayed?</li> <li>do other organisations need to be involved?</li> <li>does the complainant need to be given further information?</li> <li>is further information needed from the complainant in order to properly assess and resolve the complaint?</li> </ul> <h3>Complaint does not warrant an investigation</h3> <p><strong><span id=\"provide-outcome\">Provide an outcome and options of redress - if relevant or applicable</span></strong></p> <ul> <li>inform the complainant about the investigation and advise them of the outcome</li> <li>include reasons for the decision, remedies available, and options for review.</li> </ul> <p><strong><span id=\"close-complaint\">Close the complaint</span></strong></p> <p>Close the complaint and keep comprehensive records about how the complaint was managed, the outcome, any recommendations, and any outstanding actions that need to be followed up.</p> <h3>Complaint warrants an investigation</h3> <p><strong><span id=\"investigate-complaint\">Investigate the complaint</span></strong></p> <p>You may not need to follow all these steps in consecutive order, but in general is it important to:</p> <ul> <li>assess the complaint and determine what action is required</li> <li>select the appropriate investigative approach by looking at any statutory requirements, the nature of the issue, and the likely outcome of the investigation</li> <li>develop an investigation plan</li> <li>ensure proper powers and authority</li> <li>obtain evidence</li> <li>report the findings.</li> </ul> <p>For more information, see the Investigation of complaints fact sheet.</p> <p><strong><span id=\"provide-update\">Provide an update to the complainant</span></strong></p> <ul> <li>let the complainant know what is happening with their complaint, when they can expect to hear from you next and who to contact if they want to provide further information</li> <li>check your agency’s policy on when to provide an update, keeping in mind that an update may need to be provided earlier than the policy specifies if there are any significant changes.</li> </ul> <p><strong><span id=\"provide-final-outcome\">Provide the final outcome</span></strong></p> <ul> <li>inform the complainant about the investigation and advise them of the outcome</li> <li>include reasons for the decision, remedies available and options for review.</li> </ul> <p><strong><span id=\"option-redress-and-close\">Options for redress and close the complaint</span></strong></p> <ul> <li>provide available options for redress, and if possible</li> <li>close the complaint and keep comprehensive records about how the complaint was managed, the outcome, any recommendations, and any outstanding actions that need to be followed up. It is also a good idea to make a record of any systemic issues identified.</li> </ul> <h2>Complaint handling process flowchart</h2> <p><img src=\"https://www.ombo.nsw.gov.au/__data/assets/image/0017/55043/Complaint-Handling-Flowchart.png\" alt=\"\" width=\"430\" height=\"700\"></p>",
+          "reference_id": "article-4",
+          "ignore": "{{article-3}}"
+        }
+      ]
+    }
+  }
