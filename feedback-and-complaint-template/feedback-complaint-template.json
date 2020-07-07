@@ -476,7 +476,7 @@
             },
             {
               "field": "ticket_form_id",
-              "value": "{ticket_form_feedback}"
+              "value": "{{ticket_form_feedback}}"
             },
             {
               "field": "type",
