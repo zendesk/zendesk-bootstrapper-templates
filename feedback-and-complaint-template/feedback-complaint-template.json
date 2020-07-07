@@ -205,6 +205,10 @@
         {
           "name": "Ombudsman Officer",
           "email": "ombudsman@regulatorybody.com"
+        },
+        {
+          "name": "Ben Mendez",
+          "email": "benmendez.demo@gmail.com"
         }
       ],
       "add_groups": [
@@ -711,12 +715,13 @@
         },
         "ticket_payload": {
           "requester": {
-            "name": "Ombudsman",
-            "email": "ombudsman@regulartorybody.com"
+            "name": "Ben Mendez",
+            "email": "benmendez.demo@gmail.com"
           },
           "tags": [
-            "ombudsman"
-          ]
+            "complaint"
+          ],
+          "ticket_form_id": "{{ticket_form_feedback}}"
         }
       },
       "add_ticket_fields": [
