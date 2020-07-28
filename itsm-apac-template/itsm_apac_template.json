@@ -1,0 +1,1582 @@
+{
+    "bootstrap": {
+      "subdomain": "z3n-leroychan",
+      "auth": {
+        "username": "<<YOUR EMAIL>>",
+        "password": "<<YOUR PASSWORD>>"
+      },
+      "customer": {
+        "name": "Zendesk Service Desk",
+        "locale": "en"
+      },
+      "require_support_ent": true,
+      "require_sunshine": true
+    },
+    "settings": {
+      "account_settings": {
+        "tickets": {
+          "emoji_autocompletion": true
+        },
+        "agents": {
+          "agent_workspace": true
+        },
+        "active_features": {
+          "business_hours": true,
+          "customer_satisfaction": true,
+          "user_tagging": true,
+          "ticket_tagging": true
+        },
+        "api": {
+          "accepted_api_agreement": true,
+          "api_password_access": true,
+          "api_token_access": true
+        }
+      },
+      "security_settings": {
+        "admins_can_set_user_passwords": true,
+        "email_agent_when_sensitive_fields_changed": false,
+        "authentication": {
+          "end_user": {
+            "google_login": true,
+            "office_365_login": true,
+            "twitter_login": true,
+            "facebook_login": true
+          }
+        }
+      },
+      "support_settings": {
+        "update_default_support_email": {
+          "name": "Zendesk Service Desk"
+        },
+        "add_recipient_addresses": [
+          {
+            "email": "IT@{{subdomain}}.zendesk.com",
+            "name": "IT"
+          },
+          {
+            "email": "servicerequest@{{subdomain}}.zendesk.com",
+            "name": "Service Requests"
+          }
+        ]
+      }
+    },
+    "ticket_views": {
+      "add_ticket_views": {
+        "options": {
+          "reorder_newly_added_to_first": true
+        },
+        "views": [
+          {
+            "title": "💌 Requests Tickets",
+            "active": true,
+            "position": 1,
+            "description": null,
+            "output": {
+              "columns": [
+                "satisfaction_score",
+                "{{ticket_field_servicecatalog}}",
+                "requester",
+                "created",
+                "assignee",
+                "priority",
+                "group",
+                "sla_next_breach_at"
+              ]
+            },
+            "all": [
+              {
+                "field": "ticket_form_id",
+                "operator": "is",
+                "value": "{{ticket_form_servicecatalog}}"
+              },
+              {
+                "field": "status",
+                "operator": "less_than",
+                "value": "solved"
+              }
+            ],
+            "any": [],
+            "restriction": null,
+            "raw_title": "💌 Requests"
+          },
+          {
+            "title": "💻 Incidents Tickets",
+            "active": true,
+            "position": 2,
+            "description": null,
+            "output": {
+              "columns": [
+                "via",
+                "type",
+                "satisfaction_score",
+                "subject",
+                "requester",
+                "created",
+                "assignee",
+                "priority",
+                "group",
+                "sla_next_breach_at"
+              ]
+            },
+            "all": [
+              {
+                "field": "ticket_form_id",
+                "operator": "is",
+                "value": "{{ticket_form_itrequests}}"
+              },
+              {
+                "field": "status",
+                "operator": "less_than",
+                "value": "solved"
+              },
+              {
+                "field": "type",
+                "operator": "is_not",
+                "value": "problem"
+              }
+            ],
+            "any": [],
+            "restriction": null,
+            "raw_title": "💻 Incidents"
+          },
+          {
+            "title": "⏱️ Problem Tickets",
+            "active": true,
+            "position": 3,
+            "description": null,
+            "output": {
+              "columns": [
+                "satisfaction_score",
+                "subject",
+                "requester",
+                "created",
+                "assignee",
+                "priority",
+                "group"
+              ]
+            },
+            "all": [
+              {
+                "field": "ticket_form_id",
+                "operator": "is",
+                "value": "{{ticket_form_itrequests}}"
+              },
+              {
+                "field": "status",
+                "operator": "less_than",
+                "value": "solved"
+              },
+              {
+                "field": "type",
+                "operator": "is",
+                "value": "problem"
+              }
+            ],
+            "any": [],
+            "restriction": null,
+            "raw_title": "⏱️ Problem "
+          },
+          {
+            "title": "📃 Change Tickets",
+            "active": true,
+            "position": 4,
+            "description": null,
+            "output": {
+              "columns": [
+                "{{ticket_field_changetype}}",
+                "satisfaction_score",
+                "subject",
+                "requester",
+                "created",
+                "assignee",
+                "priority",
+                "group"
+              ]
+            },
+            "all": [
+              {
+                "field": "ticket_form_id",
+                "operator": "is",
+                "value": "{{ticket_form_changerequests}}"
+              },
+              {
+                "field": "status",
+                "operator": "less_than",
+                "value": "solved"
+              }
+            ],
+            "any": [],
+            "restriction": null,
+            "raw_title": "📃 Change "
+          },
+          {
+            "title": "Your unsolved tickets",
+            "active": true,
+            "position": 5,
+            "description": null,
+            "sort": {
+              "id": "ticket_id",
+              "title": "ID",
+              "order": "desc"
+            },
+            "output": {
+              "columns": [
+                "subject",
+                "requester",
+                "created",
+                "type",
+                "priority"
+              ]
+            },
+            "all": [
+              {
+                "field": "status",
+                "operator": "less_than",
+                "value": "solved"
+              },
+              {
+                "field": "assignee_id",
+                "operator": "is",
+                "value": "current_user"
+              }
+            ],
+            "any": [],
+            "restriction": null
+          },
+          {
+            "title": "Unassigned tickets",
+            "active": true,
+            "position": 6,
+            "description": null,
+            "output": {
+              "columns": [
+                "subject",
+                "requester",
+                "created",
+                "priority",
+                "group"
+              ]
+            },
+            "all": [
+              {
+                "field": "assignee_id",
+                "operator": "is",
+                "value": ""
+              },
+              {
+                "field": "status",
+                "operator": "less_than",
+                "value": "solved"
+              }
+            ],
+            "any": [],
+            "restriction": null
+          },
+          {
+            "title": "All unsolved tickets",
+            "active": true,
+            "position": 7,
+            "description": null,
+            "sort": {
+              "id": "ticket_id",
+              "title": "ID",
+              "order": "desc"
+            },
+            "output": {
+              "columns": [
+                "subject",
+                "requester",
+                "created",
+                "priority",
+                "updated"
+              ]
+            },
+            "all": [
+              {
+                "field": "status",
+                "operator": "less_than",
+                "value": "solved"
+              }
+            ],
+            "any": [],
+            "restriction": null
+          },
+          {
+            "title": "Current tasks",
+            "active": true,
+            "position": 9,
+            "description": null,
+            "sort": {
+              "id": "assignee",
+              "title": "Assignee",
+              "order": "desc"
+            },
+            "output": {
+              "columns": [
+                "subject",
+                "requester",
+                "created",
+                "assignee",
+                "due_date"
+              ]
+            },
+            "all": [
+              {
+                "field": "status",
+                "operator": "less_than",
+                "value": "solved"
+              },
+              {
+                "field": "type",
+                "operator": "is",
+                "value": "task"
+              }
+            ],
+            "any": [],
+            "restriction": null
+          },
+          {
+            "title": "Recently solved tickets",
+            "active": true,
+            "position": 13,
+            "description": null,
+            "sort": {
+              "id": "solved",
+              "title": "Solved",
+              "order": "desc"
+            },
+            "output": {
+              "columns": [
+                "subject",
+                "requester",
+                "created",
+                "solved",
+                "priority",
+                "group"
+              ]
+            },
+            "all": [
+              {
+                "field": "status",
+                "operator": "is",
+                "value": "solved"
+              }
+            ],
+            "any": [],
+            "restriction": null
+          }
+        ]
+      }
+    },
+    "users": {
+      "add_user_fields": [
+        {
+          "type": "tagger",
+          "title": "Employee Status",
+          "description": "Status of Employee",
+          "position": "2",
+          "reference_id": "user_field_employee_status",
+          "active": true,
+          "key": "employee_status",
+          "custom_field_options": [
+            {
+              "name": "Contract",
+              "value": "contract_employee"
+            },
+            {
+              "name": "Full Time",
+              "value": "full_time_employee"
+            },
+            {
+              "name": "C Staff",
+              "value": "c_staff_employee"
+            }
+          ]
+        }
+      ],
+      "add_users": [
+        {
+          "name": "John Tan ECAB",
+          "email": "johntan@bootstrapper.com",
+          "reference_id": "user_john_ecab",
+          "user_fields": {
+            "employee_status": "full_time_employee"
+          },
+          "role": "agent"
+        },
+        {
+          "name": "Peter Chan ECAB",
+          "email": "PeterChan@bootstrapper.com",
+          "reference_id": "user_peter_ecab",
+          "user_fields": {
+            "employee_status": "full_time_employee"
+          },
+          "role": "agent"
+        },
+        {
+          "name": "Chris Lim C Staff",
+          "email": "ChrisLim@bootstrapper.com",
+          "reference_id": "user_chris_cstaff",
+          "user_fields": {
+            "employee_status": "c_staff_employee"
+          },
+          "role": "end-user"
+        },
+        {
+          "name": "Prince Approver and Fulfiller ",
+          "email": "pgabalones@zendesk.com",
+          "reference_id": "user_prince_admin",
+          "user_fields": {
+            "employee_status": "full_time_employee"
+          },
+          "role": "admin"
+        }
+      ],
+      "add_groups": [
+        {
+          "name": "Service Desk",
+          "description": "Service Incidents and Service Requests",
+          "reference_id": "group_servicedesk"
+        },
+        {
+          "name": "Tier 2 Support",
+          "description": "Problem or Change Management Tasks",
+          "reference_id": "group_t2support"
+        },
+        {
+          "name": "Tier 3 Support",
+          "description": "Third Party Vendor or DevOps Task",
+          "reference_id": "group_t3support"
+        }
+      ],
+      "add_group_memberships": [
+        {
+          "user_id": "{{user_prince_admin}}",
+          "group_id": "{{group_servicedesk}}"
+        },
+        {
+          "user_id": "{{user_john_ecab}}",
+          "group_id": "{{group_t2support}}"
+        },
+        {
+          "user_id": "{{user_peter_ecab}}",
+          "group_id": "{{group_t2support}}"
+        }
+      ]
+    },
+    "business_rules": {
+      "add_slas": [
+        {
+          "title": "Urgent Incidents",
+          "description": "For urgent incidents, we will respond to tickets in 10 minutes",
+          "position": 1,
+          "filter": {
+            "all": [
+              {
+                "field": "type",
+                "operator": "is",
+                "value": "incident"
+              }
+            ],
+            "any": []
+          },
+          "policy_metrics": [
+            {
+              "priority": "normal",
+              "metric": "first_reply_time",
+              "target": 30,
+              "business_hours": false
+            },
+            {
+              "priority": "urgent",
+              "metric": "first_reply_time",
+              "target": 10,
+              "business_hours": false
+            },
+            {
+              "priority": "low",
+              "metric": "requester_wait_time",
+              "target": 180,
+              "business_hours": false
+            },
+            {
+              "priority": "normal",
+              "metric": "requester_wait_time",
+              "target": 160,
+              "business_hours": false
+            },
+            {
+              "priority": "high",
+              "metric": "requester_wait_time",
+              "target": 140,
+              "business_hours": false
+            },
+            {
+              "priority": "urgent",
+              "metric": "requester_wait_time",
+              "target": 120,
+              "business_hours": false
+            }
+          ]
+        },
+        {
+          "title": "C Staff",
+          "description": "For C Staff request, we will respond to tickets in 10 minutes",
+          "position": 2,
+          "filter": {
+            "all": [
+              {
+                "field": "current_tags",
+                "operator": "includes",
+                "value": "c_staff_employee" 
+              }
+            ],
+            "any": []
+          },
+          "policy_metrics": [
+            {
+              "priority": "normal",
+              "metric": "first_reply_time",
+              "target": 30,
+              "business_hours": false
+            },
+            {
+              "priority": "urgent",
+              "metric": "first_reply_time",
+              "target": 10,
+              "business_hours": false
+            },
+            {
+              "priority": "low",
+              "metric": "requester_wait_time",
+              "target": 180,
+              "business_hours": false
+            },
+            {
+              "priority": "normal",
+              "metric": "requester_wait_time",
+              "target": 160,
+              "business_hours": false
+            },
+            {
+              "priority": "high",
+              "metric": "requester_wait_time",
+              "target": 140,
+              "business_hours": false
+            },
+            {
+              "priority": "urgent",
+              "metric": "requester_wait_time",
+              "target": 120,
+              "business_hours": false
+            }
+          ]
+        }
+      ],
+      "add_triggers": [
+        {
+          "title": "C Staff :: Escalate Tickets",
+          "all": [
+            {
+              "field": "update_type",
+              "operator": "is",
+              "value": "Create"
+            },
+            {
+              "field": "current_tags",
+              "operator": "includes",
+              "value": "c_staff_employee"
+            }
+          ],
+          "actions": [
+            {
+              "field": "priority",
+              "value": "high"
+            }
+          ]
+        },
+        {
+          "title": "CSAT :: Send CSAT Survey",
+          "all": [
+            {
+              "field": "status",
+              "operator": "is",
+              "value": "solved"
+            },
+            {
+              "field": "current_tags",
+              "operator": "includes",
+              "value": "csat"
+            },
+            {
+              "field": "current_tags",
+              "operator": "not_includes",
+              "value": "smooch supportkit"
+            },
+            {
+              "field": "comment_is_public",
+              "operator": "is",
+              "value": "true"
+            }
+          ],
+          "actions": [
+            {
+              "field": "notification_user",
+              "value": [
+                "requester_and_ccs",
+                "Request #{{ticket.id}}: How would you rate the support you received?",
+                "Hello {{ticket.requester.name}},\n\nWe'd love to hear what you think of our support service. Please take a moment to answer one simple question by clicking either link below:\n\n{{satisfaction.rating_section}}\n\nHere's a reminder of what your ticket was about:\n\n{{ticket.comments_formatted}}"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Problem - Assign to T2",
+          "active": true,
+          "actions": [
+            {
+              "field": "group_id",
+              "value": "{{group_t2support}}"
+            }
+          ],
+          "conditions": {
+            "all": [
+              {
+                "field": "type",
+                "operator": "value",
+                "value": "problem"
+              }
+            ],
+            "any": []
+          },
+          "description": null,
+          "position": 10008,
+          "raw_title": "Problem - Assign to T2"
+        },
+        {
+          "title": "Change - Assign to T2",
+          "active": true,
+          "actions": [
+            {
+              "field": "group_id",
+              "value": "{{group_t2support}}"
+            }
+          ],
+          "conditions": {
+            "all": [
+              {
+                "field": "status",
+                "operator": "is",
+                "value": "new"
+              },
+              {
+                "field": "ticket_form_id",
+                "operator": "is",
+                "value": "{{ticket_form_changerequests}}"
+              }
+            ],
+            "any": []
+          },
+          "description": null,
+          "position": 10009,
+          "raw_title": "Change - Assign to T2"
+        },
+        {
+          "title": "IT Service Desk - Assign to T1",
+          "active": true,
+          "actions": [
+            {
+              "field": "group_id",
+              "value": "{{group_servicedesk}}"
+            }
+          ],
+          "conditions": {
+            "all": [
+              {
+                "field": "status",
+                "operator": "is",
+                "value": "new"
+              },
+              {
+                "field": "ticket_form_id",
+                "operator": "is",
+                "value": "{{ticket_form_itrequests}}"
+              }
+            ],
+            "any": []
+          },
+          "description": null,
+          "position": 10010,
+          "raw_title": "IT Service Desk - Assign to T1"
+        }
+      ]
+    },
+    "apps": {
+      "add_apps": [
+        {
+          "app_id": "111872",
+          "settings": {
+            "name": "Knowledge Capture"
+          }
+        }
+      ],
+      "add_private_apps": [
+        {
+          "app_name": "itsm-apac-tasks-v1",
+          "name": "ITSM APAC Tasks App",
+          "short_description": "ITSM APAC Tasks App"
+        },
+        {
+          "app_name": "itsm-apac-cmdb-360-v1",
+          "name": "ITSM APAC CMDB 360",
+          "short_description": "ITSM APAC CMDB 360"
+        },
+        {
+          "app_name": "itsm-apac-approvals-v1",
+          "name": "ITSM APAC Approvals",
+          "short_description": "ITSM APAC Approvals"
+        },
+        {
+          "app_name": "itsm-apac-approvals-config-v1",
+          "name": "ITSM APAC Approvals Config",
+          "short_description": "ITSM APAC Approvals Config"
+        }
+      ]
+    },
+    "tickets": {
+      "generate_tickets": {
+        "statuses": {
+          "open": 100,
+          "pending": 100
+        },
+        "ticket_payload": {
+          "requester": {
+            "name": "Zendesk Service Desk",
+            "email": "zen@zen.com"
+          },
+          "tags": [
+            "Service Desk"
+          ]
+        }
+      },
+      "add_ticket_fields": [
+        {
+          "type": "tagger",
+          "title": "Category",
+          "reference_id": "ticket_field_category",
+          "raw_title": "Category",
+          "description": "",
+          "raw_description": "",
+          "position": 9999,
+          "active": true,
+          "required": true,
+          "collapsed_for_agents": false,
+          "regexp_for_validation": null,
+          "title_in_portal": "Category",
+          "raw_title_in_portal": "Category",
+          "visible_in_portal": true,
+          "editable_in_portal": true,
+          "required_in_portal": true,
+          "tag": null,
+          "removable": true,
+          "agent_description": "Category",
+          "custom_field_options": [
+            {
+              "name": "Software:: Windows",
+              "raw_name": "Software:: Windows",
+              "value": "software___windows",
+              "default": false
+            },
+            {
+              "name": "Software:: Microsoft Office",
+              "raw_name": "Software:: Microsoft Office",
+              "value": "software___microsoft_office",
+              "default": false
+            },
+            {
+              "name": "Hardware:: Laptop",
+              "raw_name": "Hardware:: Laptop",
+              "value": "hardware___laptop",
+              "default": false
+            },
+            {
+              "name": "Hardware:: Monitor",
+              "raw_name": "Hardware:: Monitor",
+              "value": "hardware___monitor",
+              "default": false
+            },
+            {
+              "name": "Network:: Office",
+              "raw_name": "Network:: Office",
+              "value": "network___office",
+              "default": false
+            },
+            {
+              "name": "Network:: Mobile",
+              "raw_name": "Network:: Mobile",
+              "value": "network___mobile",
+              "default": false
+            }
+          ]
+        },
+        {
+          "type": "tagger",
+          "title": "Service Catalog",
+          "raw_title": "Service Catalog",
+          "reference_id": "ticket_field_servicecatalog",
+          "description": "",
+          "raw_description": "",
+          "position": 9999,
+          "active": true,
+          "required": false,
+          "collapsed_for_agents": false,
+          "regexp_for_validation": null,
+          "title_in_portal": "Service Catalog",
+          "raw_title_in_portal": "Service Catalog",
+          "visible_in_portal": true,
+          "editable_in_portal": true,
+          "required_in_portal": true,
+          "tag": null,
+          "removable": true,
+          "agent_description": "Service Catalog",
+          "custom_field_options": [
+            {
+              "name": "Software:: Microsoft 365",
+              "raw_name": "Software:: Microsoft 365",
+              "value": "software___microsoft_365",
+              "default": false
+            },
+            {
+              "name": "Software:: Slack",
+              "raw_name": "Software:: Slack",
+              "value": "software___slack",
+              "default": false
+            },
+            {
+              "name": "Hardware::Laptop::Macbook Pro 13-inch",
+              "raw_name": "Hardware::Laptop::Macbook Pro 13-inch",
+              "value": "hardware___laptop___macbook_pro_13-inch",
+              "default": false
+            },
+            {
+              "name": "Hardware::Phone::Huawei P30",
+              "raw_name": "Hardware::Phone::Huawei P30",
+              "value": "hardware___phone__huawei_p30",
+              "default": false
+            }
+          ]
+        },
+        {
+          "type": "tagger",
+          "title": "Change Type",
+          "raw_title": "Change Type",
+          "description": "",
+          "raw_description": "",
+          "reference_id": "ticket_field_changetype",
+          "position": 9999,
+          "active": true,
+          "required": false,
+          "collapsed_for_agents": false,
+          "regexp_for_validation": null,
+          "title_in_portal": "Change Type",
+          "raw_title_in_portal": "Change Type",
+          "visible_in_portal": true,
+          "editable_in_portal": true,
+          "required_in_portal": true,
+          "tag": null,
+          "removable": true,
+          "agent_description": "Change Type",
+          "custom_field_options": [
+            {
+              "name": "Standard",
+              "raw_name": "Standard",
+              "value": "minor",
+              "default": false
+            },
+            {
+              "name": "Normal",
+              "raw_name": "Normal",
+              "value": "normal",
+              "default": true
+            },
+            {
+              "name": "Emergency",
+              "raw_name": "Emergency",
+              "value": "emergency",
+              "default": false
+            }
+          ]
+        }
+      ],
+      "add_ticket_forms": [
+        {
+          "name": "IT Requests",
+          "raw_name": "IT Requests",
+          "display_name": "Need help?",
+          "raw_display_name": "Need help?",
+          "end_user_visible": true,
+          "position": 0,
+          "reference_id": "ticket_form_itrequests",
+          "ticket_field_ids": [
+            "{{ticket_field_category}}",
+            "{{bootstrapper-default-ticket-field-tickettype}}"
+          ],
+          "active": true,
+          "default": true,
+          "in_all_brands": true,
+          "restricted_brand_ids": [],
+          "end_user_conditions": [],
+          "agent_conditions": []
+        },
+        {
+          "name": "Service Catalog",
+          "raw_name": "Service Catalog",
+          "display_name": "Request something?",
+          "raw_display_name": "Request something?",
+          "end_user_visible": true,
+          "position": 1,
+          "reference_id": "ticket_form_servicecatalog",
+          "ticket_field_ids": [
+            "{{ticket_field_servicecatalog}}"
+          ],
+          "active": true,
+          "default": false,
+          "in_all_brands": true,
+          "restricted_brand_ids": [],
+          "end_user_conditions": [],
+          "agent_conditions": []
+        },
+        {
+          "name": "Change Request",
+          "raw_name": "Change Request",
+          "display_name": "Requesting a change?",
+          "raw_display_name": "Requesting a change?",
+          "end_user_visible": true,
+          "position": 2,
+          "reference_id": "ticket_form_changerequests",
+          "ticket_field_ids": [
+            "{{ticket_field_changetype}}"
+          ],
+          "active": true,
+          "default": false,
+          "in_all_brands": true,
+          "restricted_brand_ids": [],
+          "end_user_conditions": [],
+          "agent_conditions": []
+        },
+        {
+          "name": "Problem Ticket",
+          "raw_name": "Problem Ticket",
+          "display_name": "",
+          "raw_display_name": "",
+          "end_user_visible": false,
+          "position": 3,
+          "ticket_field_ids": [
+            "{{bootstrapper-default-ticket-field-tickettype}}"
+          ],
+          "active": false,
+          "in_all_brands": true,
+          "restricted_brand_ids": [],
+          "end_user_conditions": [],
+          "agent_conditions": []
+        }
+      ]
+    },
+    "macros": {
+      "disable_default_macros": true,
+      "add_macros": [
+        {
+          "title": "Close and redirect to topics",
+          "active": true,
+          "position": 1,
+          "description": null,
+          "actions": [
+            {
+              "field": "status",
+              "value": "solved"
+            },
+            {
+              "field": "priority",
+              "value": "normal"
+            },
+            {
+              "field": "type",
+              "value": "incident"
+            },
+            {
+              "field": "assignee_id",
+              "value": "current_user"
+            },
+            {
+              "field": "group_id",
+              "value": "current_groups"
+            },
+            {
+              "field": "comment_value",
+              "value": "Thanks for your request. This issue you reported is a known issue. For more information, please visit our forums. "
+            }
+          ],
+          "restriction": null
+        },
+        {
+          "title": "Downgrade and inform",
+          "active": true,
+          "position": 2,
+          "description": null,
+          "actions": [
+            {
+              "field": "priority",
+              "value": "low"
+            },
+            {
+              "field": "comment_value",
+              "value": "We're currently experiencing unusually high traffic. We'll get back to you as soon as possible."
+            }
+          ],
+          "restriction": null
+        },
+        {
+          "title": "Requester not responding",
+          "active": true,
+          "position": 3,
+          "description": null,
+          "actions": [
+            {
+              "field": "status",
+              "value": "pending"
+            },
+            {
+              "field": "comment_value",
+              "value": "Hello {{ticket.requester.name}}. Our agent {{current_user.name}} has tried to contact you about this request but we haven't heard back from you yet. Please let us know if we can be of further assistance. Thanks. "
+            }
+          ],
+          "restriction": null
+        },
+        {
+          "title": "Take it!",
+          "active": true,
+          "position": 4,
+          "description": null,
+          "actions": [
+            {
+              "field": "group_id",
+              "value": "current_groups"
+            },
+            {
+              "field": "assignee_id",
+              "value": "current_user"
+            }
+          ],
+          "restriction": null
+        },
+        {
+          "title": "Incident:: Upgrade to Problem",
+          "active": true,
+          "position": 5,
+          "description": null,
+          "actions": [
+            {
+              "field": "type",
+              "value": "problem"
+            },
+            {
+              "field": "group_id",
+              "value": "{{group_t2support}}"
+            },
+            {
+              "field": "comment_mode_is_public",
+              "value": "false"
+            },
+            {
+              "field": "comment_value_html",
+              "value": "<p>Changing this into a problem ticket.</p><p>Please tag the related incidents to this problem ticket.</p><p>Handing this over to Tier 2 support for problem analysis.</p>"
+            },
+            {
+              "field": "comment_value",
+              "value": "Changing this into a problem ticket.\nPlease tag the related incidents to this problem ticket.\nHanding this over to Tier 2 support for problem analysis.\n"
+            }
+          ],
+          "restriction": null
+        },
+        {
+          "title": "Problem:: Insert Workaround Article Link",
+          "active": true,
+          "position": 6,
+          "description": null,
+          "actions": [
+            {
+              "field": "comment_value_html",
+              "value": "<p>Here is the workaround article Link: <br></p>"
+            },
+            {
+              "field": "comment_value",
+              "value": "Here is the workaround article Link: \n\n"
+            }
+          ],
+          "restriction": null
+        },
+        {
+          "title": "Problem:: Insert Known Error Article Link",
+          "active": true,
+          "position": 7,
+          "description": null,
+          "actions": [
+            {
+              "field": "comment_value_html",
+              "value": "<p>Here is the known error article Link: <br></p>"
+            },
+            {
+              "field": "comment_value",
+              "value": "Here is the known error article Link: "
+            }
+          ],
+          "restriction": null
+        },
+        {
+          "title": "Problem:: Insert Root Cause Article Link ",
+          "active": true,
+          "position": 8,
+          "description": null,
+          "actions": [
+            {
+              "field": "comment_value_html",
+              "value": "<p>Here is the root cause article Link: <br></p>"
+            },
+            {
+              "field": "comment_value",
+              "value": "Here is the root cause article Link: \n\n"
+            }
+          ],
+          "restriction": null
+        },
+        {
+          "title": "Emergency Change:: Adding ECAB as followers",
+          "active": true,
+          "position": 10,
+          "description": "Adding ECAB as followers",
+          "actions": [
+            {
+              "field": "follower",
+              "value": "{{user_peter_ecab}}"
+            },
+            {
+              "field": "follower",
+              "value": "{{user_john_ecab}}"
+            }
+          ],
+          "restriction": null
+        }
+      ]
+    },
+    "talk": {
+      "add_number": {
+        "country_code": "US",
+        "purchase_first_available_number": true
+      },
+      "add_talk_agents": {
+        "enable_first_admin": true
+      },
+      "add_ivrs": [
+        {
+          "name": "Service Desk IVR"
+        }
+      ]
+    },
+    "guide": {
+      "activate_guide": "{{bootstrapper-guide-default-brand-id}}",
+      "publish_theme": "{{itsm-apac}}",
+      "import_themes": [
+        {
+          "theme_name": "itsm-apac",
+          "reference_id": "itsm-apac"
+        }
+      ],
+      "add_categories": [
+        {
+          "name": "Service Catalog",
+          "reference_id": "kb_category_servicecatalog",
+          "description": "View the available services that can be requested"
+        },
+        {
+          "name": "FAQ & Announcements",
+          "description": "Your IT Knowledge Base",
+          "reference_id": "kb_category_itkb",
+          "ignore": "{{kb_category_servicecatalog}}"
+        }
+      ],
+      "add_sections": [
+        {
+          "category_id": "{{kb_category_servicecatalog}}",
+          "position": 0,
+          "sorting": "manual",
+          "name": "Hardware",
+          "description": "Request hardware",
+          "reference_id": "kb_section_requesthardware",
+          "locale": "en-us",
+          "source_locale": "en-us",
+          "outdated": false,
+          "parent_section_id": null,
+          "theme_template": "section_page"
+        },
+        {
+          "category_id": "{{kb_category_servicecatalog}}",
+          "position": 0,
+          "sorting": "manual",
+          "name": "Software",
+          "description": "Request software",
+          "reference_id": "kb_section_requestsoftware",
+          "locale": "en-us",
+          "source_locale": "en-us",
+          "outdated": false,
+          "parent_section_id": null,
+          "theme_template": "section_page",
+          "ignore": "{{kb_section_requesthardware}}"
+        },
+        {
+          "category_id": "{{kb_category_itkb}}",
+          "position": 0,
+          "sorting": "manual",
+          "name": "FAQ",
+          "description": "",
+          "locale": "en-us",
+          "source_locale": "en-us",
+          "reference_id": "kb_section_FAQ",
+          "outdated": false,
+          "parent_section_id": null,
+          "theme_template": "section_page",
+          "ignore": "{{kb_section_requestsoftware}}"
+        },
+        {
+          "category_id": "{{kb_category_itkb}}",
+          "position": 1,
+          "sorting": "manual",
+          "name": "Announcements",
+          "description": "",
+          "locale": "en-us",
+          "source_locale": "en-us",
+          "outdated": false,
+          "reference_id": "kb_section_announcements",
+          "parent_section_id": null,
+          "theme_template": "section_page",
+          "ignore": "{{kb_section_FAQ}}"
+        },
+        {
+          "category_id": "{{kb_category_itkb}}",
+          "position": 2,
+          "sorting": "manual",
+          "name": "Known Errors",
+          "reference_id": "kb_section_knownerrors",
+          "description": "",
+          "locale": "en-us",
+          "source_locale": "en-us",
+          "outdated": false,
+          "parent_section_id": null,
+          "theme_template": "section_page",
+          "ignore": "{{kb_section_announcements}}"
+        },
+        {
+          "category_id": "{{kb_category_itkb}}",
+          "position": 3,
+          "sorting": "manual",
+          "name": "Workarounds",
+          "reference_id": "kb_section_workarounds",
+          "description": "",
+          "locale": "en-us",
+          "source_locale": "en-us",
+          "outdated": false,
+          "parent_section_id": null,
+          "theme_template": "section_page",
+          "ignore": "{{kb_section_knownerrors}}"
+        },
+        {
+          "category_id": "{{kb_category_itkb}}",
+          "position": 4,
+          "sorting": "manual",
+          "reference_id": "kb_section_rootcauses",
+          "name": "Root Causes",
+          "description": "",
+          "locale": "en-us",
+          "source_locale": "en-us",
+          "outdated": false,
+          "parent_section_id": null,
+          "theme_template": "section_page",
+          "ignore": "{{kb_section_workarounds}}"
+        }
+      ],
+      "add_articles": [
+        {
+          "comments_disabled": false,
+          "draft": false,
+          "promoted": false,
+          "position": 0,
+          "vote_sum": 0,
+          "vote_count": 0,
+          "section_id": "{{kb_section_FAQ}}",
+          "name": "README",
+          "title": "README",
+          "source_locale": "en-us",
+          "locale": "en-us",
+          "outdated": false,
+          "outdated_locales": [],
+          "edited_at": "2020-05-15T08:29:40Z",
+          "user_segment_id": null,
+          "label_names": [],
+          "body": "<a href=\"https://github.com/aong-zendesk/itsm-bootstrapper/blob/master/README.md\">README.MD</a>",
+          "reference_id": "article-1"
+        },
+        {
+          "comments_disabled": false,
+          "draft": false,
+          "promoted": false,
+          "position": 0,
+          "vote_sum": 0,
+          "vote_count": 0,
+          "section_id": "{{kb_section_rootcauses}}",
+          "name": "Root Cause #1",
+          "title": "Root Cause #1",
+          "source_locale": "en-us",
+          "locale": "en-us",
+          "outdated": false,
+          "outdated_locales": [],
+          "edited_at": "2020-05-14T03:49:24Z",
+          "user_segment_id": null,
+          "label_names": [],
+          "body": "<p>ITIL doesn’t define “root cause” in any useful way. The official ITIL definition is “the underlying or original cause of an Incident or Problem” (ITIL v3 glossary). CMMI is more helpful: “A root cause is a source of a defect such that if it is removed, the defect is decreased or removed.” (CMMI v1.1, Causal Analysis and Resolution process area). There are two effective parts to a useful definition: a root cause is that which we can alter to effect a permanent fix to a problem. So the important points are (i) addressing the root cause fixes the problem and (ii) it is something we can directly affect. Examples: 1. Database fails because it is full. The root cause is that we failed to monitor its usage effectively to take preventative action in time. So the action we take to fix the Incident (increase the database size) is different to the action we take to fix the Problem (start monitoring capacity usage effectively). 2. Database fails because a virus infects the database software. Here we are not interested in the coding error that allowed the virus to strike, we are only interested in addressing our technology choice or patching regime. In other words, the root cause for the vendor (software bug) is different to the root cause for us (technology management). Wikipedia is very helpful on this and has good articles on root cause and root cause analysis. The temptation is to get too philosophical about causation when a useful definition is circumscribed by your own sphere of influence.</p>",
+          "reference_id": "article-2",
+          "ignore": "{{article-1}}"
+        },
+        {
+          "comments_disabled": false,
+          "draft": false,
+          "promoted": false,
+          "position": 0,
+          "vote_sum": 0,
+          "vote_count": 0,
+          "section_id": "{{kb_section_workarounds}}",
+          "name": "Workarounds #1",
+          "title": "Workarounds #1",
+          "source_locale": "en-us",
+          "locale": "en-us",
+          "outdated": false,
+          "outdated_locales": [],
+          "edited_at": "2020-05-14T03:48:04Z",
+          "user_segment_id": null,
+          "label_names": [],
+          "body": "<p><span>Workarounds are temporary solutions aimed at reducing or eliminating the impact of Known Errors (and thus Problems) for which a full resolution is not yet available.</span></p>",
+          "reference_id": "article-3",
+          "ignore": "{{article-2}}"
+        },
+        {
+          "comments_disabled": false,
+          "draft": false,
+          "promoted": false,
+          "position": 0,
+          "vote_sum": 0,
+          "vote_count": 0,
+          "section_id": "{{kb_section_requestsoftware}}",
+          "name": "Slack ",
+          "title": "Slack ",
+          "source_locale": "en-us",
+          "locale": "en-us",
+          "outdated": false,
+          "outdated_locales": [],
+          "edited_at": "2020-04-21T02:27:36Z",
+          "user_segment_id": null,
+          "label_names": [],
+          "body": "<p><img src=\"https://i.ibb.co/0rHdcrd/slack.png\" alt=\"22.PNG\"></p>\n<p class=\"wysiwyg-text-align-center\"><button onclick=\"\">Submit Request</button></p>",
+          "reference_id": "article-4",
+          "ignore": "{{article-3}}"
+        },
+        {
+          "comments_disabled": false,
+          "draft": false,
+          "promoted": false,
+          "position": 0,
+          "vote_sum": 0,
+          "vote_count": 0,
+          "section_id": "{{kb_section_requesthardware}}",
+          "name": "Huawei P30 Android Phone (8 GB RAM + 512GB ROM)",
+          "title": "Huawei P30 Android Phone (8 GB RAM + 512GB ROM)",
+          "source_locale": "en-us",
+          "locale": "en-us",
+          "outdated": false,
+          "outdated_locales": [],
+          "edited_at": "2020-04-21T02:25:02Z",
+          "user_segment_id": null,
+          "label_names": [],
+          "body": "<p><img src=\"https://i.ibb.co/kGj29RL/huaiwei.png\" alt=\"Capture2.PNG\"></p>\n<p class=\"wysiwyg-text-align-center\"><button onclick=\"\">Submit Request</button></p>",
+          "reference_id": "article-5",
+          "ignore": "{{article-4}}"
+        },
+        {
+          "comments_disabled": false,
+          "draft": false,
+          "promoted": false,
+          "position": 0,
+          "vote_sum": 0,
+          "vote_count": 0,
+          "section_id": "{{kb_section_knownerrors}}",
+          "name": "Known Error #1",
+          "title": "Known Error #1",
+          "source_locale": "en-us",
+          "locale": "en-us",
+          "outdated": false,
+          "outdated_locales": [],
+          "edited_at": "2020-03-03T06:58:56Z",
+          "user_segment_id": null,
+          "label_names": [
+            "known_error"
+          ],
+          "body": null,
+          "reference_id": "article-6",
+          "ignore": "{{article-5}}"
+        },
+        {
+          "comments_disabled": false,
+          "draft": false,
+          "promoted": false,
+          "position": 0,
+          "vote_sum": 0,
+          "vote_count": 0,
+          "section_id": "{{kb_section_requestsoftware}}",
+          "name": "Microsoft Office 365",
+          "title": "Microsoft Office 365",
+          "source_locale": "en-us",
+          "locale": "en-us",
+          "outdated": false,
+          "outdated_locales": [],
+          "edited_at": "2020-03-03T02:55:27Z",
+          "user_segment_id": null,
+          "label_names": [],
+          "body": "<p><img src=\"https://i.ibb.co/pJn79YX/MSoffice.png\" alt=\"Capture1.PNG\"></p>\n<p>Stay organized across your devices Be in control and master your day with everything: email, calendars, to-do lists, and files in one place. Everything in one place Outlook brings all your email, calendar events, and files together so you don't have to. One secured place for files and photos With 1 TB of OneDrive cloud storage you have one place for your favorite pictures, videos, and files.</p>\n<p class=\"wysiwyg-text-align-center\"><button onclick=\"\">Submit Request</button></p>",
+          "reference_id": "article-7",
+          "ignore": "{{article-6}}"
+        },
+        {
+          "comments_disabled": false,
+          "draft": false,
+          "promoted": false,
+          "position": 0,
+          "vote_sum": 0,
+          "vote_count": 0,
+          "section_id": "{{kb_section_requesthardware}}",
+          "name": "Macbook Pro 13-inch model",
+          "title": "Macbook Pro 13-inch model",
+          "source_locale": "en-us",
+          "locale": "en-us",
+          "outdated": false,
+          "outdated_locales": [],
+          "edited_at": "2020-03-03T02:55:11Z",
+          "user_segment_id": null,
+          "label_names": [],
+          "body": "<p class=\"wysiwyg-text-align-center\"><img src=\"https://i.ibb.co/gPySj3N/macbook.png\" alt=\"Capture1.PNG\"></p>\n<p class=\"wysiwyg-text-align-center\"><button onclick=\"\">Submit Request</button></p>",
+          "reference_id": "article-8",
+          "ignore": "{{article-7}}"
+        },
+        {
+          "comments_disabled": false,
+          "draft": false,
+          "promoted": false,
+          "position": 0,
+          "vote_sum": 0,
+          "vote_count": 0,
+          "section_id": "{{kb_section_FAQ}}",
+          "name": "How can agents leverage knowledge to help customers?",
+          "title": "How can agents leverage knowledge to help customers?",
+          "source_locale": "en-us",
+          "locale": "en-us",
+          "outdated": false,
+          "outdated_locales": [],
+          "edited_at": "2020-03-02T06:44:27Z",
+          "user_segment_id": null,
+          "label_names": [],
+          "body": "<p>You can use our <a href=\"https://support.zendesk.com/hc/en-us/articles/115012706488\" target=\"_blank\">Knowledge Capture app</a> to leverage your team’s collective knowledge.</p>\n<p>Using the app, agents can:\n</p><ul>\n  <li>Search the Help Center without leaving the ticket</li>\n  <li>Insert links to relevant Help Center articles in ticket comments</li>\n  <li>Add inline feedback to existing articles that need updates</li>\n  <li>Create new articles while answering tickets using a pre-defined template</li>\n</ul>\n\n\n<p>Agents never have to leave the ticket interface to share, flag, or create knowledge, so they can help the customer, while also improving your self-service offerings for other customers.</p>\n\n<p>To get started, see our <a href=\"https://support.zendesk.com/hc/en-us/articles/360001975088\" target=\"_blank\">Knowledge Capture documentation</a>.</p>\n\n<p>And before your agents can start creating new knowledge directly from tickets, you’ll need to <a href=\"https://support.zendesk.com/hc/en-us/articles/115002374987\" target=\"_blank\">create a template</a> for them to use. To help you along, we’ve provided some template ideas below. You can copy and paste any sample template below into a new article, add the <strong>KCTemplate</strong> label to the article, and you’ll be all set.</p>\n\n<h4>Q&amp;A template:</h4>\n\n<blockquote>\n\n<p>\n</p>\n<h3>[Title]</h3>\n\n\n<p>\n</p>\n<h3>Question</h3>\nwrite the question here.\n\n\n<p>\n</p>\n<h3>Answer</h3>\nwrite the answer here.\n\n\n</blockquote>\n\n<h4>Solution template:</h4>\n\n<blockquote>\n\n<p>\n</p>\n<h3>[Title]</h3>\n\n\n<p>\n</p>\n<h3>Symptoms</h3>\nwrite the symptoms here.\n\n\n<p>\n</p>\n<h3>Resolution</h3>\nwrite the resolution here.\n\n\n<p>\n</p>\n<h3>Cause</h3>\nwrite the cause here.\n\n\n</blockquote>\n\n<h4>How-to template:</h4>\n\n<blockquote>\n\n<p>\n</p>\n<h3>[Title]</h3>\n\n\n<p>\n</p>\n<h3>Objective</h3>\nwrite the purpose or task here.\n\n\n<p>\n</p>\n<h3>Procedure</h3>\nwrite the steps here.\n\n\n</blockquote>\n",
+          "reference_id": "article-9",
+          "ignore": "{{article-8}}"
+        },
+        {
+          "comments_disabled": false,
+          "draft": false,
+          "promoted": false,
+          "position": 0,
+          "vote_sum": 0,
+          "vote_count": 0,
+          "section_id": "{{kb_section_FAQ}}",
+          "name": "How do I publish my content in other languages?",
+          "title": "How do I publish my content in other languages?",
+          "source_locale": "en-us",
+          "locale": "en-us",
+          "outdated": false,
+          "outdated_locales": [],
+          "edited_at": "2020-03-02T06:44:27Z",
+          "user_segment_id": null,
+          "label_names": [],
+          "body": "<p>If you have <a href=\"https://support.zendesk.com/hc/en-us/articles/224857687\" target=\"_blank\">configured your Help Center to support multiple languages</a>, you can publish content in your supported languages. </p>\n\n<p>Here's the workflow for localizing your Help Center content into other languages:</p>\n\n<ol>\n<li>Get your content translated in the other languages.</li>\n<li>Configure the Help Center to support all your languages.</li>\n<li>Add the translated content to the Help Center.</li>\n</ol>\n\n\n<p>For complete instructions, see <a href=\"https://support.zendesk.com/hc/en-us/articles/203664336#topic_inn_3qy_43\" target=\"_blank\">Localizing the Help Center</a>.</p>",
+          "reference_id": "article-10",
+          "ignore": "{{article-9}}"
+        },
+        {
+          "comments_disabled": false,
+          "draft": false,
+          "promoted": false,
+          "position": 0,
+          "vote_sum": 0,
+          "vote_count": 0,
+          "section_id": "{{kb_section_FAQ}}",
+          "name": "How do I customize my Help Center?",
+          "title": "How do I customize my Help Center?",
+          "source_locale": "en-us",
+          "locale": "en-us",
+          "outdated": false,
+          "outdated_locales": [],
+          "edited_at": "2020-03-02T06:44:27Z",
+          "user_segment_id": null,
+          "label_names": [],
+          "body": "<p>You can modify the look and feel of your Help Center by changing colors and fonts. See <a href=\"https://support.zendesk.com/hc/en-us/articles/206177737\" target=\"_blank\">Branding your Help Center</a> to learn how.</p>\n\n<p>You can also change the design of your Help Center. If you're comfortable working with page code, you can dig in to the site's HTML, CSS, and Javascript to customize your theme. To get started, see <a href=\"https://support.zendesk.com/hc/en-us/articles/203664326\" target=\"_blank\">Customizing the Help Center</a>.</p>",
+          "reference_id": "article-11",
+          "ignore": "{{article-10}}"
+        },
+        {
+          "comments_disabled": false,
+          "draft": false,
+          "promoted": false,
+          "position": 0,
+          "vote_sum": 0,
+          "vote_count": 0,
+          "section_id": "{{kb_section_FAQ}}",
+          "name": "What are these sections and articles doing here?",
+          "title": "What are these sections and articles doing here?",
+          "source_locale": "en-us",
+          "locale": "en-us",
+          "outdated": false,
+          "outdated_locales": [],
+          "edited_at": "2020-03-02T06:44:27Z",
+          "user_segment_id": null,
+          "label_names": [],
+          "body": "<p>This FAQ is a section in the General category of your Help Center knowledge base. We created this category and a few common sections to help you get started with your Help Center.</p>\n\n<p>The knowledge base in the Help Center consists of three main page types: category pages, section pages, and articles. Here's the structure:</p>\n\n<p><img src=\"//static.zdassets.com/hc/assets/sample-articles/article0_image.png\" alt=\"image\"></p>\n\n<p>You can create your own categories, sections, and articles and modify or completely delete ours. See the <a href=\"https://support.zendesk.com/hc/en-us/articles/218222877\" target=\"_blank\">Organizing knowledge base content</a> and <a href=\"https://support.zendesk.com/hc/en-us/articles/203664366\" target=\"_blank\">Creating articles in the Help Center</a> to learn how.</p>",
+          "reference_id": "article-12",
+          "ignore": "{{article-11}}"
+        },
+        {
+          "comments_disabled": false,
+          "draft": false,
+          "promoted": false,
+          "position": 0,
+          "vote_sum": 0,
+          "vote_count": 0,
+          "section_id": "{{kb_section_announcements}}",
+          "name": "Welcome to your Help Center!",
+          "title": "Welcome to your Help Center!",
+          "source_locale": "en-us",
+          "locale": "en-us",
+          "outdated": false,
+          "outdated_locales": [],
+          "edited_at": "2020-03-02T06:44:26Z",
+          "user_segment_id": null,
+          "label_names": [],
+          "body": "<p>You're looking at your new <a href=\"https://www.zendesk.com/self-service\" target=\"_blank\">Help Center</a>. We populated it with placeholder content to help you get started. Feel free to edit or delete this content.</p>\n\n<p>The Help Center is designed to provide a complete self-service support option for your customers. The Help Center contains: a knowledge base and, on Guide Professional and Enterprise, a Customer Portal for support requests. You can also add a community to your Help Center if you have Zendesk Gather.</p>\n\n<p>Your customers can search for knowledge base articles to learn a task or search the community, if available, to ask fellow users questions. If your customers can't find an answer, they can submit a support request.</p>\n\n<p>For more information, see <a href=\"https://support.zendesk.com/hc/en-us/articles/203664386\" target=\"_blank\">Help Center guide for end users</a>.</p><p>Each user has a Help Center profile (Guide Professional and Enterprise), so your Help Center users can get to know one another better. Profiles contain relevant information about the user, along with their activities and contributions.</p>",
+          "ignore": "{{article-12}}"
+        }
+      ]
+    }
+  }
