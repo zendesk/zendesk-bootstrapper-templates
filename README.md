@@ -65,6 +65,8 @@ You could use the following variables anywhere within your template code and it 
  1. `{{customer}}`
  2. `{{customer_name}}`
  3. `{{customer_locale}}`
+ 4. `{{bootstrapper-default-ticket-field-priority}}`: Return default system ticket field - Priority's ID
+ 5. `{{bootstrapper-default-ticket-field-tickettype}}`: Return default system ticket field - Ticket Type's ID
 
 ### 2.3 Dependencies
 Zendesk Bootstrapper helps you to resolve dependencies automatically with your templates
