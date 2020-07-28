@@ -60,7 +60,7 @@
             "active": true,
             "position": 1,
             "output": {
-              "group_by": "current_via_id",
+              "group_by": "priority",
               "group_order": "desc",
               "sort_by": "nice_id",
               "group": "null",
