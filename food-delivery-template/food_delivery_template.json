@@ -1,0 +1,937 @@
+{
+  "bootstrap": {
+    "subdomain": "z3n-foodelivery",
+    "auth": {
+      "username": "<<YOUR EMAIL>>",
+      "password": "<<YOUR PASSWORD>>"
+    },
+    "customer": {
+      "name": "Food Delivery",
+      "locale": "en"
+    }
+  },
+  "settings": {
+    "account_settings": {
+      "tickets": {
+        "emoji_autocompletion": true
+      },
+      "agents": {
+        "agent_workspace": true
+      },
+      "active_features": {
+        "business_hours": true,
+        "customer_satisfaction": true,
+        "user_tagging": true,
+        "ticket_tagging": true
+      },
+      "api": {
+        "accepted_api_agreement": true,
+        "api_password_access": true,
+        "api_token_access": true
+      }
+    },
+    "security_settings": {
+      "admins_can_set_user_passwords": true,
+      "email_agent_when_sensitive_fields_changed": false,
+      "authentication": {
+        "end_user": {
+          "google_login": true,
+          "office_365_login": true,
+          "twitter_login": true,
+          "facebook_login": true
+        }
+      }
+    },
+    "support_settings": {
+      "update_default_support_email": {
+        "name": "HR Helpdesk"
+      },
+      "add_recipient_addresses": [
+        {
+          "email": "hr@{{subdomain}}.zendesk.com",
+          "name": "HR Helpdesk"
+        }
+      ]
+    }
+  },
+  "ticket_views": {
+    "add_ticket_views": {
+      "options": {
+        "reorder_newly_added_to_first": true
+      },
+      "views": [
+        {
+          "title": "☀️ Created Today",
+          "active": true,
+          "position": 1,
+          "output": {
+            "group_by": "null",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "group": "null",
+            "sort_order": "desc",
+            "columns": [
+              "subject",
+              "requester",
+              "created",
+              "assignee",
+              "sla_next_breach_at",
+              "ticket_form"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "NEW",
+              "operator": "less_than_business_hours",
+              "value": "24"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "🚨 Urgent and High Priority",
+          "active": true,
+          "position": 1,
+          "output": {
+            "group_by": "null",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "group": "null",
+            "sort_order": "desc",
+            "columns": [
+              "subject",
+              "requester",
+              "created",
+              "assignee",
+              "sla_next_breach_at",
+              "ticket_form"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            }
+          ],
+          "any": [
+            {
+              "field": "priority",
+              "operator": "is",
+              "value": "urgent"
+            },
+            {
+              "field": "priority",
+              "operator": "is",
+              "value": "high"
+            }
+          ]
+        },
+        {
+          "title": "😋Customer",
+          "active": true,
+          "position": 1,
+          "output": {
+            "group_by": "null",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "group": "null",
+            "sort_order": "desc",
+            "columns": [
+              "subject",
+              "requester",
+              "created",
+              "assignee",
+              "sla_next_breach_at"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "ticket_form_id",
+              "operator": "is",
+              "value": "{{ticket-form-customer}}"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "🚴‍♂️Rider",
+          "active": true,
+          "position": 1,
+          "output": {
+            "group_by": "null",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "group": "null",
+            "sort_order": "desc",
+            "columns": [
+              "subject",
+              "requester",
+              "created",
+              "assignee",
+              "sla_next_breach_at"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "ticket_form_id",
+              "operator": "is",
+              "value": "{{ticket-form-rider}}"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "🥡Restaurant",
+          "active": true,
+          "position": 1,
+          "output": {
+            "group_by": "null",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "group": "null",
+            "sort_order": "desc",
+            "columns": [
+              "subject",
+              "requester",
+              "created",
+              "assignee",
+              "sla_next_breach_at"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "ticket_form_id",
+              "operator": "is",
+              "value": "{{ticket-form-restaurant}}"
+            }
+          ],
+          "any": []
+        }
+      ]
+    }
+  },
+  "users": {
+    "add_user_fields": [
+      {
+        "type": "text",
+        "title": "Customer ID",
+        "description": "Customer ID",
+        "position": "2",
+        "active": true,
+        "key": "customer_ID"
+      },
+      {
+        "type": "tagger",
+        "title": "Subscription",
+        "description": "Subscription Plan",
+        "position": "2",
+        "active": true,
+        "key": "subscription_plan",
+        "custom_field_options": [
+          {
+            "name": "Gold",
+            "value": "subscription_plan_gold"
+          },
+          {
+            "name": "Silver",
+            "value": "subscription_plan_silver"
+          },
+          {
+            "name": "Bronze",
+            "value": "subscription_plan_bronze"
+          }
+        ]
+      }
+    ],
+    "add_users": [
+      {
+        "name": "Ben Mendez",
+        "email": "benmendez.demo@gmail.com"
+      }
+    ],
+    "add_groups": [
+      {
+        "name": "Customer",
+        "reference_id": "group_customer"
+      },
+      {
+        "name": "Rider",
+        "reference_id": "group_rider"
+      },
+      {
+        "name": "Restaurant",
+        "reference_id": "group_restaurant"
+      },
+      {
+        "name": "Abuse",
+        "reference_id": "group_abuse"
+      },
+      {
+        "name": "Fraud",
+        "reference_id": "group_fraud"
+      }
+    ],
+    "add_organizations": {
+      "organizations": []
+    },
+    "add_organization_fields": []
+  },
+  "business_rules": {
+    "add_slas": [
+      {
+        "title": "Urgent Incidents SLA",
+        "description": "For urgent incidents, we will respond to tickets in 10 minutes",
+        "position": 1,
+        "filter": {
+          "all": [
+            {
+              "field": "type",
+              "operator": "is",
+              "value": "incident"
+            }
+          ],
+          "any": []
+        },
+        "policy_metrics": [
+          {
+            "priority": "normal",
+            "metric": "first_reply_time",
+            "target": 30,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "first_reply_time",
+            "target": 10,
+            "business_hours": false
+          },
+          {
+            "priority": "low",
+            "metric": "requester_wait_time",
+            "target": 180,
+            "business_hours": false
+          },
+          {
+            "priority": "normal",
+            "metric": "requester_wait_time",
+            "target": 160,
+            "business_hours": false
+          },
+          {
+            "priority": "high",
+            "metric": "requester_wait_time",
+            "target": 140,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "requester_wait_time",
+            "target": 120,
+            "business_hours": false
+          }
+        ]
+      },
+      {
+        "title": "Gold Subscriber SLA",
+        "description": "For Gold Subscribers, we will respond to tickets in 10 minutes",
+        "position": 2,
+        "filter": {
+          "all": [
+            {
+              "field": "current_tags",
+              "operator": "includes",
+              "value": "subscription_plan_gold"
+            }
+          ],
+          "any": []
+        },
+        "policy_metrics": [
+          {
+            "priority": "normal",
+            "metric": "first_reply_time",
+            "target": 30,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "first_reply_time",
+            "target": 10,
+            "business_hours": false
+          },
+          {
+            "priority": "low",
+            "metric": "requester_wait_time",
+            "target": 180,
+            "business_hours": false
+          },
+          {
+            "priority": "normal",
+            "metric": "requester_wait_time",
+            "target": 160,
+            "business_hours": false
+          },
+          {
+            "priority": "high",
+            "metric": "requester_wait_time",
+            "target": 140,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "requester_wait_time",
+            "target": 120,
+            "business_hours": false
+          }
+        ]
+      }
+    ],
+    "add_triggers": [
+      {
+        "title": "Gold :: Escalate Gold Tickets",
+        "all": [
+          {
+            "field": "update_type",
+            "operator": "is",
+            "value": "Create"
+          },
+          {
+            "field": "current_tags",
+            "operator": "includes",
+            "value": "subscription_plan_gold"
+          }
+        ],
+        "actions": [
+          {
+            "field": "priority",
+            "value": "high"
+          }
+        ]
+      },
+      {
+        "title": "Auto set Priority to Normal (for SLA management)",
+        "all": [
+          {
+            "field": "status",
+            "operator": "is",
+            "value": "new"
+          },
+          {
+            "field": "priority",
+            "operator": "is",
+            "value": ""
+          }
+        ],
+        "actions": [
+          {
+            "field": "priority",
+            "value": "normal"
+          }
+        ]
+      },
+      {
+        "title": "CSAT :: Send CSAT Survey",
+        "all": [
+          {
+            "field": "status",
+            "operator": "is",
+            "value": "solved"
+          },
+          {
+            "field": "current_tags",
+            "operator": "includes",
+            "value": "csat"
+          },
+          {
+            "field": "current_tags",
+            "operator": "not_includes",
+            "value": "smooch supportkit"
+          },
+          {
+            "field": "comment_is_public",
+            "operator": "is",
+            "value": "true"
+          }
+        ],
+        "actions": [
+          {
+            "field": "notification_user",
+            "value": [
+              "requester_and_ccs",
+              "Request #{{ticket.id}}: How would you rate the support you received?",
+              "Hello {{ticket.requester.name}},\n\nWe'd love to hear what you think of our customer service. Please take a moment to answer one simple question by clicking either link below:\n\n{{satisfaction.rating_section}}\n\nHere's a reminder of what your ticket was about:\n\n{{ticket.comments_formatted}}"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "apps": {
+    "add_apps": []
+  },
+  "tickets": {
+    "generate_tickets": {
+      "statuses": {
+        "solved": 100,
+        "open": 100,
+        "pending": 100
+      },
+      "ticket_payload": {
+        "requester": {
+          "name": "Employee Name",
+          "email": "kaws@kaws.com"
+        },
+        "tags": ["autogenerated"]
+      }
+    },
+    "add_ticket_fields": [
+      {
+        "type": "text",
+        "title": "Restaurant",
+        "reference_id": "ticket_field_restaurant"
+      },
+      {
+        "type": "text",
+        "title": "Rider",
+        "reference_id": "ticket_field_rider"
+      },
+      {
+        "type": "text",
+        "title": "Order ID",
+        "reference_id": "ticket_field_order_id"
+      },
+      {
+        "type": "date",
+        "title": "Order Date",
+        "reference_id": "ticket_field_order_date"
+      },
+      {
+        "type": "tagger",
+        "title": "Customer Contact Reason",
+        "reference_id": "ticket_field_customer_contact_reason",
+        "custom_field_options": [
+          {
+            "name": "Food Quality",
+            "value": "customer_food_quality"
+          },
+          {
+            "name": "Missing Items",
+            "value": "customer_missing_items"
+          },
+          {
+            "name": "Didn't Arrive",
+            "value": "customer_didnt_arrive"
+          },
+          {
+            "name": "Rider",
+            "value": "customer_rider"
+          },
+          {
+            "name": "Restaurant",
+            "value": "customer_restaurant"
+          },
+          {
+            "name": "Ordering Experience",
+            "value": "customer_ordering_experience"
+          },
+          {
+            "name": "App Issue",
+            "value": "app_experience"
+          },
+          {
+            "name": "Customer Service",
+            "value": "customer_customer_service"
+          },
+          {
+            "name": "Other",
+            "value": "customer_other"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "title": "Refund Issued",
+        "reference_id": "ticket_field_refund_issued",
+        "tag": "refund_issued"
+      },
+      {
+        "type": "checkbox",
+        "title": "Refund Amount",
+        "reference_id": "ticket_field_refund_amount",
+        "tag": "refund_amount"
+      },
+      {
+        "type": "tagger",
+        "title": "Rider Contact Reason",
+        "reference_id": "ticket_field_rider_contact_reason",
+        "custom_field_options": [
+          {
+            "name": "Abusive Customer",
+            "value": "rider_abuse"
+          },
+          {
+            "name": "App Issue",
+            "value": "rider_app_issue"
+          },
+          {
+            "name": "Pay",
+            "value": "rider_pay"
+          },
+          {
+            "name": "Equipment",
+            "value": "rider_equipment"
+          },
+          {
+            "name": "Onboarding",
+            "value": "rider_onboarding"
+          },
+          {
+            "name": "Other",
+            "value": "rider_other"
+          }
+        ]
+      },
+      {
+        "type": "tagger",
+        "title": "Restaurant Contact Reason",
+        "reference_id": "ticket_field_restaurant_contact_reason",
+        "custom_field_options": [
+          {
+            "name": "Contract",
+            "value": "restaurant_contract"
+          },
+          {
+            "name": "Equipment",
+            "value": "restaurant_equipment"
+          },
+          {
+            "name": "App Issue",
+            "value": "restaurant_app_issue"
+          },
+          {
+            "name": "Menu",
+            "value": "restaurant_menu"
+          },
+          {
+            "name": "Restaurant Details",
+            "value": "restaurant_details_2"
+          },
+          {
+            "name": "Rider",
+            "value": "restaurant_rider"
+          },
+          {
+            "name": "Other",
+            "value": "restaurant_rider_other"
+          }
+        ]
+      }
+    ],
+    "add_ticket_forms": [
+      {
+        "name": "Customer",
+        "end_user_visible": true,
+        "active": true,
+        "in_all_brands": true,
+        "ticket_field_ids": [
+          "{{ticket_field_order_date}}",
+          "{{ticket_field_order_id}}",
+          "{{ticket_field_restaurant}}",
+          "{{ticket_field_rider}}",
+          "{{ticket_field_refund_issued}}",
+          "{{ticket_field_refund_amount}}",
+          "{{ticket_field_customer_contact_reason}}"
+        ],
+        "reference_id": "ticket-form-customer"
+      },
+      {
+        "name": "Rider",
+        "end_user_visible": true,
+        "active": true,
+        "in_all_brands": true,
+        "ticket_field_ids": [
+          "{{ticket_field_rider}}",
+          "{{ticket_field_rider_contact_reason}}"
+        ],
+        "reference_id": "ticket-form-rider"
+      },
+      {
+        "name": "Restaurant",
+        "end_user_visible": true,
+        "active": true,
+        "in_all_brands": true,
+        "ticket_field_ids": [
+          "{{ticket_field_restaurant}}",
+          "{{ticket_field_restaurant_contact_reason}}"
+        ],
+        "reference_id": "ticket-form-restaurant"
+      }
+    ]
+  },
+  "macros": {
+    "disable_default_macros": true,
+    "add_macros": [
+      {
+        "title": "Refund::Item Missing",
+        "actions": [
+          {
+            "field": "status",
+            "value": "solved"
+          },
+          {
+            "field": "priority",
+            "value": "normal"
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": "true"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "We are sorry to hear an item was missing from your order. We have refunded this item."
+          },
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket-form-customer}}"
+          },
+          {
+            "field": "custom_fields_{{ticket_field_customer_contact_reason}}",
+            "value": "customer_missing_items"
+          },
+          {
+            "field": "subject",
+            "value": "Refund Issued: Item Missing"
+          },
+          {
+            "field": "custom_fields_{{ticket_field_refund_issued}}",
+            "value": true
+          }
+        ]
+      },
+      {
+        "title": "Refund::Didn't Arrive",
+        "actions": [
+          {
+            "field": "status",
+            "value": "solved"
+          },
+          {
+            "field": "priority",
+            "value": "normal"
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": "true"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "We are sorry to hear your order did not arrive within the specified time. We have refunded the full cost of your order."
+          },
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket-form-customer}}"
+          },
+          {
+            "field": "custom_fields_{{ticket_field_customer_contact_reason}}",
+            "value": "customer_didnt_arrive"
+          },
+          {
+            "field": "custom_fields_{{ticket_field_refund_issued}}",
+            "value": true
+          },
+          {
+            "field": "subject",
+            "value": "Refund Issued: Order Did Not Arrive"
+          }
+        ]
+      },
+      {
+        "title": "Rider::Abuse Incident Details",
+        "actions": [
+          {
+            "field": "status",
+            "value": "pending"
+          },
+          {
+            "field": "priority",
+            "value": "normal"
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": "true"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "Hi, we are really sorry to hear you were abused by a customer. Please provide the details of the incident and we will get back to you with an appropriate course of action."
+          },
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket-form-rider}}"
+          },
+          {
+            "field": "custom_fields_{{ticket_field_rider_contact_reason}}",
+            "value": "rider_abuse"
+          }
+        ]
+      },
+      {
+        "title": "Restaurant::Details Update",
+        "actions": [
+          {
+            "field": "status",
+            "value": "pending"
+          },
+          {
+            "field": "priority",
+            "value": "normal"
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": "true"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "Many thanks for letting us know you need to update your restaurant contact details. Please sign into the app and go to Account Settings and you can modify these directly."
+          },
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket-form-restaurant}}"
+          },
+          {
+            "field": "custom_fields_{{ticket_field_restaurant_contact_reason}}",
+            "value": "restaurant_details_2"
+          }
+        ]
+      }
+    ]
+  },
+  "guide": {
+    "activate_guide": "{{bootstrapper-guide-default-brand-id}}",
+    "publish_theme": "{{generic-template}}",
+    "import_themes": [
+      {
+        "theme_name": "demo-builder-madison",
+        "reference_id": "generic-template"
+      }
+    ],
+    "add_categories": [
+      {
+        "locale": "en-us",
+        "name": "Customers",
+        "description": "The place to go if you are one of our customers",
+        "reference_id": "category-1"
+      },
+      {
+        "locale": "en-us",
+        "name": "Riders",
+        "description": "The place to go if you are one of our riders",
+        "reference_id": "category-2",
+        "ignore": "{{category-1}}"
+      },
+      {
+        "locale": "en-us",
+        "name": "Restaurants",
+        "description": "The place to go if you are one of our restaurant partners",
+        "reference_id": "category-3",
+        "ignore": "{{category-2}}"
+      }
+    ],
+    "add_sections": [
+      {
+        "locale": "en-us",
+        "category_id": "{{category-1}}",
+        "name": "Ordering",
+        "description": "Find out how to place an order, check it's status and provide feedback on an order",
+        "reference_id": "section-1"
+      },
+      {
+        "locale": "en-us",
+        "category_id": "{{category-1}}",
+        "name": "Subscriptions",
+        "description": "Use us regularly? If so, you might want to consider a subscription to save even more",
+        "reference_id": "section-2",
+        "ignore": "{{section-1}}"
+      },
+      {
+        "locale": "en-us",
+        "category_id": "{{category-2}}",
+        "name": "Becoming a Rider",
+        "description": "Find out how to join our team of riders",
+        "reference_id": "section-3",
+        "ignore": "{{section-2}}"
+      },
+      {
+        "locale": "en-us",
+        "category_id": "{{category-2}}",
+        "name": "How you get paid",
+        "description": "Find out more about how you get paid as a rider",
+        "reference_id": "section-4",
+        "ignore": "{{section-3}}"
+      },
+      {
+        "locale": "en-us",
+        "category_id": "{{category-3}}",
+        "name": "Onboarding your restaurant",
+        "description": "Find out how you get your restaurant on to our platform",
+        "reference_id": "section-5",
+        "ignore": "{{section-4}}"
+      }
+    ],
+    "add_articles": [
+      {
+        "section_id": "{{section-1}}",
+        "title": "Placing an order",
+        "body": "<p>The best way to place an order is via our mobile app. Simply: <ul><li>Download our app from the Apple App Store or Google Play Store</li><li>Sign in</li><li>Search for your favourite restaurant or type of food</li><li>Place an order</li></ul> </p> <p>We'll then do our best to get this to you as soon as possible.</p>",
+        "reference_id": "article-1"
+      },
+      {
+        "section_id": "{{section-2}}",
+        "title": "Subscription Options",
+        "body": "<p>For those who order regularly we have 3 different subscription plans: </p><ul><li>Gold - free delivery charge on all orders</li><li>Silver - free delivery charge on 5 orders per month</li><li>Bronze -  free delivery on 2 orders per month</li></ul>",
+        "reference_id": "article-2",
+        "ignore": "{{article-1}}"
+      },
+      {
+        "section_id": "{{section-3}}",
+        "title": "What equipment do I need?",
+        "body": "<p>In order to become a rider you need the following equipment:</p> <ul><li>A fully working bike, e-bike, scooter or motorbike</li><li>A delivery bag<li><li>A mobile phone (Apple or Android)</li></ul>",
+        "reference_id": "article-3",
+        "ignore": "{{article-2}}"
+      },
+      {
+        "section_id": "{{section-4}}",
+        "title": "Per Order Payments",
+        "body": "<p>Every order is different in terms of the size of the order and the distance you have to travel. Our algorithm works out the most appropriate amount to pay based on these factors along with weather, volume of riders, location etc. We guarantee that you will get over £1 per order and at least 20 pence per mile</p>",
+        "reference_id": "article-4",
+        "ignore": "{{article-3}}"
+      },
+      {
+        "section_id": "{{section-5}}",
+        "title": "How do I get my restaurant on your marketplace",
+        "body": "<p>Simply complete our onboarding form which asks for details such as: </p><ul><li>Restaurant name</li><li>Restaurant owner and contact details<li><li>Restaurant contact details</li><li>Opening hours</li><li>Website address</li><li>Logo</li><li>Type of food you serve<li><li>Menus</li></ul><p>Once you have done this one of our sales team will be in touch.</p>",
+        "reference_id": "article-5",
+        "ignore": "{{article-4}}"
+      }
+    ]
+  }
+}
