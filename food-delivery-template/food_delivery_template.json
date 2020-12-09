@@ -8,7 +8,8 @@
     "customer": {
       "name": "Food Delivery",
       "locale": "en"
-    }
+    },
+    "require_support_ent": true
   },
   "settings": {
     "account_settings": {
