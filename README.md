@@ -70,6 +70,12 @@ You could use the following variables anywhere within your template code and it 
 3.  `{{customer_locale}}`
 4.  `{{bootstrapper-default-ticket-field-priority}}`: Return default system ticket field - Priority's ID
 5.  `{{bootstrapper-default-ticket-field-tickettype}}`: Return default system ticket field - Ticket Type's ID
+6.  `{{bootstrapper-default-ticket-field-subject}}`: Return default system ticket field - Subject's ID
+7.  `{{bootstrapper-default-ticket-field-description}}`: Return default system ticket field - Description's ID
+8.  `{{bootstrapper-default-ticket-field-status}}`: Return default system ticket field - Status's ID
+9.  `{{bootstrapper-default-ticket-field-group}}`: Return default system ticket field - Group's ID
+10. `{{bootstrapper-default-ticket-field-assignee}}`: Return default system ticket field - Assignee's ID
+11. `{{bootstrapper-default-group-support}}`: Return default Agent's group (Support)
 
 ### 2.3 Dependencies
 
