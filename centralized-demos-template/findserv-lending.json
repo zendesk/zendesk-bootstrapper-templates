@@ -1,0 +1,1541 @@
+{
+  "bootstrap": {
+    "subdomain": "z3n-leroychan",
+    "auth": {
+      "username": "<<YOUR EMAIL>>",
+      "password": "<<YOUR PASSWORD>>"
+    },
+    "customer": {
+      "name": "FinServ Lending",
+      "locale": "en"
+    }
+  },
+  "settings": {
+    "account_settings": {
+      "branding": {
+        "header_color": "03363D",
+        "page_background_color": "333333",
+        "tab_background_color": "092A33",
+        "text_color": "FFFFFF",
+        "header_logo_url": null,
+        "favicon_url": null
+      },
+      "tickets": {
+        "agent_ticket_deletion": false,
+        "list_newest_comments_first": true,
+        "collaboration": false,
+        "private_attachments": true,
+        "email_attachments": false,
+        "agent_collision": true,
+        "tagging": true,
+        "list_empty_views": true,
+        "comments_public_by_default": true,
+        "is_first_comment_private_enabled": true,
+        "maximum_personal_views_to_list": 8,
+        "status_hold": true,
+        "markdown_ticket_comments": false,
+        "rich_text_comments": true,
+        "emoji_autocompletion": true,
+        "assign_tickets_upon_solve": true,
+        "allow_group_reset": true,
+        "accepted_new_collaboration_tos": false,
+        "follower_and_email_cc_collaborations": true,
+        "auto_updated_ccs_followers_rules": false,
+        "agent_can_change_requester": true,
+        "comment_email_ccs_allowed": true,
+        "ticket_followers_allowed": true,
+        "light_agent_email_ccs_allowed": false,
+        "agent_email_ccs_become_followers": true,
+        "using_skill_based_routing": false
+      },
+      "agents": {
+        "agent_workspace": true,
+        "focus_mode": false
+      },
+      "groups": {
+        "check_group_name_uniqueness": true
+      },
+      "google_apps": {
+        "has_google_apps": false,
+        "has_google_apps_admin": false
+      },
+      "user": {
+        "tagging": true,
+        "time_zone_selection": true,
+        "language_selection": true,
+        "multiple_organizations": false,
+        "agent_created_welcome_emails": false,
+        "end_user_phone_number_validation": false,
+        "have_gravatars_enabled": true
+      },
+      "active_features": {
+        "on_hold_status": true,
+        "user_tagging": true,
+        "ticket_tagging": true,
+        "topic_suggestion": false,
+        "voice": true,
+        "business_hours": false,
+        "facebook_login": false,
+        "google_login": false,
+        "twitter_login": false,
+        "forum_analytics": true,
+        "agent_forwarding": false,
+        "chat": false,
+        "chat_about_my_ticket": false,
+        "customer_satisfaction": true,
+        "satisfaction_prediction": false,
+        "automatic_answers": true,
+        "csat_reason_code": false,
+        "screencasts": false,
+        "markdown": false,
+        "bcc_archiving": false,
+        "allow_ccs": true,
+        "advanced_analytics": false,
+        "insights": false,
+        "explore": true,
+        "explore_on_support_ent_plan": true,
+        "explore_on_support_pro_plan": false,
+        "good_data_and_explore": false,
+        "good_data_only": false,
+        "explore_forbidden": false,
+        "explore_not_set": false,
+        "sandbox": false,
+        "suspended_ticket_notification": false,
+        "twitter": false,
+        "facebook": false,
+        "dynamic_contents": true,
+        "light_agents": false,
+        "ticket_forms": true,
+        "user_org_fields": true,
+        "is_abusive": false,
+        "rich_content_in_emails": true,
+        "benchmark_opt_out": false
+      },
+      "ticket_form": {
+        "ticket_forms_instructions": "Please choose your issue below",
+        "raw_ticket_forms_instructions": "Please choose your issue below"
+      },
+      "api": {
+        "accepted_api_agreement": true,
+        "api_password_access": "true",
+        "api_token_access": "true"
+      },
+      "rule": {
+        "macro_most_used": true,
+        "macro_order": "alphabetical",
+        "skill_based_filtered_views": [],
+        "using_skill_based_routing": false
+      },
+      "localization": {
+        "locale_ids": [1]
+      }
+    },
+    "security_settings": {
+      "admins_can_set_user_passwords": false,
+      "assumption_duration": "already_set",
+      "assumption_expiration": "2200-01-01T00:00:00Z",
+      "assumable_account_type": false,
+      "assumable": true,
+      "custom_session_timeout_is_available": true,
+      "email_agent_when_sensitive_fields_changed": true,
+      "session_timeout": "480",
+      "authentication": {
+        "agent": {
+          "security_policy_id": "100",
+          "google_login": false,
+          "office_365_login": false,
+          "zendesk_login": false,
+          "remote_login": true,
+          "enforce_sso": false,
+          "remote_bypass": "2",
+          "password": {
+            "is_available": true,
+            "password_history_length": "0",
+            "password_length": "5",
+            "password_complexity": "0",
+            "password_in_mixed_case": false,
+            "failed_attempts_allowed": "10",
+            "max_sequence": null,
+            "disallow_local_part_from_email": false,
+            "password_duration": "0"
+          }
+        },
+        "end_user": {
+          "security_policy_id": "100",
+          "google_login": true,
+          "office_365_login": false,
+          "zendesk_login": true,
+          "remote_login": true,
+          "twitter_login": false,
+          "facebook_login": false,
+          "enforce_sso": false
+        },
+        "two_factor_enforce": false
+      },
+      "ip": {
+        "is_available": true,
+        "ip_ranges": "",
+        "ip_restriction_enabled": false,
+        "enable_agent_ip_restrictions": true
+      },
+      "assumption_enabled": true
+    },
+    "support_settings": {
+      "add_recipient_addresses": []
+    }
+  },
+  "users": {
+    "add_groups": [
+      {
+        "name": "Dispute Analyst",
+        "description": "The Dispute Analyst Group",
+        "reference_id": "group-0"
+      },
+      {
+        "name": "New Card Processing",
+        "description": "",
+        "reference_id": "group-1"
+      },
+      {
+        "name": "Support Escalations",
+        "description": "Support Escalations ",
+        "reference_id": "group-3"
+      }
+    ],
+    "add_organization_fields": [],
+    "add_organizations": {
+      "organizations": [
+        {
+          "name": "Jones Household",
+          "shared_tickets": false,
+          "shared_comments": false,
+          "external_id": null,
+          "domain_names": [],
+          "details": "",
+          "notes": "",
+          "group_id": null,
+          "tags": [],
+          "organization_fields": {},
+          "reference_id": "organization-0"
+        },
+        {
+          "name": "z3n-finserv",
+          "shared_tickets": false,
+          "shared_comments": false,
+          "external_id": null,
+          "domain_names": [],
+          "details": null,
+          "notes": null,
+          "group_id": null,
+          "tags": [],
+          "organization_fields": {},
+          "reference_id": "organization-1"
+        }
+      ]
+    },
+    "add_user_fields": [
+      {
+        "type": "text",
+        "key": "address",
+        "title": "Address",
+        "description": "",
+        "raw_title": "Address",
+        "raw_description": "",
+        "position": 1,
+        "active": true,
+        "regexp_for_validation": null,
+        "reference_id": "user-fields-0"
+      }
+    ]
+  },
+  "tickets": {
+    "add_ticket_fields": [
+      {
+        "type": "checkbox",
+        "title": "Is the Charge More than $3000? ",
+        "raw_title": "Is the Charge More than $3000? ",
+        "description": "",
+        "raw_description": "",
+        "position": 9999,
+        "active": true,
+        "required": false,
+        "collapsed_for_agents": false,
+        "regexp_for_validation": null,
+        "title_in_portal": "Is the Charge More than $3000? ",
+        "raw_title_in_portal": "Is the Charge More than $3000? ",
+        "visible_in_portal": true,
+        "editable_in_portal": true,
+        "required_in_portal": false,
+        "tag": "create_alert_3000",
+        "agent_description": null,
+        "reference_id": "ticket-fields-7"
+      },
+      {
+        "type": "integer",
+        "title": "Total Fraud Charges ($)",
+        "raw_title": "{{dc.ticket_field_amount}}",
+        "description": "Amount of Disputed Charge",
+        "raw_description": "Amount of Disputed Charge",
+        "position": 9999,
+        "active": true,
+        "required": false,
+        "collapsed_for_agents": false,
+        "regexp_for_validation": "\\A[-+]?\\d+\\z",
+        "title_in_portal": "Amount of Disputed Charge ",
+        "raw_title_in_portal": "Amount of Disputed Charge ",
+        "visible_in_portal": true,
+        "editable_in_portal": true,
+        "required_in_portal": false,
+        "tag": null,
+        "agent_description": "Amount of Disputed Charge",
+        "reference_id": "ticket-fields-8"
+      },
+      {
+        "type": "checkbox",
+        "title": "Is the Charge Recurring? ",
+        "raw_title": "Is the Charge Recurring? ",
+        "description": "",
+        "raw_description": "",
+        "position": 9999,
+        "active": true,
+        "required": false,
+        "collapsed_for_agents": false,
+        "regexp_for_validation": null,
+        "title_in_portal": "Is the Charge Recurring? ",
+        "raw_title_in_portal": "Is the Charge Recurring? ",
+        "visible_in_portal": true,
+        "editable_in_portal": true,
+        "required_in_portal": false,
+        "tag": "recurring_dispute",
+        "agent_description": null,
+        "reference_id": "ticket-fields-9"
+      },
+      {
+        "type": "text",
+        "title": "Name of Vendor",
+        "raw_title": "{{dc.ticket_field_name_of_vendor}}",
+        "description": "Name of Vendor where Fraudulent Charge occurred.",
+        "raw_description": "Name of Vendor where Fraudulent Charge occurred.",
+        "position": 9999,
+        "active": true,
+        "required": false,
+        "collapsed_for_agents": false,
+        "regexp_for_validation": null,
+        "title_in_portal": "Name of Vendor",
+        "raw_title_in_portal": "{{dc.ticket_field_name_of_vendor}}",
+        "visible_in_portal": true,
+        "editable_in_portal": false,
+        "required_in_portal": false,
+        "tag": null,
+        "agent_description": "Name of Vendor where Fraudulent Charge occurred.",
+        "reference_id": "ticket-fields-10"
+      },
+      {
+        "type": "tagger",
+        "title": "Issue Type ",
+        "raw_title": "Issue Type ",
+        "description": "",
+        "raw_description": "",
+        "position": 9999,
+        "active": true,
+        "required": false,
+        "collapsed_for_agents": false,
+        "regexp_for_validation": null,
+        "title_in_portal": "Issue Type ",
+        "raw_title_in_portal": "Issue Type ",
+        "visible_in_portal": true,
+        "editable_in_portal": true,
+        "required_in_portal": false,
+        "tag": null,
+        "agent_description": null,
+        "custom_field_options": [
+          {
+            "name": "Dispute",
+            "raw_name": "Dispute",
+            "value": "dispute",
+            "default": false
+          },
+          {
+            "name": "Error",
+            "raw_name": "Error",
+            "value": "error",
+            "default": false
+          },
+          {
+            "name": "Account Questions",
+            "raw_name": "Account Questions",
+            "value": "account_questions",
+            "default": false
+          },
+          {
+            "name": "App Issues",
+            "raw_name": "App Issues",
+            "value": "app_issues",
+            "default": false
+          },
+          {
+            "name": "Card",
+            "raw_name": "Card",
+            "value": "card",
+            "default": false
+          },
+          {
+            "name": "Other",
+            "raw_name": "Other",
+            "value": "other",
+            "default": false
+          }
+        ],
+        "reference_id": "ticket-fields-11"
+      },
+      {
+        "type": "text",
+        "title": "Location of Charge",
+        "raw_title": "{{dc.ticket_field_location}}",
+        "description": "Location of Vendor where Fraudulent Charge occurred",
+        "raw_description": "Location of Vendor where Fraudulent Charge occurred",
+        "position": 9999,
+        "active": true,
+        "required": false,
+        "collapsed_for_agents": false,
+        "regexp_for_validation": null,
+        "title_in_portal": "",
+        "raw_title_in_portal": "",
+        "visible_in_portal": true,
+        "editable_in_portal": false,
+        "required_in_portal": false,
+        "tag": null,
+        "agent_description": "Location of Vendor where Fraudulent Charge occurred",
+        "reference_id": "ticket-fields-12"
+      },
+      {
+        "type": "integer",
+        "title": "Transaction ID",
+        "raw_title": "{{dc.transaction_id}}",
+        "description": "This is the Transaction ID of your Charge Dispute",
+        "raw_description": "This is the Transaction ID of your Charge Dispute",
+        "position": 9999,
+        "active": true,
+        "required": false,
+        "collapsed_for_agents": false,
+        "regexp_for_validation": "\\A[-+]?\\d+\\z",
+        "title_in_portal": "Transaction ID ",
+        "raw_title_in_portal": "Transaction ID ",
+        "visible_in_portal": true,
+        "editable_in_portal": true,
+        "required_in_portal": false,
+        "tag": null,
+        "agent_description": "ID of the Fraud Transaction",
+        "reference_id": "ticket-fields-13"
+      },
+      {
+        "type": "textarea",
+        "title": "List of Fraudulent Transactions",
+        "raw_title": "{{dc.fraud_transaction}}",
+        "description": "Transactions under investigation.",
+        "raw_description": "Transactions under investigation.",
+        "position": 9999,
+        "active": true,
+        "required": false,
+        "collapsed_for_agents": false,
+        "regexp_for_validation": null,
+        "title_in_portal": "{{dc.fraud_transactions}}",
+        "raw_title_in_portal": "{{dc.fraud_transactions}}",
+        "visible_in_portal": true,
+        "editable_in_portal": false,
+        "required_in_portal": false,
+        "tag": null,
+        "agent_description": null,
+        "reference_id": "ticket-fields-14"
+      },
+      {
+        "type": "text",
+        "title": "Vendor Contact Address",
+        "raw_title": "Vendor Contact Address",
+        "description": "",
+        "raw_description": "",
+        "position": 9999,
+        "active": true,
+        "required": false,
+        "collapsed_for_agents": false,
+        "regexp_for_validation": null,
+        "title_in_portal": "Vendor Contact Address",
+        "raw_title_in_portal": "Vendor Contact Address",
+        "visible_in_portal": false,
+        "editable_in_portal": false,
+        "required_in_portal": false,
+        "tag": null,
+        "agent_description": null,
+        "reference_id": "ticket-fields-15"
+      },
+      {
+        "type": "tagger",
+        "title": "Approval Status",
+        "raw_title": "{{dc.ticket_field_approval_status}}",
+        "description": "This is the status of your current disputed charge.",
+        "raw_description": "This is the status of your current disputed charge.",
+        "position": 9999,
+        "active": true,
+        "required": false,
+        "collapsed_for_agents": false,
+        "regexp_for_validation": null,
+        "title_in_portal": "Approval Status",
+        "raw_title_in_portal": "{{dc.ticket_field_approval_status}}",
+        "visible_in_portal": false,
+        "editable_in_portal": false,
+        "required_in_portal": false,
+        "tag": null,
+        "agent_description": "Disputed Charge Approval Status",
+        "custom_field_options": [
+          {
+            "name": "Customer Disputed Charge",
+            "raw_name": "Customer Disputed Charge",
+            "value": "customer_disputed_charge",
+            "default": false
+          },
+          {
+            "name": "Dispute Analyst Inquiry",
+            "raw_name": "Dispute Analyst Inquiry",
+            "value": "dispute_analyst_inquiry",
+            "default": false
+          },
+          {
+            "name": "Awaiting Merchant Information",
+            "raw_name": "Awaiting Merchant Information",
+            "value": "awaiting_merchant_information",
+            "default": false
+          },
+          {
+            "name": "Chargeback - Compiling Evidence",
+            "raw_name": "Chargeback - Compiling Evidence",
+            "value": "chargeback_-_compiling_evidence",
+            "default": false
+          },
+          {
+            "name": "Pre-Arbitration",
+            "raw_name": "Pre-Arbitration",
+            "value": "pre-arbitration",
+            "default": false
+          },
+          {
+            "name": "Arbitration",
+            "raw_name": "Arbitration",
+            "value": "arbitration",
+            "default": false
+          }
+        ],
+        "reference_id": "ticket-fields-16"
+      },
+      {
+        "type": "text",
+        "title": "Transaction ID",
+        "raw_title": "{{dc.transaction_id}}",
+        "description": "",
+        "raw_description": "",
+        "position": 9999,
+        "active": true,
+        "required": false,
+        "collapsed_for_agents": false,
+        "regexp_for_validation": null,
+        "title_in_portal": "Transaction ID ",
+        "raw_title_in_portal": "Transaction ID ",
+        "visible_in_portal": true,
+        "editable_in_portal": true,
+        "required_in_portal": false,
+        "tag": null,
+        "agent_description": null,
+        "reference_id": "ticket-fields-17"
+      },
+      {
+        "type": "text",
+        "title": "Total Fraud Charges ($)",
+        "raw_title": "{{dc.ticket_field_amount}}",
+        "description": "",
+        "raw_description": "",
+        "position": 9999,
+        "active": true,
+        "required": false,
+        "collapsed_for_agents": false,
+        "regexp_for_validation": null,
+        "title_in_portal": "Total Amount Charged",
+        "raw_title_in_portal": "Total Amount Charged",
+        "visible_in_portal": true,
+        "editable_in_portal": true,
+        "required_in_portal": false,
+        "tag": null,
+        "agent_description": null,
+        "reference_id": "ticket-fields-18"
+      },
+      {
+        "type": "checkbox",
+        "title": "Is the Charge More than $25? ",
+        "raw_title": "Is the Charge More than $25? ",
+        "description": "",
+        "raw_description": "",
+        "position": 9999,
+        "active": true,
+        "required": false,
+        "collapsed_for_agents": false,
+        "regexp_for_validation": null,
+        "title_in_portal": "Is the Charge More than $25? ",
+        "raw_title_in_portal": "Is the Charge More than $25? ",
+        "visible_in_portal": true,
+        "editable_in_portal": true,
+        "required_in_portal": false,
+        "tag": "over_25",
+        "agent_description": null,
+        "reference_id": "ticket-fields-19"
+      }
+    ],
+    "add_ticket_forms": [
+      {
+        "name": "General Inquiry",
+        "raw_name": "General Inquiry",
+        "display_name": "General Inquiry ",
+        "raw_display_name": "General Inquiry ",
+        "end_user_visible": true,
+        "position": 1,
+        "ticket_field_ids": [
+          "{{bootstrapper-default-ticket-field-status}}",
+          "{{bootstrapper-default-ticket-field-group}}",
+          "{{bootstrapper-default-ticket-field-assignee}}",
+          "{{bootstrapper-default-ticket-field-subject}}",
+          "{{bootstrapper-default-ticket-field-description}}",
+          "{{bootstrapper-default-ticket-field-tickettype}}",
+          "{{bootstrapper-default-ticket-field-priority}}"
+        ],
+        "active": true,
+        "default": true,
+        "in_all_brands": true,
+        "restricted_brand_ids": [],
+        "end_user_conditions": [],
+        "agent_conditions": [],
+        "reference_id": "ticket-forms-0"
+      },
+      {
+        "name": "Fraud Inquiry ",
+        "raw_name": "{{dc.fraud_ticket_form}}",
+        "display_name": "Dispute a Charge ",
+        "raw_display_name": "Dispute a Charge ",
+        "end_user_visible": true,
+        "position": 2,
+        "ticket_field_ids": [
+          "{{bootstrapper-default-ticket-field-status}}",
+          "{{bootstrapper-default-ticket-field-group}}",
+          "{{bootstrapper-default-ticket-field-assignee}}",
+          "{{bootstrapper-default-ticket-field-subject}}",
+          "{{bootstrapper-default-ticket-field-description}}",
+          "{{bootstrapper-default-ticket-field-tickettype}}",
+          "{{bootstrapper-default-ticket-field-priority}}",
+          "{{ticket-fields-17}}",
+          "{{ticket-fields-14}}",
+          "{{ticket-fields-18}}",
+          "{{ticket-fields-10}}",
+          "{{ticket-fields-15}}",
+          "{{ticket-fields-12}}",
+          "{{ticket-fields-16}}"
+        ],
+        "active": true,
+        "default": false,
+        "in_all_brands": true,
+        "restricted_brand_ids": [],
+        "end_user_conditions": [],
+        "agent_conditions": [],
+        "reference_id": "ticket-forms-1"
+      },
+      {
+        "name": "SoFi Money Request Form ",
+        "raw_name": "SoFi Money Request Form ",
+        "display_name": "Money Request Form ",
+        "raw_display_name": "Money Request Form ",
+        "end_user_visible": true,
+        "position": 3,
+        "ticket_field_ids": [
+          "{{bootstrapper-default-ticket-field-status}}",
+          "{{bootstrapper-default-ticket-field-group}}",
+          "{{bootstrapper-default-ticket-field-assignee}}",
+          "{{bootstrapper-default-ticket-field-subject}}",
+          "{{bootstrapper-default-ticket-field-description}}",
+          "{{ticket-fields-11}}",
+          "{{ticket-fields-10}}",
+          "{{ticket-fields-13}}",
+          "{{ticket-fields-19}}",
+          "{{ticket-fields-7}}",
+          "{{ticket-fields-9}}",
+          "{{ticket-fields-16}}"
+        ],
+        "active": true,
+        "default": false,
+        "in_all_brands": false,
+        "restricted_brand_ids": [],
+        "end_user_conditions": [
+          {
+            "parent_field_id": "{{ticket-fields-11}}",
+            "value": "dispute",
+            "child_fields": [
+              {
+                "id": "{{ticket-fields-13}}",
+                "is_required": false
+              },
+              {
+                "id": "{{ticket-fields-9}}",
+                "is_required": false
+              },
+              {
+                "id": "{{ticket-fields-19}}",
+                "is_required": false
+              }
+            ]
+          },
+          {
+            "parent_field_id": "{{ticket-fields-19}}",
+            "value": true,
+            "child_fields": [
+              {
+                "id": "{{ticket-fields-7}}",
+                "is_required": false
+              }
+            ]
+          }
+        ],
+        "agent_conditions": [],
+        "reference_id": "ticket-forms-2"
+      }
+    ]
+  },
+  "ticket_views": {
+    "add_ticket_views": {
+      "options": {
+        "reorder_newly_added_to_first": true
+      },
+      "views": [
+        {
+          "title": "General Financial Questions ",
+          "active": true,
+          "position": 1,
+          "description": null,
+          "restriction": null,
+          "watchable": true,
+          "output": {
+            "group_by": null,
+            "group_order": "desc",
+            "sort_by": null,
+            "sort_order": "desc",
+            "group": null,
+            "sort": null,
+            "columns": [
+              "Satisfaction",
+              "Subject",
+              "Requester",
+              "Requested",
+              "Assignee"
+            ],
+            "custom_fields": []
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "ticket_form_id",
+              "operator": "is_not",
+              "value": "{{ticket-forms-1}}"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "AHS Charges",
+          "active": true,
+          "position": 2,
+          "description": "View all of the current disputed charges",
+          "restriction": null,
+          "watchable": true,
+          "output": {
+            "group_by": null,
+            "group_order": "desc",
+            "sort_by": "assigned",
+            "sort_order": "desc",
+            "group": null,
+            "sort": {
+              "id": "assigned",
+              "title": "Assigned",
+              "order": "desc"
+            },
+            "columns": [
+              "Assigned",
+              "Approval Status",
+              "Updater",
+              "Next SLA breach"
+            ],
+            "custom_fields": [
+              {
+                "title": "Approval Status",
+                "type": "tagger"
+              }
+            ]
+          },
+          "all": [
+            {
+              "field": "type",
+              "operator": "is",
+              "value": "problem"
+            },
+            {
+              "field": "current_tags",
+              "operator": "includes",
+              "value": "fraud_detected new_fraud_case customer_disputed_charge"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "⚠️ Fraud Charge Claims",
+          "active": true,
+          "position": 3,
+          "description": "View of Recent Fraud Claims",
+          "restriction": {
+            "type": "Group",
+            "id": "{{group-0}}",
+            "ids": [
+              "{{group-0}}",
+              "{{group-1}}",
+              "{{bootstrapper-default-group-support}}"
+            ]
+          },
+          "watchable": true,
+          "output": {
+            "group_by": null,
+            "group_order": "desc",
+            "sort_by": null,
+            "sort_order": "desc",
+            "group": null,
+            "sort": null,
+            "columns": [
+              "Next SLA breach",
+              "Requested",
+              "Subject",
+              "Requester",
+              "Assignee",
+              "Approval Status"
+            ],
+            "custom_fields": [
+              {
+                "title": "Approval Status",
+                "type": "tagger"
+              }
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "ticket_form_id",
+              "operator": "is",
+              "value": "{{ticket-forms-0}}"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "Disputed Charges ",
+          "active": true,
+          "position": 4,
+          "description": "",
+          "restriction": null,
+          "watchable": true,
+          "output": {
+            "group_by": null,
+            "group_order": "desc",
+            "sort_by": null,
+            "sort_order": "desc",
+            "group": null,
+            "sort": null,
+            "columns": [
+              "Satisfaction",
+              "Subject",
+              "Requester",
+              "Requested",
+              "Assignee"
+            ],
+            "custom_fields": []
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "current_tags",
+              "operator": "includes",
+              "value": "disputed_charge"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "Premium Client Queue",
+          "active": true,
+          "position": 5,
+          "description": null,
+          "restriction": null,
+          "watchable": true,
+          "output": {
+            "group_by": null,
+            "group_order": "desc",
+            "sort_by": null,
+            "sort_order": "desc",
+            "group": null,
+            "sort": null,
+            "columns": [
+              "Satisfaction",
+              "Subject",
+              "Requester",
+              "Requested",
+              "Assignee"
+            ],
+            "custom_fields": []
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "current_tags",
+              "operator": "includes",
+              "value": "premium_client"
+            }
+          ],
+          "any": []
+        }
+      ]
+    }
+  },
+  "business_rules": {
+    "add_slas": [
+      {
+        "title": "Service Request",
+        "description": null,
+        "position": 1,
+        "filter": {
+          "all": [],
+          "any": []
+        },
+        "policy_metrics": [
+          {
+            "priority": "low",
+            "metric": "first_reply_time",
+            "target": 480,
+            "business_hours": false
+          },
+          {
+            "priority": "low",
+            "metric": "requester_wait_time",
+            "target": 480,
+            "business_hours": false
+          },
+          {
+            "priority": "low",
+            "metric": "agent_work_time",
+            "target": 480,
+            "business_hours": false
+          },
+          {
+            "priority": "low",
+            "metric": "next_reply_time",
+            "target": 480,
+            "business_hours": false
+          },
+          {
+            "priority": "low",
+            "metric": "periodic_update_time",
+            "target": 480,
+            "business_hours": false
+          },
+          {
+            "priority": "low",
+            "metric": "pausable_update_time",
+            "target": 480,
+            "business_hours": false
+          },
+          {
+            "priority": "normal",
+            "metric": "first_reply_time",
+            "target": 300,
+            "business_hours": false
+          },
+          {
+            "priority": "normal",
+            "metric": "requester_wait_time",
+            "target": 300,
+            "business_hours": false
+          },
+          {
+            "priority": "normal",
+            "metric": "agent_work_time",
+            "target": 300,
+            "business_hours": false
+          },
+          {
+            "priority": "normal",
+            "metric": "next_reply_time",
+            "target": 300,
+            "business_hours": false
+          },
+          {
+            "priority": "normal",
+            "metric": "periodic_update_time",
+            "target": 300,
+            "business_hours": false
+          },
+          {
+            "priority": "normal",
+            "metric": "pausable_update_time",
+            "target": 300,
+            "business_hours": false
+          },
+          {
+            "priority": "high",
+            "metric": "first_reply_time",
+            "target": 240,
+            "business_hours": false
+          },
+          {
+            "priority": "high",
+            "metric": "requester_wait_time",
+            "target": 240,
+            "business_hours": false
+          },
+          {
+            "priority": "high",
+            "metric": "agent_work_time",
+            "target": 240,
+            "business_hours": false
+          },
+          {
+            "priority": "high",
+            "metric": "next_reply_time",
+            "target": 240,
+            "business_hours": false
+          },
+          {
+            "priority": "high",
+            "metric": "periodic_update_time",
+            "target": 240,
+            "business_hours": false
+          },
+          {
+            "priority": "high",
+            "metric": "pausable_update_time",
+            "target": 240,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "first_reply_time",
+            "target": 120,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "requester_wait_time",
+            "target": 120,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "agent_work_time",
+            "target": 120,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "next_reply_time",
+            "target": 120,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "periodic_update_time",
+            "target": 120,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "pausable_update_time",
+            "target": 120,
+            "business_hours": false
+          }
+        ]
+      }
+    ],
+    "add_triggers": [
+      {
+        "title": "Fraud Ticket Created",
+        "active": true,
+        "actions": [
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket-forms-1}}"
+          },
+          {
+            "field": "priority",
+            "value": "high"
+          },
+          {
+            "field": "current_tags",
+            "value": "customer_disputed_charge"
+          },
+          {
+            "field": "type",
+            "value": "problem"
+          },
+          {
+            "field": "group_id",
+            "value": "{{group-0}}"
+          }
+        ],
+        "description": "This is the Problem Ticket for Charge Disputes",
+        "position": 10001,
+        "all": [
+          {
+            "field": "update_type",
+            "operator": "is",
+            "value": "Create"
+          },
+          {
+            "field": "current_tags",
+            "operator": "includes",
+            "value": "fraud_detected new_fraud_case"
+          }
+        ],
+        "any": []
+      }
+    ],
+    "add_automations": []
+  },
+  "macros": {
+    "disable_default_macros": true,
+    "add_macros": [
+      {
+        "title": "Close and Follow Up With Article",
+        "active": true,
+        "position": 9999,
+        "description": null,
+        "actions": [
+          {
+            "field": "status",
+            "value": "solved"
+          },
+          {
+            "field": "priority",
+            "value": "normal"
+          },
+          {
+            "field": "type",
+            "value": "incident"
+          },
+          {
+            "field": "assignee_id",
+            "value": "current_user"
+          },
+          {
+            "field": "group_id",
+            "value": "current_groups"
+          },
+          {
+            "field": "comment_value",
+            "value": "Thanks for your request. This issue you reported is a known issue. For more information, please visit our forums. "
+          }
+        ],
+        "restriction": null
+      },
+      {
+        "title": "Disputed Charge : More Information",
+        "active": true,
+        "position": 10004,
+        "description": "Disputed Charge : More Information ",
+        "actions": [
+          {
+            "field": "status",
+            "value": "pending"
+          },
+          {
+            "field": "priority",
+            "value": "normal"
+          },
+          {
+            "field": "current_tags",
+            "value": "information_requested receipt_needed"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "<p>Hi {{ticket.requester.first_name}},</p><p><br></p><p>Thank you for contacting us. In order to process the dispute please attach a copy of the receipt clearly showing your name, the amount and the transaction amount. </p><p><br></p><p>You should receive a provisional credit in your account in the next 48 hours. </p><p><br></p><p>Please let us know if you have any further questions. We are here to help. </p><p><br></p><p>ZenPay Support</p><p>{{ticket.assignee.first_name}}<br></p><p><br></p>"
+          }
+        ],
+        "restriction": null
+      },
+      {
+        "title": "Phone Call",
+        "active": true,
+        "position": 10006,
+        "description": null,
+        "actions": [
+          {
+            "field": "brand_id",
+            "value": "360004670292"
+          },
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket-forms-0}}"
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": "false"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "<p>Call Notes: </p><p><br></p><p>Potential lead?:</p><p><br></p><p>Additional notes: </p><p><br></p>"
+          },
+          {
+            "field": "status",
+            "value": "solved"
+          }
+        ],
+        "restriction": null
+      },
+      {
+        "title": "Reach Out to Customer, Deny Disputed Charge",
+        "active": true,
+        "position": 10001,
+        "description": null,
+        "actions": [
+          {
+            "field": "status",
+            "value": "solved"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "<p>Hey {{ticket.requester.first_name}}​,</p><p><br></p><p>We've reviewed the information about your fraudulent charges and have found that they were not fraudulent and are closing this inquiry. If you wish to appeal notify <a href=\"mailto:fraud@zenpay.com\" target=\"_blank\" rel=\"noreferrer\">fraud@zenpay.com</a> and reference {{ticket.id}}​.</p><p><br></p><p>Best,</p><p>{{current_user.first_name}}​</p><p>Zenpay Fraud Team</p>"
+          },
+          {
+            "field": "current_tags",
+            "value": "rejected"
+          },
+          {
+            "field": "custom_fields_{{ticket-fields-16}}",
+            "value": "arbitration"
+          }
+        ],
+        "restriction": null
+      },
+      {
+        "title": "Reach Out to Customer, Notify of Approved Dispute",
+        "active": true,
+        "position": 10002,
+        "description": null,
+        "actions": [
+          {
+            "field": "current_tags",
+            "value": "approved"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "<p>Hey <span class=\"atwho-inserted\">{{ticket.requester.first_name}}</span>​,</p><p><br></p><p>We have reviewed your claim and have found that the charges were not made by you. You will receive a credit on your account in the next 5-10 business days.</p><p><br></p><p>Best,</p><p><span class=\"atwho-inserted\">{{current_user.first_name}}</span>​,</p><p>Zenpay Fraud Team</p>"
+          },
+          {
+            "field": "custom_fields_{{ticket-fields-16}}",
+            "value": "arbitration"
+          },
+          {
+            "field": "status",
+            "value": "solved"
+          }
+        ],
+        "restriction": null
+      },
+      {
+        "title": "Reach Out to Merchant for Disputed Charge",
+        "active": true,
+        "position": 10000,
+        "description": null,
+        "actions": [
+          {
+            "field": "current_tags",
+            "value": "merchant_notified"
+          },
+          {
+            "field": "custom_fields_{{ticket-fields-16}}",
+            "value": "awaiting_merchant_information"
+          },
+          {
+            "field": "side_conversation",
+            "value": [
+              "Charge Dispute {{ticket.id}}",
+              "Hey,\n\nWe recently had a client {{ticket.requester.name}} dispute transaction INSERT ID HERE. Can you please provide evidence in the next two weeks that this charge was not fraudulent? Once you have provided that information, we can adjudicate the issue.\n\nBest,\n{{current_user.name}}",
+              "",
+              "text/plain"
+            ]
+          }
+        ],
+        "restriction": null
+      },
+      {
+        "title": "Side Conversation : Provisional Credit: Back Office",
+        "active": true,
+        "position": 10003,
+        "description": null,
+        "actions": [
+          {
+            "field": "side_conversation",
+            "value": [
+              "Customer Provisional Credit {{ticket.id}}",
+              "Hi Back Office team,\n\nPlease provide a provisional credit for the disputed charge. \n\n{{ticket.id}}\n\n{{ticket.assignee.first_name}}\n\n",
+              "marnold@zendesk.com",
+              "text/plain"
+            ]
+          }
+        ],
+        "restriction": null
+      },
+      {
+        "title": "Side Conversations : Potential Fraud : Back Office",
+        "active": true,
+        "position": 10005,
+        "description": null,
+        "actions": [
+          {
+            "field": "status",
+            "value": "pending"
+          },
+          {
+            "field": "brand_id",
+            "value": "{{bootstrapper-default-brand}}"
+          },
+          {
+            "field": "subject",
+            "value": "AML Notified "
+          },
+          {
+            "field": "current_tags",
+            "value": "potential_fraud aml_notified"
+          },
+          {
+            "field": "side_conversation_slack",
+            "value": [
+              "Please investigate {{ticket.id}} for potential fraud. ",
+              "aml",
+              "text/plain"
+            ]
+          }
+        ],
+        "restriction": null
+      }
+    ]
+  },
+  "dynamic_content": {
+    "add_dynamic_content_items": [
+      {
+        "name": "Fraud Ticket Form",
+        "placeholder": "{{dc.fraud_ticket_form}}",
+        "default_locale_id": 1,
+        "outdated": false,
+        "variants": [
+          {
+            "content": "Fraud Inquiry ",
+            "locale_id": 1,
+            "outdated": false,
+            "active": true,
+            "default": true
+          }
+        ]
+      },
+      {
+        "name": "Ticket Field Transaction ID",
+        "placeholder": "{{dc.transaction_id}}",
+        "default_locale_id": 1,
+        "outdated": false,
+        "variants": [
+          {
+            "content": "Transaction ID",
+            "locale_id": 1,
+            "outdated": false,
+            "active": true,
+            "default": true
+          }
+        ]
+      },
+      {
+        "name": "Ticket Field Amount",
+        "placeholder": "{{dc.ticket_field_amount}}",
+        "default_locale_id": 1,
+        "outdated": false,
+        "variants": [
+          {
+            "content": "Total Fraud Charges ($)",
+            "locale_id": 1,
+            "outdated": false,
+            "active": true,
+            "default": true
+          }
+        ]
+      },
+      {
+        "name": "Ticket Field Location",
+        "placeholder": "{{dc.ticket_field_location}}",
+        "default_locale_id": 1,
+        "outdated": false,
+        "variants": [
+          {
+            "content": "Location of Charge",
+            "locale_id": 1,
+            "outdated": false,
+            "active": true,
+            "default": true
+          }
+        ]
+      },
+      {
+        "name": "Ticket Field Approval Status",
+        "placeholder": "{{dc.ticket_field_approval_status}}",
+        "default_locale_id": 1,
+        "outdated": false,
+        "variants": [
+          {
+            "content": "Approval Status",
+            "locale_id": 1,
+            "outdated": false,
+            "active": true,
+            "default": true
+          }
+        ]
+      },
+      {
+        "name": "Ticket Field Name of Vendor",
+        "placeholder": "{{dc.ticket_field_name_of_vendor}}",
+        "default_locale_id": 1,
+        "outdated": false,
+        "variants": [
+          {
+            "content": "Name of Vendor",
+            "locale_id": 1,
+            "outdated": false,
+            "active": true,
+            "default": true
+          }
+        ]
+      },
+      {
+        "name": "fraud transaction",
+        "placeholder": "{{dc.fraud_transaction}}",
+        "default_locale_id": 1,
+        "outdated": false,
+        "variants": [
+          {
+            "content": "List of Fraudulent Transactions",
+            "locale_id": 1,
+            "outdated": false,
+            "active": true,
+            "default": true
+          }
+        ]
+      },
+      {
+        "name": "Fraud Charge Claims",
+        "placeholder": "{{dc.fraud_charge_claims}}",
+        "default_locale_id": 1,
+        "outdated": false,
+        "variants": [
+          {
+            "content": "Fraud Charge Claims",
+            "locale_id": 1,
+            "outdated": false,
+            "active": true,
+            "default": true
+          }
+        ]
+      },
+      {
+        "name": "Premium Client Queue",
+        "placeholder": "{{dc.premium_client_queue}}",
+        "default_locale_id": 1,
+        "outdated": false,
+        "variants": [
+          {
+            "content": "Premium Client Queue",
+            "locale_id": 1,
+            "outdated": false,
+            "active": true,
+            "default": true
+          }
+        ]
+      }
+    ]
+  },
+  "apps": {
+    "add_apps": [
+      {
+        "app_id": "156097",
+        "settings": {
+          "name": "Slack"
+        }
+      },
+      {
+        "app_id": "180259",
+        "settings": {
+          "name": "Zendesk Sell"
+        }
+      }
+    ],
+    "add_private_apps": [
+      {
+        "app_name": "z3n-finserv-lending-predictionmodel-v1",
+        "name": "Prediction Builder",
+        "short_description": "Prediction Model"
+      },
+      {
+        "app_name": "z3n-finserv-lending-sage-v1",
+        "name": "Sage",
+        "short_description": "Sage"
+      },
+      {
+        "app_name": "z3n-finserv-lending-callscript-v1",
+        "name": "Call Script",
+        "short_description": "Call Script"
+      },
+      {
+        "app_name": "z3n-finserv-lending-loaninformation-v1",
+        "name": "Loan Information",
+        "short_description": "Loan Information"
+      },
+      {
+        "app_name": "z3n-finserv-lending-connections-v1",
+        "name": "Connections",
+        "short_description": "Connections"
+      },
+      {
+        "app_name": "z3n-finserv-lending-offers-v1",
+        "name": "Offers",
+        "short_description": "Offers"
+      }
+    ]
+  },
+  "guide": {
+    "activate_guide": "{{bootstrapper-guide-default-brand-id}}",
+    "publish_theme": "{{generic-template}}",
+    "import_themes": [
+      {
+        "theme_name": "z3n-finserv-lending-v1",
+        "reference_id": "generic-template"
+      }
+    ]
+  }
+}
