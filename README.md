@@ -75,7 +75,8 @@ You could use the following variables anywhere within your template code and it 
 8.  `{{bootstrapper-default-ticket-field-status}}`: Return default system ticket field - Status's ID
 9.  `{{bootstrapper-default-ticket-field-group}}`: Return default system ticket field - Group's ID
 10. `{{bootstrapper-default-ticket-field-assignee}}`: Return default system ticket field - Assignee's ID
-11. `{{bootstrapper-default-group-support}}`: Return default Agent's group (Support)
+11. `{{bootstrapper-default-group-support}}`: Return default Agent's group (Support)'s ID
+12. `{{bootstrapper-default-brand}}`: Return default brand's ID
 
 ### 2.3 Dependencies
 
