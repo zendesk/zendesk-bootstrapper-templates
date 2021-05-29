@@ -8,7 +8,9 @@
     "customer": {
       "name": "HR Demo",
       "locale": "en"
-    }
+    },
+    "require_support_ent": true,
+    "require_side_conversations": true
   },
   "settings": {
     "account_settings": {
