@@ -707,9 +707,7 @@
   },
   "ticket_views": {
     "add_ticket_views": {
-      "options": {
-        "reorder_newly_added_to_first": true
-      },
+      "options": { "reorder_newly_added_to_first": true },
       "views": [
         {
           "title": "General Financial Questions ",
@@ -726,20 +724,16 @@
             "group": null,
             "sort": null,
             "columns": [
-              "Satisfaction",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Assignee"
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "assignee"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            },
+            { "field": "status", "operator": "less_than", "value": "solved" },
             {
               "field": "ticket_form_id",
               "operator": "is_not",
@@ -761,30 +755,17 @@
             "sort_by": "assigned",
             "sort_order": "desc",
             "group": null,
-            "sort": {
-              "id": "assigned",
-              "title": "Assigned",
-              "order": "desc"
-            },
+            "sort": { "id": "assigned", "title": "Assigned", "order": "desc" },
             "columns": [
-              "Assigned",
-              "Approval Status",
-              "Updater",
-              "Next SLA breach"
+              "assigned",
+              "{{ticket-fields-16}}",
+              "updated_by_type",
+              "sla_next_breach_at"
             ],
-            "custom_fields": [
-              {
-                "title": "Approval Status",
-                "type": "tagger"
-              }
-            ]
+            "custom_fields": [{ "title": "Approval Status", "type": "tagger" }]
           },
           "all": [
-            {
-              "field": "type",
-              "operator": "is",
-              "value": "problem"
-            },
+            { "field": "type", "operator": "is", "value": "problem" },
             {
               "field": "current_tags",
               "operator": "includes",
@@ -816,26 +797,17 @@
             "group": null,
             "sort": null,
             "columns": [
-              "Next SLA breach",
-              "Requested",
-              "Subject",
-              "Requester",
-              "Assignee",
-              "Approval Status"
+              "sla_next_breach_at",
+              "created",
+              "subject",
+              "requester",
+              "assignee",
+              "{{ticket-fields-16}}"
             ],
-            "custom_fields": [
-              {
-                "title": "Approval Status",
-                "type": "tagger"
-              }
-            ]
+            "custom_fields": [{ "title": "Approval Status", "type": "tagger" }]
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            },
+            { "field": "status", "operator": "less_than", "value": "solved" },
             {
               "field": "ticket_form_id",
               "operator": "is",
@@ -859,20 +831,16 @@
             "group": null,
             "sort": null,
             "columns": [
-              "Satisfaction",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Assignee"
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "assignee"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            },
+            { "field": "status", "operator": "less_than", "value": "solved" },
             {
               "field": "current_tags",
               "operator": "includes",
@@ -896,20 +864,16 @@
             "group": null,
             "sort": null,
             "columns": [
-              "Satisfaction",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Assignee"
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "assignee"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            },
+            { "field": "status", "operator": "less_than", "value": "solved" },
             {
               "field": "current_tags",
               "operator": "includes",

@@ -1891,9 +1891,7 @@
   },
   "ticket_views": {
     "add_ticket_views": {
-      "options": {
-        "reorder_newly_added_to_first": true
-      },
+      "options": { "reorder_newly_added_to_first": true },
       "views": [
         {
           "title": "General",
@@ -1908,30 +1906,22 @@
             "sort_by": "updated",
             "sort_order": "desc",
             "group": null,
-            "sort": {
-              "id": "updated",
-              "title": "Updated",
-              "order": "desc"
-            },
+            "sort": { "id": "updated", "title": "Updated", "order": "desc" },
             "columns": [
-              "ID",
-              "Next SLA breach",
-              "Subject",
-              "Requester",
-              "Ticket form",
-              "Requested",
-              "Group",
-              "Assignee",
-              "Priority"
+              "ticket_id",
+              "sla_next_breach_at",
+              "subject",
+              "requester",
+              "ticket_form",
+              "created",
+              "group",
+              "assignee",
+              "priority"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            }
+            { "field": "status", "operator": "less_than", "value": "solved" }
           ],
           "any": []
         },
@@ -1948,21 +1938,17 @@
             "sort_by": "created",
             "sort_order": "desc",
             "group": null,
-            "sort": {
-              "id": "created",
-              "title": "Requested",
-              "order": "desc"
-            },
+            "sort": { "id": "created", "title": "Requested", "order": "desc" },
             "columns": [
-              "ID",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Priority",
-              "Organization",
-              "Group",
-              "Assignee",
-              "Next SLA breach"
+              "ticket_id",
+              "subject",
+              "requester",
+              "created",
+              "priority",
+              "organization",
+              "group",
+              "assignee",
+              "sla_next_breach_at"
             ],
             "custom_fields": []
           },
@@ -1972,11 +1958,7 @@
               "operator": "is",
               "value": "{{ticket-forms-4}}"
             },
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            }
+            { "field": "status", "operator": "less_than", "value": "solved" }
           ],
           "any": []
         },
@@ -1995,20 +1977,16 @@
             "group": null,
             "sort": null,
             "columns": [
-              "Satisfaction",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Assignee"
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "assignee"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            },
+            { "field": "status", "operator": "less_than", "value": "solved" },
             {
               "field": "ticket_form_id",
               "operator": "is",
@@ -2032,21 +2010,17 @@
             "group": null,
             "sort": null,
             "columns": [
-              "Next SLA breach",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Assignee",
-              "Satisfaction"
+              "sla_next_breach_at",
+              "subject",
+              "requester",
+              "created",
+              "assignee",
+              "satisfaction_score"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            },
+            { "field": "status", "operator": "less_than", "value": "solved" },
             {
               "field": "ticket_form_id",
               "operator": "is",
@@ -2070,11 +2044,11 @@
             "group": null,
             "sort": null,
             "columns": [
-              "Satisfaction",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Assignee"
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "assignee"
             ],
             "custom_fields": []
           },
@@ -2084,11 +2058,7 @@
               "operator": "includes",
               "value": "offboarding"
             },
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            }
+            { "field": "status", "operator": "less_than", "value": "solved" }
           ],
           "any": []
         },
@@ -2107,20 +2077,16 @@
             "group": null,
             "sort": null,
             "columns": [
-              "Satisfaction",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Assignee"
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "assignee"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            },
+            { "field": "status", "operator": "less_than", "value": "solved" },
             {
               "field": "ticket_form_id",
               "operator": "is",
@@ -2144,25 +2110,17 @@
             "group": null,
             "sort": null,
             "columns": [
-              "Satisfaction",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Assignee"
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "assignee"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            },
-            {
-              "field": "group_id",
-              "operator": "is",
-              "value": "{{group-19}}"
-            }
+            { "field": "status", "operator": "less_than", "value": "solved" },
+            { "field": "group_id", "operator": "is", "value": "{{group-19}}" }
           ],
           "any": []
         },
@@ -2179,29 +2137,21 @@
             "sort_by": "created",
             "sort_order": "desc",
             "group": null,
-            "sort": {
-              "id": "created",
-              "title": "Requested",
-              "order": "desc"
-            },
+            "sort": { "id": "created", "title": "Requested", "order": "desc" },
             "columns": [
-              "ID",
-              "Subject",
-              "Next SLA breach",
-              "Requester",
-              "Requested",
-              "Priority",
-              "Assignee",
-              "Group"
+              "ticket_id",
+              "subject",
+              "sla_next_breach_at",
+              "requester",
+              "created",
+              "priority",
+              "assignee",
+              "group"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            }
+            { "field": "status", "operator": "less_than", "value": "solved" }
           ],
           "any": [
             {
@@ -2239,30 +2189,22 @@
             "sort_by": "created",
             "sort_order": "desc",
             "group": null,
-            "sort": {
-              "id": "created",
-              "title": "Requested",
-              "order": "desc"
-            },
+            "sort": { "id": "created", "title": "Requested", "order": "desc" },
             "columns": [
-              "ID",
-              "Subject",
-              "Next SLA breach",
-              "Requester",
-              "Requested",
-              "Priority",
-              "Assignee",
-              "Channel",
-              "Group"
+              "ticket_id",
+              "subject",
+              "sla_next_breach_at",
+              "requester",
+              "created",
+              "priority",
+              "assignee",
+              "via",
+              "group"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            },
+            { "field": "status", "operator": "less_than", "value": "solved" },
             {
               "field": "assignee_id",
               "operator": "is",
@@ -2283,49 +2225,23 @@
             "group_order": "asc",
             "sort_by": "solved",
             "sort_order": "desc",
-            "group": {
-              "id": "assignee",
-              "title": "Assignee",
-              "order": "asc"
-            },
-            "sort": {
-              "id": "solved",
-              "title": "Solved",
-              "order": "desc"
-            },
+            "group": { "id": "assignee", "title": "Assignee", "order": "asc" },
+            "sort": { "id": "solved", "title": "Solved", "order": "desc" },
             "columns": [
-              "Subject",
-              "Requester",
-              "Requested",
-              "Solved",
-              "Priority",
-              "Group"
+              "subject",
+              "requester",
+              "created",
+              "solved",
+              "priority",
+              "group"
             ],
             "custom_fields": []
           },
-          "all": [
-            {
-              "field": "status",
-              "operator": "is",
-              "value": "solved"
-            }
-          ],
+          "all": [{ "field": "status", "operator": "is", "value": "solved" }],
           "any": [
-            {
-              "field": "locale_id",
-              "operator": "is",
-              "value": "1364"
-            },
-            {
-              "field": "locale_id",
-              "operator": "is",
-              "value": "1011"
-            },
-            {
-              "field": "locale_id",
-              "operator": "is",
-              "value": "2"
-            }
+            { "field": "locale_id", "operator": "is", "value": "1364" },
+            { "field": "locale_id", "operator": "is", "value": "1011" },
+            { "field": "locale_id", "operator": "is", "value": "2" }
           ]
         },
         {
@@ -2343,36 +2259,20 @@
             "group": null,
             "sort": null,
             "columns": [
-              "Satisfaction",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Status",
-              "Assignee"
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "status",
+              "assignee"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "priority",
-              "operator": "is",
-              "value": "urgent"
-            },
-            {
-              "field": "NEW",
-              "operator": "greater_than",
-              "value": "0"
-            },
-            {
-              "field": "assignee_id",
-              "operator": "is",
-              "value": ""
-            },
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            }
+            { "field": "priority", "operator": "is", "value": "urgent" },
+            { "field": "NEW", "operator": "greater_than", "value": "0" },
+            { "field": "assignee_id", "operator": "is", "value": "" },
+            { "field": "status", "operator": "less_than", "value": "solved" }
           ],
           "any": []
         },
@@ -2391,36 +2291,20 @@
             "group": null,
             "sort": null,
             "columns": [
-              "Satisfaction",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Status",
-              "Assignee"
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "status",
+              "assignee"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "priority",
-              "operator": "is",
-              "value": "urgent"
-            },
-            {
-              "field": "NEW",
-              "operator": "greater_than",
-              "value": "1"
-            },
-            {
-              "field": "assignee_id",
-              "operator": "is_not",
-              "value": ""
-            },
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            }
+            { "field": "priority", "operator": "is", "value": "urgent" },
+            { "field": "NEW", "operator": "greater_than", "value": "1" },
+            { "field": "assignee_id", "operator": "is_not", "value": "" },
+            { "field": "status", "operator": "less_than", "value": "solved" }
           ],
           "any": []
         },
@@ -2439,31 +2323,19 @@
             "group": null,
             "sort": null,
             "columns": [
-              "Satisfaction",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Status",
-              "Assignee"
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "status",
+              "assignee"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "NEW",
-              "operator": "greater_than",
-              "value": "1"
-            },
-            {
-              "field": "assignee_id",
-              "operator": "is",
-              "value": ""
-            },
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            }
+            { "field": "NEW", "operator": "greater_than", "value": "1" },
+            { "field": "assignee_id", "operator": "is", "value": "" },
+            { "field": "status", "operator": "less_than", "value": "solved" }
           ],
           "any": []
         },
@@ -2482,31 +2354,19 @@
             "group": null,
             "sort": null,
             "columns": [
-              "Satisfaction",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Status",
-              "Assignee"
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "status",
+              "assignee"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "NEW",
-              "operator": "greater_than",
-              "value": "1"
-            },
-            {
-              "field": "assignee_id",
-              "operator": "is_not",
-              "value": ""
-            },
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            }
+            { "field": "NEW", "operator": "greater_than", "value": "1" },
+            { "field": "assignee_id", "operator": "is_not", "value": "" },
+            { "field": "status", "operator": "less_than", "value": "solved" }
           ],
           "any": []
         },
@@ -2525,36 +2385,20 @@
             "group": null,
             "sort": null,
             "columns": [
-              "Satisfaction",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Status",
-              "Assignee"
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "status",
+              "assignee"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "priority",
-              "operator": "less_than",
-              "value": "urgent"
-            },
-            {
-              "field": "NEW",
-              "operator": "greater_than",
-              "value": "0"
-            },
-            {
-              "field": "assignee_id",
-              "operator": "is",
-              "value": ""
-            },
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            }
+            { "field": "priority", "operator": "less_than", "value": "urgent" },
+            { "field": "NEW", "operator": "greater_than", "value": "0" },
+            { "field": "assignee_id", "operator": "is", "value": "" },
+            { "field": "status", "operator": "less_than", "value": "solved" }
           ],
           "any": []
         },
@@ -2573,36 +2417,20 @@
             "group": null,
             "sort": null,
             "columns": [
-              "Satisfaction",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Status",
-              "Assignee"
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "status",
+              "assignee"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "priority",
-              "operator": "less_than",
-              "value": "urgent"
-            },
-            {
-              "field": "NEW",
-              "operator": "greater_than",
-              "value": "1"
-            },
-            {
-              "field": "assignee_id",
-              "operator": "is_not",
-              "value": ""
-            },
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            }
+            { "field": "priority", "operator": "less_than", "value": "urgent" },
+            { "field": "NEW", "operator": "greater_than", "value": "1" },
+            { "field": "assignee_id", "operator": "is_not", "value": "" },
+            { "field": "status", "operator": "less_than", "value": "solved" }
           ],
           "any": []
         },
@@ -2621,41 +2449,21 @@
             "group": null,
             "sort": null,
             "columns": [
-              "Satisfaction",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Status",
-              "Assignee"
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "status",
+              "assignee"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "type",
-              "operator": "is",
-              "value": "incident"
-            },
-            {
-              "field": "priority",
-              "operator": "less_than",
-              "value": "urgent"
-            },
-            {
-              "field": "NEW",
-              "operator": "greater_than",
-              "value": "24"
-            },
-            {
-              "field": "assignee_id",
-              "operator": "is",
-              "value": ""
-            },
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            }
+            { "field": "type", "operator": "is", "value": "incident" },
+            { "field": "priority", "operator": "less_than", "value": "urgent" },
+            { "field": "NEW", "operator": "greater_than", "value": "24" },
+            { "field": "assignee_id", "operator": "is", "value": "" },
+            { "field": "status", "operator": "less_than", "value": "solved" }
           ],
           "any": []
         },
@@ -2674,41 +2482,21 @@
             "group": null,
             "sort": null,
             "columns": [
-              "Satisfaction",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Status",
-              "Assignee"
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "status",
+              "assignee"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "type",
-              "operator": "is",
-              "value": "incident"
-            },
-            {
-              "field": "priority",
-              "operator": "less_than",
-              "value": "urgent"
-            },
-            {
-              "field": "NEW",
-              "operator": "greater_than",
-              "value": "120"
-            },
-            {
-              "field": "assignee_id",
-              "operator": "is_not",
-              "value": ""
-            },
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            }
+            { "field": "type", "operator": "is", "value": "incident" },
+            { "field": "priority", "operator": "less_than", "value": "urgent" },
+            { "field": "NEW", "operator": "greater_than", "value": "120" },
+            { "field": "assignee_id", "operator": "is_not", "value": "" },
+            { "field": "status", "operator": "less_than", "value": "solved" }
           ],
           "any": []
         },
@@ -2725,29 +2513,21 @@
             "sort_by": "nice_id",
             "sort_order": "desc",
             "group": null,
-            "sort": {
-              "id": "ticket_id",
-              "title": "ID",
-              "order": "desc"
-            },
+            "sort": { "id": "ticket_id", "title": "ID", "order": "desc" },
             "columns": [
-              "ID",
-              "Satisfaction",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Assignee",
-              "Organization",
-              "Next SLA breach"
+              "ticket_id",
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "assignee",
+              "organization",
+              "sla_next_breach_at"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            },
+            { "field": "status", "operator": "less_than", "value": "solved" },
             {
               "field": "current_tags",
               "operator": "includes",
@@ -2769,34 +2549,22 @@
             "sort_by": "nice_id",
             "sort_order": "desc",
             "group": null,
-            "sort": {
-              "id": "ticket_id",
-              "title": "ID",
-              "order": "desc"
-            },
+            "sort": { "id": "ticket_id", "title": "ID", "order": "desc" },
             "columns": [
-              "ID",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Satisfaction",
-              "Assignee",
-              "Next SLA breach",
-              "Due date"
+              "ticket_id",
+              "subject",
+              "requester",
+              "created",
+              "satisfaction_score",
+              "assignee",
+              "sla_next_breach_at",
+              "due_date"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            },
-            {
-              "field": "NEW",
-              "operator": "less_than",
-              "value": "2"
-            }
+            { "field": "status", "operator": "less_than", "value": "solved" },
+            { "field": "NEW", "operator": "less_than", "value": "2" }
           ],
           "any": []
         },
@@ -2812,38 +2580,22 @@
             "group_order": "desc",
             "sort_by": "updated",
             "sort_order": "desc",
-            "group": {
-              "id": "status",
-              "title": "Status",
-              "order": "desc"
-            },
-            "sort": {
-              "id": "updated",
-              "title": "Updated",
-              "order": "desc"
-            },
+            "group": { "id": "status", "title": "Status", "order": "desc" },
+            "sort": { "id": "updated", "title": "Updated", "order": "desc" },
             "columns": [
-              "Channel",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Assignee",
-              "Next SLA breach",
-              "Organization"
+              "via",
+              "subject",
+              "requester",
+              "created",
+              "assignee",
+              "sla_next_breach_at",
+              "organization"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "is_not",
-              "value": "closed"
-            },
-            {
-              "field": "status",
-              "operator": "is_not",
-              "value": "solved"
-            },
+            { "field": "status", "operator": "is_not", "value": "closed" },
+            { "field": "status", "operator": "is_not", "value": "solved" },
             {
               "field": "assignee_id",
               "operator": "is",
@@ -2867,21 +2619,17 @@
             "group": null,
             "sort": null,
             "columns": [
-              "Status",
-              "Subject",
-              "Requester",
-              "Assignee",
-              "Requested",
-              "Updated"
+              "status",
+              "subject",
+              "requester",
+              "assignee",
+              "created",
+              "updated"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            },
+            { "field": "status", "operator": "less_than", "value": "solved" },
             {
               "field": "current_tags",
               "operator": "includes",
@@ -2903,26 +2651,18 @@
             "sort_by": "nice_id",
             "sort_order": "desc",
             "group": null,
-            "sort": {
-              "id": "ticket_id",
-              "title": "ID",
-              "order": "desc"
-            },
+            "sort": { "id": "ticket_id", "title": "ID", "order": "desc" },
             "columns": [
-              "Subject",
-              "Requester",
-              "Assignee",
-              "Requested",
-              "Updated"
+              "subject",
+              "requester",
+              "assignee",
+              "created",
+              "updated"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            },
+            { "field": "status", "operator": "less_than", "value": "solved" },
             {
               "field": "current_tags",
               "operator": "includes",
@@ -2946,21 +2686,17 @@
             "group": null,
             "sort": null,
             "columns": [
-              "Status",
-              "Subject",
-              "Requester",
-              "Assignee",
-              "Requested",
-              "Updated"
+              "status",
+              "subject",
+              "requester",
+              "assignee",
+              "created",
+              "updated"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            },
+            { "field": "status", "operator": "less_than", "value": "solved" },
             {
               "field": "current_tags",
               "operator": "includes",
@@ -2982,45 +2718,25 @@
             "sort_by": "nice_id",
             "sort_order": "desc",
             "group": null,
-            "sort": {
-              "id": "ticket_id",
-              "title": "ID",
-              "order": "desc"
-            },
+            "sort": { "id": "ticket_id", "title": "ID", "order": "desc" },
             "columns": [
-              "ID",
-              "Subject",
-              "Requester",
-              "Satisfaction",
-              "Requested",
-              "Organization",
-              "Assignee"
+              "ticket_id",
+              "subject",
+              "requester",
+              "satisfaction_score",
+              "created",
+              "organization",
+              "assignee"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "closed"
-            }
+            { "field": "status", "operator": "less_than", "value": "closed" }
           ],
           "any": [
-            {
-              "field": "via_id",
-              "operator": "is",
-              "value": "33"
-            },
-            {
-              "field": "via_id",
-              "operator": "is",
-              "value": "34"
-            },
-            {
-              "field": "via_id",
-              "operator": "is",
-              "value": "35"
-            }
+            { "field": "via_id", "operator": "is", "value": "33" },
+            { "field": "via_id", "operator": "is", "value": "34" },
+            { "field": "via_id", "operator": "is", "value": "35" }
           ]
         },
         {
@@ -3039,35 +2755,23 @@
             "group_order": "asc",
             "sort_by": "nice_id",
             "sort_order": "desc",
-            "group": {
-              "id": "updated",
-              "title": "Updated",
-              "order": "asc"
-            },
-            "sort": {
-              "id": "ticket_id",
-              "title": "ID",
-              "order": "desc"
-            },
+            "group": { "id": "updated", "title": "Updated", "order": "asc" },
+            "sort": { "id": "ticket_id", "title": "ID", "order": "desc" },
             "columns": [
-              "ID",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Organization",
-              "Priority",
-              "Group",
-              "Assignee",
-              "Due date"
+              "ticket_id",
+              "subject",
+              "requester",
+              "created",
+              "organization",
+              "priority",
+              "group",
+              "assignee",
+              "due_date"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            },
+            { "field": "status", "operator": "less_than", "value": "solved" },
             {
               "field": "ticket_form_id",
               "operator": "is",
@@ -3092,26 +2796,18 @@
             "group_order": "asc",
             "sort_by": "updated",
             "sort_order": "desc",
-            "group": {
-              "id": "status",
-              "title": "Status",
-              "order": "asc"
-            },
-            "sort": {
-              "id": "updated",
-              "title": "Updated",
-              "order": "desc"
-            },
+            "group": { "id": "status", "title": "Status", "order": "asc" },
+            "sort": { "id": "updated", "title": "Updated", "order": "desc" },
             "columns": [
-              "ID",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Priority",
-              "Organization",
-              "Group",
-              "Assignee",
-              "Next SLA breach"
+              "ticket_id",
+              "subject",
+              "requester",
+              "created",
+              "priority",
+              "organization",
+              "group",
+              "assignee",
+              "sla_next_breach_at"
             ],
             "custom_fields": []
           },
@@ -3121,11 +2817,7 @@
               "operator": "is",
               "value": "{{ticket-forms-4}}"
             },
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "closed"
-            }
+            { "field": "status", "operator": "less_than", "value": "closed" }
           ],
           "any": []
         },
@@ -3146,30 +2838,22 @@
             "sort_by": "created",
             "sort_order": "desc",
             "group": null,
-            "sort": {
-              "id": "created",
-              "title": "Requested",
-              "order": "desc"
-            },
+            "sort": { "id": "created", "title": "Requested", "order": "desc" },
             "columns": [
-              "ID",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Priority",
-              "Assignee",
-              "Satisfaction",
-              "Updated",
-              "Next SLA breach"
+              "ticket_id",
+              "subject",
+              "requester",
+              "created",
+              "priority",
+              "assignee",
+              "satisfaction_score",
+              "updated",
+              "sla_next_breach_at"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            },
+            { "field": "status", "operator": "less_than", "value": "solved" },
             {
               "field": "ticket_form_id",
               "operator": "is",
@@ -3194,33 +2878,21 @@
             "group_order": "desc",
             "sort_by": "nice_id",
             "sort_order": "desc",
-            "group": {
-              "id": "group",
-              "title": "Group",
-              "order": "desc"
-            },
-            "sort": {
-              "id": "ticket_id",
-              "title": "ID",
-              "order": "desc"
-            },
+            "group": { "id": "group", "title": "Group", "order": "desc" },
+            "sort": { "id": "ticket_id", "title": "ID", "order": "desc" },
             "columns": [
-              "ID",
-              "Subject",
-              "Channel",
-              "Requester",
-              "Organization",
-              "Requested",
-              "Due date"
+              "ticket_id",
+              "subject",
+              "via",
+              "requester",
+              "organization",
+              "created",
+              "due_date"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            },
+            { "field": "status", "operator": "less_than", "value": "solved" },
             {
               "field": "organization_id",
               "operator": "is",
@@ -3244,20 +2916,16 @@
             "group": null,
             "sort": null,
             "columns": [
-              "Satisfaction",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Assignee"
+              "satisfaction_score",
+              "subject",
+              "requester",
+              "created",
+              "assignee"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "closed"
-            },
+            { "field": "status", "operator": "less_than", "value": "closed" },
             {
               "field": "current_tags",
               "operator": "includes",
@@ -3279,29 +2947,21 @@
             "sort_by": "created",
             "sort_order": "desc",
             "group": null,
-            "sort": {
-              "id": "created",
-              "title": "Requested",
-              "order": "desc"
-            },
+            "sort": { "id": "created", "title": "Requested", "order": "desc" },
             "columns": [
-              "ID",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Priority",
-              "Next SLA breach",
-              "Assignee",
-              "Group"
+              "ticket_id",
+              "subject",
+              "requester",
+              "created",
+              "priority",
+              "sla_next_breach_at",
+              "assignee",
+              "group"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            },
+            { "field": "status", "operator": "less_than", "value": "solved" },
             {
               "field": "ticket_form_id",
               "operator": "is",
@@ -3323,30 +2983,22 @@
             "sort_by": "created",
             "sort_order": "desc",
             "group": null,
-            "sort": {
-              "id": "created",
-              "title": "Requested",
-              "order": "desc"
-            },
+            "sort": { "id": "created", "title": "Requested", "order": "desc" },
             "columns": [
-              "ID",
-              "Next SLA breach",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Priority",
-              "Assignee",
-              "Satisfaction",
-              "Updated"
+              "ticket_id",
+              "sla_next_breach_at",
+              "subject",
+              "requester",
+              "created",
+              "priority",
+              "assignee",
+              "satisfaction_score",
+              "updated"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            },
+            { "field": "status", "operator": "less_than", "value": "solved" },
             {
               "field": "ticket_form_id",
               "operator": "is",
@@ -3367,35 +3019,23 @@
             "group_order": "asc",
             "sort_by": "nice_id",
             "sort_order": "desc",
-            "group": {
-              "id": "updated",
-              "title": "Updated",
-              "order": "asc"
-            },
-            "sort": {
-              "id": "ticket_id",
-              "title": "ID",
-              "order": "desc"
-            },
+            "group": { "id": "updated", "title": "Updated", "order": "asc" },
+            "sort": { "id": "ticket_id", "title": "ID", "order": "desc" },
             "columns": [
-              "ID",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Organization",
-              "Priority",
-              "Group",
-              "Assignee",
-              "Due date"
+              "ticket_id",
+              "subject",
+              "requester",
+              "created",
+              "organization",
+              "priority",
+              "group",
+              "assignee",
+              "due_date"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            },
+            { "field": "status", "operator": "less_than", "value": "solved" },
             {
               "field": "ticket_form_id",
               "operator": "is",
@@ -3417,28 +3057,20 @@
             "sort_by": "nice_id",
             "sort_order": "desc",
             "group": null,
-            "sort": {
-              "id": "ticket_id",
-              "title": "ID",
-              "order": "desc"
-            },
+            "sort": { "id": "ticket_id", "title": "ID", "order": "desc" },
             "columns": [
-              "ID",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Assignee",
-              "Satisfaction",
-              "Next SLA breach"
+              "ticket_id",
+              "subject",
+              "requester",
+              "created",
+              "assignee",
+              "satisfaction_score",
+              "sla_next_breach_at"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            },
+            { "field": "status", "operator": "less_than", "value": "solved" },
             {
               "field": "ticket_form_id",
               "operator": "is",
@@ -3459,36 +3091,24 @@
             "group_order": "asc",
             "sort_by": "nice_id",
             "sort_order": "desc",
-            "group": {
-              "id": "assignee",
-              "title": "Assignee",
-              "order": "asc"
-            },
-            "sort": {
-              "id": "ticket_id",
-              "title": "ID",
-              "order": "desc"
-            },
+            "group": { "id": "assignee", "title": "Assignee", "order": "asc" },
+            "sort": { "id": "ticket_id", "title": "ID", "order": "desc" },
             "columns": [
-              "ID",
-              "Channel",
-              "Subject",
-              "Requester",
-              "Requested",
-              "Priority",
-              "Assignee",
-              "Updated",
-              "Brand",
-              "Next SLA breach"
+              "ticket_id",
+              "via",
+              "subject",
+              "requester",
+              "created",
+              "priority",
+              "assignee",
+              "updated",
+              "brand",
+              "sla_next_breach_at"
             ],
             "custom_fields": []
           },
           "all": [
-            {
-              "field": "status",
-              "operator": "less_than",
-              "value": "solved"
-            },
+            { "field": "status", "operator": "less_than", "value": "solved" },
             {
               "field": "ticket_form_id",
               "operator": "is",
