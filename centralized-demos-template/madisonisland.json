@@ -1085,19 +1085,6 @@
         "reference_id": "user-fields-22"
       },
       {
-        "type": "checkbox",
-        "key": "agent_ooo",
-        "title": "Agent Out?",
-        "description": "This field was created by the out-of-office app. Don't delete it, unless you want everything to break",
-        "raw_title": "Agent Out?",
-        "raw_description": "This field was created by the out-of-office app. Don't delete it, unless you want everything to break",
-        "position": 6,
-        "active": false,
-        "regexp_for_validation": null,
-        "tag": "agent_ooo",
-        "reference_id": "user-fields-23"
-      },
-      {
         "type": "integer",
         "key": "ticket_count",
         "title": "Ticket Count",
@@ -10116,119 +10103,119 @@
         "outdated": false,
         "variants": [
           {
-            "content": "Hi {{ticket.requester.first_name}},\r\n\r\nLost your Returns Form? No problem, you can download the form attached to this email.\r\n\r\nJust fill in our Order Number and the reason for return, and include it in the package that you send back to us. \r\n\r\nThanks for shopping with us,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}​",
+            "content": "Hi {{ticket.requester.first_name}},\r\n\r\nLost your Returns Form? No problem, you can download the form attached to this email.\r\n\r\nJust fill in our Order Number and the reason for return, and include it in the package that you send back to us.\r\n\r\nThanks for shopping with us,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}​",
             "locale_id": 1,
             "outdated": false,
             "active": true,
             "default": true
           },
           {
-            "content": "Hej {{ticket.requester.first_name}},\r\n\r\nMistet din returformular? Intet problem, du kan downloade formularen vedhæftet til denne e-mail.\r\n\r\nUdfyld blot vores ordrenummer og årsagen til returneringen, og medtag det i den pakke, du sender tilbage til os. \r\n\r\nTak fordi du shopper hos os,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
+            "content": "Hej {{ticket.requester.first_name}},\r\n\r\nMistet din returformular? Intet problem, du kan downloade formularen vedhæftet til denne e-mail.\r\n\r\nUdfyld blot vores ordrenummer og årsagen til returneringen, og medtag det i den pakke, du sender tilbage til os.\r\n\r\nTak fordi du shopper hos os,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
             "locale_id": 1000,
             "outdated": false,
             "active": true,
             "default": false
           },
           {
-            "content": "היי, זי3N_0_\r\n\r\nאיבדת את טופס ההחזרים שלך? אין בעיה, אתה יכול להוריד את הטופס המצורף דוא\"ל זה.\r\n\r\nפשוט מלא את מספר ההזמנה שלנו ואת הסיבה לחזרה, ולכלול אותו בחבילה שאתה שולח אלינו בחזרה. \r\n\r\nתודה על קניות איתנו,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
+            "content": "היי, זי3N_0_\r\n\r\nאיבדת את טופס ההחזרים שלך? אין בעיה, אתה יכול להוריד את הטופס המצורף דוא\"ל זה.\r\n\r\nפשוט מלא את מספר ההזמנה שלנו ואת הסיבה לחזרה, ולכלול אותו בחבילה שאתה שולח אלינו בחזרה.\r\n\r\nתודה על קניות איתנו,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
             "locale_id": 30,
             "outdated": false,
             "active": true,
             "default": false
           },
           {
-            "content": "Привет {{ticket.requester.first_name}},\r\n\r\nПотеряли форму возврата? Нет проблем, вы можете скачать форму, прилагаемую к этому письму.\r\n\r\nПросто заполните наш номер заказа и причину возврата, и включите его в посылку, которую вы отправили нам обратно. \r\n\r\nСпасибо за покупки с нами,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
+            "content": "Привет {{ticket.requester.first_name}},\r\n\r\nПотеряли форму возврата? Нет проблем, вы можете скачать форму, прилагаемую к этому письму.\r\n\r\nПросто заполните наш номер заказа и причину возврата, и включите его в посылку, которую вы отправили нам обратно.\r\n\r\nСпасибо за покупки с нами,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
             "locale_id": 27,
             "outdated": false,
             "active": true,
             "default": false
           },
           {
-            "content": "Привіт {{ticket.requester.first_name}},\r\n\r\nВтратили свою форму повернення? Немає проблем, ви можете завантажити форму, прикріплену до цього листа.\r\n\r\nПросто заповніть номер замовлення і причину повернення, і включіть його в пакет, який ви відправляєте нам назад. \r\n\r\nСпасибі, що робите покупки з нами,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
+            "content": "Привіт {{ticket.requester.first_name}},\r\n\r\nВтратили свою форму повернення? Немає проблем, ви можете завантажити форму, прикріплену до цього листа.\r\n\r\nПросто заповніть номер замовлення і причину повернення, і включіть його в пакет, який ви відправляєте нам назад.\r\n\r\nСпасибі, що робите покупки з нами,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
             "locale_id": 1173,
             "outdated": false,
             "active": true,
             "default": false
           },
           {
-            "content": "嗨，Z3N_0_,\r\n\r\n遺失您的退貨表格？沒問題，您可以下載此電子郵件附加的表格。\r\n\r\n只需填寫我們的訂單編號和退貨原因，並將其包含在您寄回給我們的包裹中。 \r\n\r\n感謝您與我們一起購物，\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
+            "content": "嗨，Z3N_0_,\r\n\r\n遺失您的退貨表格？沒問題，您可以下載此電子郵件附加的表格。\r\n\r\n只需填寫我們的訂單編號和退貨原因，並將其包含在您寄回給我們的包裹中。\r\n\r\n感謝您與我們一起購物，\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
             "locale_id": 9,
             "outdated": false,
             "active": true,
             "default": false
           },
           {
-            "content": "Hei {{ticket.requester.first_name}},\r\n\r\nMistet ditt returskjema? Ikke noe problem, du kan laste ned skjemaet som er vedlagt denne e-posten.\r\n\r\nBare fyll inn bestillingsnummeret vårt og årsaken til retur, og ta det med i pakken du sender tilbake til oss. \r\n\r\nTakk for shopping hos oss,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
+            "content": "Hei {{ticket.requester.first_name}},\r\n\r\nMistet ditt returskjema? Ikke noe problem, du kan laste ned skjemaet som er vedlagt denne e-posten.\r\n\r\nBare fyll inn bestillingsnummeret vårt og årsaken til retur, og ta det med i pakken du sender tilbake til oss.\r\n\r\nTakk for shopping hos oss,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
             "locale_id": 34,
             "outdated": false,
             "active": true,
             "default": false
           },
           {
-            "content": "Oi {{ticket.requester.first_name}},\r\n\r\nPerdeu seu formulário de devolução? Não há problema, você pode baixar o formulário anexado a este e-mail.\r\n\r\nBasta preencher nosso Número de Pedido e o motivo da devolução, e incluí-lo no pacote que você enviar de volta para nós. \r\n\r\nObrigado por fazer compras com a gente,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
+            "content": "Oi {{ticket.requester.first_name}},\r\n\r\nPerdeu seu formulário de devolução? Não há problema, você pode baixar o formulário anexado a este e-mail.\r\n\r\nBasta preencher nosso Número de Pedido e o motivo da devolução, e incluí-lo no pacote que você enviar de volta para nós.\r\n\r\nObrigado por fazer compras com a gente,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
             "locale_id": 1011,
             "outdated": false,
             "active": true,
             "default": false
           },
           {
-            "content": "Hallo {{ticket.requester.first_name}},\r\n\r\nJe retourformulier kwijt? Geen probleem, u kunt het formulier dat bij deze e-mail is gevoegd downloaden.\r\n\r\nVul gewoon ons bestelnummer en de reden voor retourzending in en voeg het in het pakket dat u naar ons terugstuurt. \r\n\r\nBedankt voor het winkelen bij ons,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
+            "content": "Hallo {{ticket.requester.first_name}},\r\n\r\nJe retourformulier kwijt? Geen probleem, u kunt het formulier dat bij deze e-mail is gevoegd downloaden.\r\n\r\nVul gewoon ons bestelnummer en de reden voor retourzending in en voeg het in het pakket dat u naar ons terugstuurt.\r\n\r\nBedankt voor het winkelen bij ons,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
             "locale_id": 1005,
             "outdated": false,
             "active": true,
             "default": false
           },
           {
-            "content": "Hallo {{ticket.requester.first_name}},\r\n\r\nIhr Rücksendeformular verloren? Kein Problem, Sie können das Formular herunterladen, das an diese E-Mail angehängt ist.\r\n\r\nGeben Sie einfach unsere Bestellnummer und den Grund für die Rücksendung ein und fügen Sie sie in das Paket ein, das Sie uns zurücksenden. \r\n\r\nVielen Dank für Ihren Einkauf bei uns,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
+            "content": "Hallo {{ticket.requester.first_name}},\r\n\r\nIhr Rücksendeformular verloren? Kein Problem, Sie können das Formular herunterladen, das an diese E-Mail angehängt ist.\r\n\r\nGeben Sie einfach unsere Bestellnummer und den Grund für die Rücksendung ein und fügen Sie sie in das Paket ein, das Sie uns zurücksenden.\r\n\r\nVielen Dank für Ihren Einkauf bei uns,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
             "locale_id": 90,
             "outdated": false,
             "active": true,
             "default": false
           },
           {
-            "content": "Ciao {{ticket.requester.first_name}},\r\n\r\nHai perso il modulo di reso? Nessun problema, è possibile scaricare il modulo allegato a questa e-mail.\r\n\r\nBasta inserire il nostro numero d'ordine e il motivo del reso, e includerlo nel pacco che ci invierai. \r\n\r\nGrazie per aver fatto acquisti con noi,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
+            "content": "Ciao {{ticket.requester.first_name}},\r\n\r\nHai perso il modulo di reso? Nessun problema, è possibile scaricare il modulo allegato a questa e-mail.\r\n\r\nBasta inserire il nostro numero d'ordine e il motivo del reso, e includerlo nel pacco che ci invierai.\r\n\r\nGrazie per aver fatto acquisti con noi,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
             "locale_id": 22,
             "outdated": false,
             "active": true,
             "default": false
           },
           {
-            "content": "Salut {{ticket.requester.first_name}},\r\n\r\nVous avez perdu votre formulaire de retour ? Pas de problème, vous pouvez télécharger le formulaire joint à cet e-mail.\r\n\r\nIl vous suffit de renseigner notre numéro de commande et le motif du retour, et de l'inclure dans le colis que vous nous renvoyez. \r\n\r\nMerci d'avoir fait du shopping avec nous,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
+            "content": "Salut {{ticket.requester.first_name}},\r\n\r\nVous avez perdu votre formulaire de retour ? Pas de problème, vous pouvez télécharger le formulaire joint à cet e-mail.\r\n\r\nIl vous suffit de renseigner notre numéro de commande et le motif du retour, et de l'inclure dans le colis que vous nous renvoyez.\r\n\r\nMerci d'avoir fait du shopping avec nous,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
             "locale_id": 16,
             "outdated": false,
             "active": true,
             "default": false
           },
           {
-            "content": "مرحبا {{ticket.requester.first_name}}\r\n\r\nهل فقدت نموذج الإرجاع الخاص بك؟ لا توجد مشكلة، يمكنك تنزيل النموذج المرفق بهذا البريد الإلكتروني.\r\n\r\nفقط قم بتعبئة رقم الطلب الخاص بنا وسبب الإرجاع، وقم بتضمينه في الحزمة التي ترسلها إلينا. \r\n\r\nشكراً لتسوقك معنا\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
+            "content": "مرحبا {{ticket.requester.first_name}}\r\n\r\nهل فقدت نموذج الإرجاع الخاص بك؟ لا توجد مشكلة، يمكنك تنزيل النموذج المرفق بهذا البريد الإلكتروني.\r\n\r\nفقط قم بتعبئة رقم الطلب الخاص بنا وسبب الإرجاع، وقم بتضمينه في الحزمة التي ترسلها إلينا.\r\n\r\nشكراً لتسوقك معنا\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
             "locale_id": 66,
             "outdated": false,
             "active": true,
             "default": false
           },
           {
-            "content": "हाय {{ticket.requester.first_name}},\r\n\r\nअपना रिटर्न फॉर्म खोया? कोई बात नहीं, आप इस ईमेल से जुड़ी फ़ॉर्म डाउनलोड कर सकते हैं।\r\n\r\nबस हमारे ऑर्डर नंबर और वापसी का कारण भरें, और इसे उस पैकेज में शामिल करें जिसे आप हमें वापस भेजते हैं। \r\n\r\nहमारे साथ खरीदारी के लिए धन्यवाद,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
+            "content": "हाय {{ticket.requester.first_name}},\r\n\r\nअपना रिटर्न फॉर्म खोया? कोई बात नहीं, आप इस ईमेल से जुड़ी फ़ॉर्म डाउनलोड कर सकते हैं।\r\n\r\nबस हमारे ऑर्डर नंबर और वापसी का कारण भरें, और इसे उस पैकेज में शामिल करें जिसे आप हमें वापस भेजते हैं।\r\n\r\nहमारे साथ खरीदारी के लिए धन्यवाद,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
             "locale_id": 1303,
             "outdated": false,
             "active": true,
             "default": false
           },
           {
-            "content": "Hola {{ticket.requester.first_name}},\r\n\r\n¿Has perdido tu formulario de devoluciones? No hay problema, puede descargar el formulario adjunto a este correo electrónico.\r\n\r\nSimplemente rellena nuestro número de pedido y el motivo de la devolución, e inclúyalo en el paquete que nos envías. \r\n\r\nGracias por comprar con nosotros,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
+            "content": "Hola {{ticket.requester.first_name}},\r\n\r\n¿Has perdido tu formulario de devoluciones? No hay problema, puede descargar el formulario adjunto a este correo electrónico.\r\n\r\nSimplemente rellena nuestro número de pedido y el motivo de la devolución, e inclúyalo en el paquete que nos envías.\r\n\r\nGracias por comprar con nosotros,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
             "locale_id": 2,
             "outdated": false,
             "active": true,
             "default": false
           },
           {
-            "content": "Hej {{ticket.requester.first_name}},\r\n\r\nFörlorat ditt returformulär? Inga problem, du kan ladda ner formuläret som bifogas detta e-postmeddelande.\r\n\r\nFyll bara i vårt beställningsnummer och anledningen till returen, och inkludera det i paketet som du skickar tillbaka till oss. \r\n\r\nTack för att du shoppar med oss,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
+            "content": "Hej {{ticket.requester.first_name}},\r\n\r\nFörlorat ditt returformulär? Inga problem, du kan ladda ner formuläret som bifogas detta e-postmeddelande.\r\n\r\nFyll bara i vårt beställningsnummer och anledningen till returen, och inkludera det i paketet som du skickar tillbaka till oss.\r\n\r\nTack för att du shoppar med oss,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}",
             "locale_id": 92,
             "outdated": false,
             "active": true,
             "default": false
           },
           {
-            "content": "Hi {{ticket.requester.first_name}},\r\n\r\nLost your Returns Form? No problem, you can download the form attached to this email.\r\n\r\nJust fill in our Order Number and the reason for return, and include it in the package that you send back to us. \r\n\r\nThanks for shopping with us,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}​",
+            "content": "Hi {{ticket.requester.first_name}},\r\n\r\nLost your Returns Form? No problem, you can download the form attached to this email.\r\n\r\nJust fill in our Order Number and the reason for return, and include it in the package that you send back to us.\r\n\r\nThanks for shopping with us,\r\n{{current_user.name}}\r\n{{ticket.brand.name}}​",
             "locale_id": 1176,
             "outdated": false,
             "active": true,
