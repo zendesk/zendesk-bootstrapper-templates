@@ -78,6 +78,8 @@ You could use the following variables anywhere within your template code and it 
 11. `{{bootstrapper-default-group-support}}`: Return default Agent's group (Support)'s ID
 12. `{{bootstrapper-default-brand}}`: Return default brand's ID
 
+For Guide's Categories, Sections and Articles, there is a special key-value pair that is called `bootstrapper_delay` that allows you to insert delay (in milliseconds) to individual objects in order to prevent database collission error that is returned by Guide's API.
+
 ### 2.3 Dependencies
 
 Zendesk Bootstrapper helps you to resolve dependencies automatically with your templates
