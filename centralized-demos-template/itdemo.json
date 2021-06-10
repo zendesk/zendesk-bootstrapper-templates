@@ -8465,7 +8465,7 @@
             "value": [
               "[TASK] Provision new employee in AD - {{ticket.requester.name}}",
               "<p>Hi {{ticket.group.name}}- please the request below for new Employee provisioning in AD.</p><p><br></p><p>Employee Name: <b>{{ticket.requester.name}}</b><br></p><p>Department: <b>{{ticket.organization.name}}</b></p><p>Employee ID: <b>{{ticket.id}}</b></p><p>Due Date: <b>{{ticket.due_date}}</b></p><p><b><br></b></p><p>Please Solve this ticket when provisioning is complete.</p><p><br></p>",
-              "SupportAssignable:support_assignable/group/37831928",
+              "SupportAssignable:support_assignable/group/{{group-22}}",
               "text/html"
             ]
           },
