@@ -9,8 +9,10 @@
       "name": "HR Demo",
       "locale": "en"
     },
-    "require_support_ent": true,
-    "require_side_conversations": true
+    "requirements": {
+      "subscription": { "sunshine": false, "support_enterprise": true },
+      "add_on": { "side_conversation": { "email": true, "slack": true } }
+    }
   },
   "settings": {
     "account_settings": {

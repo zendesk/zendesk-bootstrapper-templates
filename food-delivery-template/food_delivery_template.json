@@ -9,7 +9,9 @@
       "name": "Food Delivery",
       "locale": "en"
     },
-    "require_support_ent": true
+    "requirements": {
+      "subscription": { "support_enterprise": true }
+    }
   },
   "settings": {
     "account_settings": {

@@ -1,1113 +1,1110 @@
 {
-    "bootstrap": {
-      "subdomain": "z3n-leroychan",
-      "auth": {
-        "username": "<<YOUR EMAIL>>",
-        "password": "<<YOUR PASSWORD>>"
-      },
-      "customer": {
-        "name": "HR Helpdesk",
-        "locale": "en"
-      },
-      "require_support_ent": true
+  "bootstrap": {
+    "subdomain": "z3n-leroychan",
+    "auth": {
+      "username": "<<YOUR EMAIL>>",
+      "password": "<<YOUR PASSWORD>>"
     },
-    "settings": {
-      "account_settings": {
-        "tickets": {
-          "emoji_autocompletion": true
-        },
-        "agents": {
-          "agent_workspace": true
-        },
-        "active_features": {
-          "business_hours": true,
-          "customer_satisfaction": true,
-          "user_tagging": true,
-          "ticket_tagging": true
-        },
-        "api": {
-          "accepted_api_agreement": true,
-          "api_password_access": true,
-          "api_token_access": true
-        }
+    "customer": {
+      "name": "HR Helpdesk",
+      "locale": "en"
+    },
+    "requirements": {
+      "subscription": { "support_enterprise": true }
+    }
+  },
+  "settings": {
+    "account_settings": {
+      "tickets": {
+        "emoji_autocompletion": true
       },
-      "security_settings": {
-        "admins_can_set_user_passwords": true,
-        "email_agent_when_sensitive_fields_changed": false,
-        "authentication": {
-          "end_user": {
-            "google_login": true,
-            "office_365_login": true,
-            "twitter_login": true,
-            "facebook_login": true
-          }
-        }
+      "agents": {
+        "agent_workspace": true
       },
-      "support_settings": {
-        "update_default_support_email": {
+      "active_features": {
+        "business_hours": true,
+        "customer_satisfaction": true,
+        "user_tagging": true,
+        "ticket_tagging": true
+      },
+      "api": {
+        "accepted_api_agreement": true,
+        "api_password_access": true,
+        "api_token_access": true
+      }
+    },
+    "security_settings": {
+      "admins_can_set_user_passwords": true,
+      "email_agent_when_sensitive_fields_changed": false,
+      "authentication": {
+        "end_user": {
+          "google_login": true,
+          "office_365_login": true,
+          "twitter_login": true,
+          "facebook_login": true
+        }
+      }
+    },
+    "support_settings": {
+      "update_default_support_email": {
+        "name": "HR Helpdesk"
+      },
+      "add_recipient_addresses": [
+        {
+          "email": "hr@{{subdomain}}.zendesk.com",
           "name": "HR Helpdesk"
-        },
-        "add_recipient_addresses": [
-          {
-            "email": "hr@{{subdomain}}.zendesk.com",
-            "name": "HR Helpdesk"
-          }
-        ]
-      }
-    },
-    "ticket_views": {
-      "add_ticket_views": {
-        "options": {
-          "reorder_newly_added_to_first": true
-        },
-        "views": [
-          {
-            "title": "☀️ Created Today",
-            "active": true,
-            "position": 1,
-            "output": {
-              "group_by": "null",
-              "group_order": "desc",
-              "sort_by": "nice_id",
-              "group": "null",
-              "sort_order": "desc",
-              "columns": [
-                "subject",
-                "requester",
-                "created",
-                "assignee",
-                "sla_next_breach_at",
-                "ticket_form"
-              ]
-            },
-            "all": [
-              {
-                "field": "status",
-                "operator": "less_than",
-                "value": "solved"
-              },
-              {
-                "field": "NEW",
-                "operator": "less_than_business_hours",
-                "value": "24"
-              }
-            ],
-            "any": []
-          },
-          {
-            "title": "🚨 Urgent and High Priority",
-            "active": true,
-            "position": 1,
-            "output": {
-              "group_by": "null",
-              "group_order": "desc",
-              "sort_by": "nice_id",
-              "group": "null",
-              "sort_order": "desc",
-              "columns": [
-                "subject",
-                "requester",
-                "created",
-                "assignee",
-                "sla_next_breach_at",
-                "ticket_form"
-              ]
-            },
-            "all": [
-              {
-                "field": "status",
-                "operator": "less_than",
-                "value": "solved"
-              }
-            ],
-            "any": [
-              {
-                "field": "priority",
-                "operator": "is",
-                "value": "urgent"
-              },
-              {
-                "field": "priority",
-                "operator": "is",
-                "value": "high"
-              }
-            ]
-          },
-          {
-            "title": "🆕 Onboarding",
-            "active": true,
-            "position": 1,
-            "output": {
-              "group_by": "null",
-              "group_order": "desc",
-              "sort_by": "nice_id",
-              "group": "null",
-              "sort_order": "desc",
-              "columns": [
-                "subject",
-                "requester",
-                "created",
-                "assignee",
-                "sla_next_breach_at"
-              ]
-            },
-            "all": [
-              {
-                "field": "status",
-                "operator": "less_than",
-                "value": "solved"
-              },
-              {
-                "field": "ticket_form_id",
-                "operator": "is",
-                "value": "{{ticket-form-new-hire}}"
-              }
-            ],
-            "any": []
-          },
-          {
-            "title": "💰 Compensation",
-            "active": true,
-            "position": 1,
-            "output": {
-              "group_by": "null",
-              "group_order": "desc",
-              "sort_by": "nice_id",
-              "group": "null",
-              "sort_order": "desc",
-              "columns": [
-                "subject",
-                "requester",
-                "created",
-                "assignee",
-                "sla_next_breach_at"
-              ]
-            },
-            "all": [
-              {
-                "field": "status",
-                "operator": "less_than",
-                "value": "solved"
-              },
-              {
-                "field": "ticket_form_id",
-                "operator": "is",
-                "value": "{{ticket-form-grievance}}"
-              }
-            ],
-            "any": []
-          },
-          {
-            "title": "🏥 Benefits",
-            "active": true,
-            "position": 1,
-            "output": {
-              "group_by": "null",
-              "group_order": "desc",
-              "sort_by": "nice_id",
-              "group": "null",
-              "sort_order": "desc",
-              "columns": [
-                "subject",
-                "requester",
-                "created",
-                "assignee",
-                "sla_next_breach_at"
-              ]
-            },
-            "all": [
-              {
-                "field": "status",
-                "operator": "less_than",
-                "value": "solved"
-              },
-              {
-                "field": "ticket_form_id",
-                "operator": "is",
-                "value": "{{ticket-form-benefits}}"
-              }
-            ],
-            "any": []
-          },
-          {
-            "title": "📅 Leave",
-            "active": true,
-            "position": 1,
-            "output": {
-              "group_by": "null",
-              "group_order": "desc",
-              "sort_by": "nice_id",
-              "group": "null",
-              "sort_order": "desc",
-              "columns": [
-                "subject",
-                "requester",
-                "created",
-                "assignee",
-                "sla_next_breach_at"
-              ]
-            },
-            "all": [
-              {
-                "field": "status",
-                "operator": "less_than",
-                "value": "solved"
-              },
-              {
-                "field": "ticket_form_id",
-                "operator": "is",
-                "value": "{{ticket-form-leave}}"
-              }
-            ],
-            "any": []
-          }
-        ]
-      }
-    },
-    "users": {
-      "add_user_fields": [
-        {
-          "type": "text",
-          "title": "Employee ID",
-          "description": "Employee ID",
-          "position": "2",
-          "active": true,
-          "key": "employee_ID"
-        },
-        {
-          "type": "text",
-          "title": "Role",
-          "description": "Employee Role",
-          "position": "2",
-          "active": true,
-          "key": "employee_role"
-        },
-        {
-          "type": "tagger",
-          "title": "Employee Status",
-          "description": "Status of Employee",
-          "position": "2",
-          "active": true,
-          "key": "employee_status",
-          "custom_field_options": [
-            {
-              "name": "Full Time",
-              "value": "emp_status_full_time"
-            },
-            {
-              "name": "Part Time",
-              "value": "emp_status_part_time"
-            },
-            {
-              "name": "Consultant",
-              "value": "emp_status_consultant"
-            },
-            {
-              "name": "Temporary",
-              "value": "emp_status_temporary"
-            },
-            {
-              "name": "Intern",
-              "value": "emp_status_intern"
-            },
-            {
-              "name": "No Longer",
-              "value": "emp_status_no_longer"
-            }
-          ]
-        }
-      ],
-      "add_users": [
-        {
-          "name": "Ben Mendez",
-          "email": "benmendez.demo@gmal.com"
-        }
-      ],
-      "add_groups": [
-        {
-          "name": "Compensation",
-          "reference_id": "group_compensation"
-        },
-        {
-          "name": "Benefits",
-          "reference_id": "group_benefits"
-        },
-        {
-          "name": "New Hire",
-          "reference_id": "group_new_hire"
-        },
-        {
-          "name": "Tier 1",
-          "reference_id": "group_tier1"
-        }
-      ],
-      "add_organizations": {
-        "organizations": []
-      },
-      "add_organization_fields": []
-    },
-    "business_rules": {
-      "add_slas": [
-        {
-          "title": "Urgent Incidents SLA",
-          "description": "For urgent incidents, we will respond to tickets in 10 minutes",
-          "position": 1,
-          "filter": {
-            "all": [
-              {
-                "field": "type",
-                "operator": "is",
-                "value": "incident"
-              }
-            ],
-            "any": []
-          },
-          "policy_metrics": [
-            {
-              "priority": "normal",
-              "metric": "first_reply_time",
-              "target": 30,
-              "business_hours": false
-            },
-            {
-              "priority": "urgent",
-              "metric": "first_reply_time",
-              "target": 10,
-              "business_hours": false
-            },
-            {
-              "priority": "low",
-              "metric": "requester_wait_time",
-              "target": 180,
-              "business_hours": false
-            },
-            {
-              "priority": "normal",
-              "metric": "requester_wait_time",
-              "target": 160,
-              "business_hours": false
-            },
-            {
-              "priority": "high",
-              "metric": "requester_wait_time",
-              "target": 140,
-              "business_hours": false
-            },
-            {
-              "priority": "urgent",
-              "metric": "requester_wait_time",
-              "target": 120,
-              "business_hours": false
-            }
-          ]
-        },
-        {
-          "title": "VIP Employee SLA",
-          "description": "For VIP request, we will respond to tickets in 10 minutes",
-          "position": 2,
-          "filter": {
-            "all": [
-              {
-                "field": "current_tags",
-                "operator": "includes",
-                "value": "VIP"
-              }
-            ],
-            "any": []
-          },
-          "policy_metrics": [
-            {
-              "priority": "normal",
-              "metric": "first_reply_time",
-              "target": 30,
-              "business_hours": false
-            },
-            {
-              "priority": "urgent",
-              "metric": "first_reply_time",
-              "target": 10,
-              "business_hours": false
-            },
-            {
-              "priority": "low",
-              "metric": "requester_wait_time",
-              "target": 180,
-              "business_hours": false
-            },
-            {
-              "priority": "normal",
-              "metric": "requester_wait_time",
-              "target": 160,
-              "business_hours": false
-            },
-            {
-              "priority": "high",
-              "metric": "requester_wait_time",
-              "target": 140,
-              "business_hours": false
-            },
-            {
-              "priority": "urgent",
-              "metric": "requester_wait_time",
-              "target": 120,
-              "business_hours": false
-            }
-          ]
-        }
-      ],
-      "add_triggers": [
-        {
-          "title": "VIP :: Escalate VIP Tickets",
-          "all": [
-            {
-              "field": "update_type",
-              "operator": "is",
-              "value": "Create"
-            },
-            {
-              "field": "current_tags",
-              "operator": "includes",
-              "value": "vip"
-            }
-          ],
-          "actions": [
-            {
-              "field": "priority",
-              "value": "high"
-            }
-          ]
-        },
-        {
-          "title": "Auto set Priority to Normal (for SLA management)",
-          "all": [
-            {
-              "field": "status",
-              "operator": "is",
-              "value": "new"
-            },
-            {
-              "field": "priority",
-              "operator": "is",
-              "value": ""
-            }
-          ],
-          "actions": [
-            {
-              "field": "priority",
-              "value": "normal"
-            }
-          ]
-        },
-        {
-          "title": "CSAT :: Send CSAT Survey",
-          "all": [
-            {
-              "field": "status",
-              "operator": "is",
-              "value": "solved"
-            },
-            {
-              "field": "current_tags",
-              "operator": "includes",
-              "value": "csat"
-            },
-            {
-              "field": "current_tags",
-              "operator": "not_includes",
-              "value": "smooch supportkit"
-            },
-            {
-              "field": "comment_is_public",
-              "operator": "is",
-              "value": "true"
-            }
-          ],
-          "actions": [
-            {
-              "field": "notification_user",
-              "value": [
-                "requester_and_ccs",
-                "Request #{{ticket.id}}: How would you rate the support you received?",
-                "Hello {{ticket.requester.name}},\n\nWe'd love to hear what you think of our customer service. Please take a moment to answer one simple question by clicking either link below:\n\n{{satisfaction.rating_section}}\n\nHere's a reminder of what your ticket was about:\n\n{{ticket.comments_formatted}}"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    "apps": {
-      "add_private_apps": [
-          {
-            "app_name": "hr-360-v1",
-            "name": "HR 360",
-            "short_description": "HR 360"
-          }
-      ]
-    },
-    "tickets": {
-      "generate_tickets": {
-        "statuses": {
-          "solved": 100,
-          "open": 100,
-          "pending": 100
-        },
-        "ticket_payload": {
-          "requester": {
-            "name": "Employee Name",
-            "email": "kaws@kaws.com"
-          },
-          "tags": [
-            "autogenerated"
-          ]
-        }
-      },
-      "add_ticket_fields": [
-        {
-          "type": "date",
-          "title": "Leave Start Date",
-          "reference_id": "ticket_field_leave_start_date"
-        },
-        {
-          "type": "date",
-          "title": "Leave End Date",
-          "reference_id": "ticket_field_leave_end_date"
-        },
-        {
-          "type": "tagger",
-          "title": "Leave Type",
-          "reference_id": "ticket_field_leave_type",
-          "custom_field_options": [
-            {
-              "name": "Annual",
-              "value": "lt_annual"
-            },
-            {
-              "name": "Compassionate",
-              "value": "lt_compassionate"
-            },
-            {
-              "name": "Parental",
-              "value": "lt_parental"
-            },
-            {
-              "name": "Caregiver",
-              "value": "lt_caregiver"
-            },
-            {
-              "name": "Jury Duty",
-              "value": "lt_jury_duty"
-            },
-            {
-              "name": "Sick",
-              "value": "lt_sick"
-            },
-            {
-              "name": "Study",
-              "value": "lt_study"
-            }
-          ]
-        },
-        {
-          "type": "date",
-          "title": "New Hire Start Date",
-          "reference_id": "ticket_field_new_hire_start_date"
-        },
-        {
-          "type": "tagger",
-          "title": "Office",
-          "reference_id": "ticket_field_office",
-          "custom_field_options": [
-            {
-              "name": "UK::London",
-              "value": "office_london"
-            },
-            {
-              "name": "UK::Manchester",
-              "value": "office_manchester"
-            },
-            {
-              "name": "US::New York",
-              "value": "office_new_york"
-            },
-            {
-              "name": "US::LA",
-              "value": "office_la"
-            },
-            {
-              "name": "Japan::Tokyo",
-              "value": "office_tokyo"
-            },
-            {
-              "name": "France::Paris",
-              "value": "office_paris"
-            },
-            {
-              "name": "Germany::Berlin",
-              "value": "office_berlin"
-            },
-            {
-              "name": "Spain::Madrid",
-              "value": "office_madrid"
-            },
-            {
-              "name": "Italy::Rome",
-              "value": "office_rome"
-            },
-            {
-              "name": "Remote",
-              "value": "remote"
-            }
-          ]
-        },
-        {
-          "type": "checkbox",
-          "title": "Manager?",
-          "reference_id": "is_manager",
-          "tag": "is_manager"
-        },
-        {
-          "type": "tagger",
-          "title": "Type of Benefit",
-          "reference_id": "ticket_field_type_of_benefit",
-          "custom_field_options": [
-            {
-              "name": "Medical::Private Health Care",
-              "value": "private_health_care"
-            },
-            {
-              "name": "Medical::Dental",
-              "value": "dental"
-            },
-            {
-              "name": "Medical::Eye Care Vouchers",
-              "value": "eye_care_vouchers"
-            },
-            {
-              "name": "Insurance and Policies::Life",
-              "value": "life_insurance"
-            },
-            {
-              "name": "Insurance and Policies::Critical Illness",
-              "value": "critical_illness"
-            },
-            {
-              "name": "Financial::Stock",
-              "value": "stock"
-            },
-            {
-              "name": "Financial::Pension",
-              "value": "pension"
-            }
-          ]
-        },
-        {
-          "type": "tagger",
-          "title": "Individual or Group Grievance",
-          "reference_id": "ticket_field_individual_or_group",
-          "custom_field_options": [
-            {
-              "name": "Individual",
-              "value": "grievance_individual"
-            },
-            {
-              "name": "Group",
-              "value": "grievance_group"
-            }
-          ]
-        },
-        {
-          "type": "tagger",
-          "title": "Type of Grievance",
-          "reference_id": "ticket_field_grievance_type",
-          "custom_field_options": [
-            {
-              "name": "Discrimination",
-              "value": "grievance_discrimination"
-            },
-            {
-              "name": "Physical Abuse",
-              "value": "grievance_physical_abuse"
-            },
-            {
-              "name": "Bullying",
-              "value": "grievance_bullying"
-            },
-            {
-              "name": "Compensation",
-              "value": "grievance_compensation"
-            },
-            {
-              "name": "Other",
-              "value": "grievance_other"
-            }
-          ]
-        },
-        {
-          "type": "checkbox",
-          "title": "Share with manager?",
-          "reference_id": "share_with_manager",
-          "tag": "share_with_manager"
-        },
-        {
-          "type": "date",
-          "title": "Termination Date",
-          "reference_id": "ticket_field_termination_date"
-        },
-        {
-          "type": "tagger",
-          "title": "Reason for termination",
-          "reference_id": "ticket_field_reason_for_termination",
-          "custom_field_options": [
-            {
-              "name": "Voluntary",
-              "value": "termination_voluntary"
-            },
-            {
-              "name": "Misconduct",
-              "value": "termination_misconduct"
-            },
-            {
-              "name": "Redundancy",
-              "value": "termination_redundancy"
-            },
-            {
-              "name": "Performance",
-              "value": "termination_performance"
-            },
-            {
-              "name": "Medical",
-              "value": "termination_medical"
-            }
-          ]
-        },
-        {
-          "type": "checkbox",
-          "title": "Exit interview required?",
-          "reference_id": "exit_interview_required",
-          "tag": "exit_interview_required"
-        }
-      ],
-      "add_ticket_forms": [
-        {
-          "name": "Leave",
-          "end_user_visible": true,
-          "active": true,
-          "in_all_brands": true,
-          "ticket_field_ids": [
-            "{{ticket_field_leave_start_date}}",
-            "{{ticket_field_leave_end_date}}",
-            "{{ticket_field_leave_type}}"
-          ],
-          "reference_id": "ticket-form-leave"
-        },
-        {
-          "name": "New Hire",
-          "end_user_visible": true,
-          "active": true,
-          "in_all_brands": true,
-          "ticket_field_ids": [
-            "{{ticket_field_new_hire_start_date}}",
-            "{{ticket_field_office}}",
-            "{{is_manager}}"
-          ],
-          "reference_id": "ticket-form-new-hire"
-        },
-        {
-          "name": "Benefits",
-          "end_user_visible": true,
-          "active": true,
-          "in_all_brands": true,
-          "ticket_field_ids": [
-            "{{ticket_field_type_of_benefit}}"
-          ],
-          "reference_id": "ticket-form-benefits"
-        },
-        {
-          "name": "Grievance",
-          "end_user_visible": true,
-          "active": true,
-          "in_all_brands": true,
-          "ticket_field_ids": [
-            "{{ticket_field_individual_or_group}}",
-            "{{ticket_field_grievance_type}}",
-            "{{share_with_manager}}"
-          ],
-          "reference_id": "ticket-form-grievance"
-        },
-        {
-          "name": "Termination",
-          "end_user_visible": true,
-          "active": true,
-          "in_all_brands": true,
-          "ticket_field_ids": [
-            "{{ticket_field_termination_date}}",
-            "{{ticket_field_reason_for_termination}}",
-            "{{exit_interview_required}}"
-          ],
-          "reference_id": "ticket-form-termination"
-        }
-      ]
-    },
-    "macros": {
-      "disable_default_macros": true,
-      "add_macros": [
-        {
-          "title": "Leave::Approve",
-          "actions": [
-            {
-              "field": "status",
-              "value": "solved"
-            },
-            {
-              "field": "priority",
-              "value": "normal"
-            },
-            {
-              "field": "comment_mode_is_public",
-              "value": "true"
-            },
-            {
-              "field": "comment_value_html",
-              "value": "Your leave request has been approved"
-            },
-            {
-              "field": "ticket_form_id",
-              "value": "{{ticket-form-leave}}"
-            },
-            {
-              "field": "subject",
-              "value": "Leave - Approved"
-            }
-          ]
-        },
-        {
-          "title": "Leave::Reject",
-          "actions": [
-            {
-              "field": "status",
-              "value": "solved"
-            },
-            {
-              "field": "priority",
-              "value": "normal"
-            },
-            {
-              "field": "comment_mode_is_public",
-              "value": "true"
-            },
-            {
-              "field": "comment_value_html",
-              "value": "We are sorry to inform you that your leave request has been rejected because <insert reason>"
-            },
-            {
-              "field": "ticket_form_id",
-              "value": "{{ticket-form-leave}}"
-            },
-            {
-              "field": "subject",
-              "value": "Leave - Rejected"
-            }
-          ]
-        },
-        {
-          "title": "Benefits::Medical::Refer to policies",
-          "actions": [
-            {
-              "field": "status",
-              "value": "solved"
-            },
-            {
-              "field": "priority",
-              "value": "normal"
-            },
-            {
-              "field": "comment_mode_is_public",
-              "value": "true"
-            },
-            {
-              "field": "comment_value_html",
-              "value": "Thanks for your request. Please refer to our policies online which address your question. The specifc part you need to look at is <provide link>"
-            },
-            {
-              "field": "ticket_form_id",
-              "value": "{{ticket_field_type_of_benefit}}"
-            }
-          ]
-        },
-        {
-          "title": "Benefits::Financial::Stock - Opt In",
-          "actions": [
-            {
-              "field": "status",
-              "value": "solved"
-            },
-            {
-              "field": "priority",
-              "value": "normal"
-            },
-            {
-              "field": "ticket_form_id",
-              "value": "{{ticket_field_type_of_benefit}}"
-            },
-            {
-              "field": "comment_mode_is_public",
-              "value": "true"
-            },
-            {
-              "field": "comment_value_html",
-              "value": "<p>Hi {{ticket.requester.first_name}},</p><p><br></p><p>I understand you want to opt into the Employee Stock Purchase Plan.</p><p><br></p><p>Please follow the instructions in our Help Center article called ESPP, to do so.</p><p><br></p><p>We are here if you have any specific questions about this procedure.</p><p><br></p><p>Best,</p><p><br></p><p><span class=\"atwho-inserted\">{{ticket.assignee.name}}</span>‍</p>"
-            }
-          ]
-        },
-        {
-          "title": "Benefits::Financial::Stock - Opt Out",
-          "actions": [
-            {
-              "field": "status",
-              "value": "solved"
-            },
-            {
-              "field": "priority",
-              "value": "high"
-            },
-            {
-              "field": "ticket_form_id",
-              "value": "{{ticket_field_type_of_benefit}}"
-            },
-            {
-              "field": "comment_mode_is_public",
-              "value": "true"
-            },
-            {
-              "field": "comment_value_html",
-              "value": "<p>Hi {{ticket.requester.first_name}},</p><p><br></p><p>I understand you want to opt out of the Employee Stock Purchase Plan.</p><p><br></p><p>Please follow the instructions in our Help Center article called ESPP, to do so.</p><p><br></p><p>We are here if you have any specific questions about this procedure.</p><p><br></p><p>Best,</p><p><br></p><p><span class=\"atwho-inserted\">{{ticket.assignee.name}}</span>‍</p>"
-            }
-          ]
-        }
-      ]
-    },
-    "guide": {
-      "activate_guide": "{{bootstrapper-guide-default-brand-id}}",
-      "publish_theme": "{{generic-template}}",
-      "import_themes": [
-        {
-          "theme_name": "demo-builder",
-          "reference_id": "generic-template"
-        }
-      ],
-      "add_categories": [
-        {
-          "locale": "en-us",
-          "name": "Onboarding",
-          "description": "Everything you will need to know in your first few weeks of joining",
-          "reference_id": "category-1"
-        },
-        {
-          "locale": "en-us",
-          "name": "Policies and Benefits",
-          "description": "Find out more about the benefits that you are entitled to",
-          "reference_id": "category-2",
-          "ignore": "{{category-1}}"
-        },
-        {
-          "locale": "en-us",
-          "name": "Performance and Rewards",
-          "description": "Learn about goal setting, giving and receiving feedback, promotions and rewards",
-          "reference_id": "category-3",
-          "ignore": "{{category-2}}"
-        }
-      ],
-      "add_sections": [
-        {
-          "locale": "en-us",
-          "category_id": "{{category-1}}",
-          "name": "Orientation",
-          "description": "Find out dates for orientation sessions and the details of what is covered",
-          "reference_id": "section-1"
-        },
-        {
-          "locale": "en-us",
-          "category_id": "{{category-2}}",
-          "name": "Policies",
-          "description": "Find out more about our global and local policies",
-          "reference_id": "section-2",
-          "ignore": "{{section-1}}"
-        },
-        {
-          "locale": "en-us",
-          "category_id": "{{category-2}}",
-          "name": "Benefits",
-          "description": "Find out more about our global and local benefits",
-          "reference_id": "section-3",
-          "ignore": "{{section-2}}"
-        },
-        {
-          "locale": "en-us",
-          "category_id": "{{category-3}}",
-          "name": "Performance",
-          "description": "Find out about performance expectations and providing feedback",
-          "reference_id": "section-4",
-          "ignore": "{{section-3}}"
-        },
-        {
-          "locale": "en-us",
-          "category_id": "{{category-3}}",
-          "name": "Rewards",
-          "description": "Find out about rewards and recognition",
-          "reference_id": "section-5",
-          "ignore": "{{section-4}}"
-        }
-      ],
-      "add_articles": [
-        {
-          "section_id": "{{section-1}}",
-          "title": "Orientation Sessions",
-          "body": "<p>Orientation sessions are run quarterly during the first week of the quarter. They will begin on the Monday and run through until the Friday.</p><p>Sessions  will include: <ul><li>Company overview</li><li>Employee expectations</li><li>Employee benefits</li><li>Employee Tools and Processes</li><li>Product Overview</li><li>What to expect on your first day</li></ul></p>",
-          "reference_id": "article-1"
-        },
-        {
-          "section_id": "{{section-2}}",
-          "title": "Travel and Expense Policy",
-          "body": "<p>All travel over £20 should be purchased via the company travel booking system and claimed for within 4 weeks.</p><p>The following are acceptable expenses to claim:<ul><li>Overnight accommodation - under £150 per night without manager approval</li><li>Travel to customer meetings</li><li>Meals while on customer travel - under £50 per head</li><li>Laundry for stays over 4 days</li></ul>",
-          "reference_id": "article-2",
-          "ignore": "{{article-1}}"
-        },
-        {
-          "section_id": "{{section-3}}",
-          "title": "Parental Leave",
-          "body": "<p>Parents are able to take up to 16 weeks paid for the birth of their child.</p><p>Our philosophy is that families these days are unique and diverse and we want to recognize the changing roles parents play in the family unit, no matter how your family is structured.</p><p>Some notes:<ul><li>You may take 16 weeks of paid leave at (or very shortly after) the time of the birth of the child.</li><li>This must be taken in up to two blocks within a 12 month period of the birth.</li><li>Salespeople may be required to take this leave in one block - speak to your leadership to determine what is permissable. The paid element of a qualifying leave for a sales employee consists of base salary only; no OTI payment will be made while on leave. A qualifying sales employee will receive this benefit during the paid leave period only if the leave is taken all at once. If the paid leave is broken up into multiple periods, the qualifying employee will only receive the benefit for the first paid leave period. All subsequent paid leave periods will not be eligible for this benefit.</li></ul>",
-          "reference_id": "article-3",
-          "ignore": "{{article-2}}"
-        },
-        {
-          "section_id": "{{section-4}}",
-          "title": "Providing Feedback",
-          "body": "Every employee is encouraged to provide constructive feedback on their colleagues via the /feedback option available in Slack. This feedback can be shared with the employee themselves or the employee and their manager if you prefer.",
-          "reference_id": "article-4",
-          "ignore": "{{article-3}}"
-        },
-        {
-          "section_id": "{{section-5}}",
-          "title": "Promotion",
-          "body": "<p>Employees can choose to be either individual contributors or take a management position.</p> <p>Individual contributors are either: <ul><li>Junior</li><li>Senior</li><li>Principal</li></ul></p><p>Managers can either be: <ul><li>First Line</li><li>Second Line</li><li>Director</li><li>Senior Director</li></ul><p>Details of how to get promoted between the various levels can be discussed with your manager or viewed in the employee handbook.</p>",
-          "reference_id": "article-5",
-          "ignore": "{{article-4}}"
-        },
-        {
-          "section_id": "{{section-5}}",
-          "title": "Compensation",
-          "body": "Details of your compensation are specific to you and should be discussed either with your manager or the HR team. Generally your compensation will be broken down into: <ul><li>Base Pay</li><li>Performance Related Pay</li><li>Bonuses</li></ul>",
-          "reference_id": "article-6",
-          "ignore": "{{article-5}}"
-        },
-        {
-          "section_id": "{{section-5}}",
-          "title": "ESPP",
-          "body": "Our ESPP allows you as employees to buy stock at a discounted rate of 10%. You can choose how much of your salary to sacrifice for company stock up to a limit of 10%. <p>To opt in to the plan you need to email the payroll team who can set this up for you.</p><p>To opt out you can simply go to your stock poortal and choose the opt out option</p>",
-          "reference_id": "article-7",
-          "ignore": "{{article-6}}"
         }
       ]
     }
+  },
+  "ticket_views": {
+    "add_ticket_views": {
+      "options": {
+        "reorder_newly_added_to_first": true
+      },
+      "views": [
+        {
+          "title": "☀️ Created Today",
+          "active": true,
+          "position": 1,
+          "output": {
+            "group_by": "null",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "group": "null",
+            "sort_order": "desc",
+            "columns": [
+              "subject",
+              "requester",
+              "created",
+              "assignee",
+              "sla_next_breach_at",
+              "ticket_form"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "NEW",
+              "operator": "less_than_business_hours",
+              "value": "24"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "🚨 Urgent and High Priority",
+          "active": true,
+          "position": 1,
+          "output": {
+            "group_by": "null",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "group": "null",
+            "sort_order": "desc",
+            "columns": [
+              "subject",
+              "requester",
+              "created",
+              "assignee",
+              "sla_next_breach_at",
+              "ticket_form"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            }
+          ],
+          "any": [
+            {
+              "field": "priority",
+              "operator": "is",
+              "value": "urgent"
+            },
+            {
+              "field": "priority",
+              "operator": "is",
+              "value": "high"
+            }
+          ]
+        },
+        {
+          "title": "🆕 Onboarding",
+          "active": true,
+          "position": 1,
+          "output": {
+            "group_by": "null",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "group": "null",
+            "sort_order": "desc",
+            "columns": [
+              "subject",
+              "requester",
+              "created",
+              "assignee",
+              "sla_next_breach_at"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "ticket_form_id",
+              "operator": "is",
+              "value": "{{ticket-form-new-hire}}"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "💰 Compensation",
+          "active": true,
+          "position": 1,
+          "output": {
+            "group_by": "null",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "group": "null",
+            "sort_order": "desc",
+            "columns": [
+              "subject",
+              "requester",
+              "created",
+              "assignee",
+              "sla_next_breach_at"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "ticket_form_id",
+              "operator": "is",
+              "value": "{{ticket-form-grievance}}"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "🏥 Benefits",
+          "active": true,
+          "position": 1,
+          "output": {
+            "group_by": "null",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "group": "null",
+            "sort_order": "desc",
+            "columns": [
+              "subject",
+              "requester",
+              "created",
+              "assignee",
+              "sla_next_breach_at"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "ticket_form_id",
+              "operator": "is",
+              "value": "{{ticket-form-benefits}}"
+            }
+          ],
+          "any": []
+        },
+        {
+          "title": "📅 Leave",
+          "active": true,
+          "position": 1,
+          "output": {
+            "group_by": "null",
+            "group_order": "desc",
+            "sort_by": "nice_id",
+            "group": "null",
+            "sort_order": "desc",
+            "columns": [
+              "subject",
+              "requester",
+              "created",
+              "assignee",
+              "sla_next_breach_at"
+            ]
+          },
+          "all": [
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "ticket_form_id",
+              "operator": "is",
+              "value": "{{ticket-form-leave}}"
+            }
+          ],
+          "any": []
+        }
+      ]
+    }
+  },
+  "users": {
+    "add_user_fields": [
+      {
+        "type": "text",
+        "title": "Employee ID",
+        "description": "Employee ID",
+        "position": "2",
+        "active": true,
+        "key": "employee_ID"
+      },
+      {
+        "type": "text",
+        "title": "Role",
+        "description": "Employee Role",
+        "position": "2",
+        "active": true,
+        "key": "employee_role"
+      },
+      {
+        "type": "tagger",
+        "title": "Employee Status",
+        "description": "Status of Employee",
+        "position": "2",
+        "active": true,
+        "key": "employee_status",
+        "custom_field_options": [
+          {
+            "name": "Full Time",
+            "value": "emp_status_full_time"
+          },
+          {
+            "name": "Part Time",
+            "value": "emp_status_part_time"
+          },
+          {
+            "name": "Consultant",
+            "value": "emp_status_consultant"
+          },
+          {
+            "name": "Temporary",
+            "value": "emp_status_temporary"
+          },
+          {
+            "name": "Intern",
+            "value": "emp_status_intern"
+          },
+          {
+            "name": "No Longer",
+            "value": "emp_status_no_longer"
+          }
+        ]
+      }
+    ],
+    "add_users": [
+      {
+        "name": "Ben Mendez",
+        "email": "benmendez.demo@gmal.com"
+      }
+    ],
+    "add_groups": [
+      {
+        "name": "Compensation",
+        "reference_id": "group_compensation"
+      },
+      {
+        "name": "Benefits",
+        "reference_id": "group_benefits"
+      },
+      {
+        "name": "New Hire",
+        "reference_id": "group_new_hire"
+      },
+      {
+        "name": "Tier 1",
+        "reference_id": "group_tier1"
+      }
+    ],
+    "add_organizations": {
+      "organizations": []
+    },
+    "add_organization_fields": []
+  },
+  "business_rules": {
+    "add_slas": [
+      {
+        "title": "Urgent Incidents SLA",
+        "description": "For urgent incidents, we will respond to tickets in 10 minutes",
+        "position": 1,
+        "filter": {
+          "all": [
+            {
+              "field": "type",
+              "operator": "is",
+              "value": "incident"
+            }
+          ],
+          "any": []
+        },
+        "policy_metrics": [
+          {
+            "priority": "normal",
+            "metric": "first_reply_time",
+            "target": 30,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "first_reply_time",
+            "target": 10,
+            "business_hours": false
+          },
+          {
+            "priority": "low",
+            "metric": "requester_wait_time",
+            "target": 180,
+            "business_hours": false
+          },
+          {
+            "priority": "normal",
+            "metric": "requester_wait_time",
+            "target": 160,
+            "business_hours": false
+          },
+          {
+            "priority": "high",
+            "metric": "requester_wait_time",
+            "target": 140,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "requester_wait_time",
+            "target": 120,
+            "business_hours": false
+          }
+        ]
+      },
+      {
+        "title": "VIP Employee SLA",
+        "description": "For VIP request, we will respond to tickets in 10 minutes",
+        "position": 2,
+        "filter": {
+          "all": [
+            {
+              "field": "current_tags",
+              "operator": "includes",
+              "value": "VIP"
+            }
+          ],
+          "any": []
+        },
+        "policy_metrics": [
+          {
+            "priority": "normal",
+            "metric": "first_reply_time",
+            "target": 30,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "first_reply_time",
+            "target": 10,
+            "business_hours": false
+          },
+          {
+            "priority": "low",
+            "metric": "requester_wait_time",
+            "target": 180,
+            "business_hours": false
+          },
+          {
+            "priority": "normal",
+            "metric": "requester_wait_time",
+            "target": 160,
+            "business_hours": false
+          },
+          {
+            "priority": "high",
+            "metric": "requester_wait_time",
+            "target": 140,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "requester_wait_time",
+            "target": 120,
+            "business_hours": false
+          }
+        ]
+      }
+    ],
+    "add_triggers": [
+      {
+        "title": "VIP :: Escalate VIP Tickets",
+        "all": [
+          {
+            "field": "update_type",
+            "operator": "is",
+            "value": "Create"
+          },
+          {
+            "field": "current_tags",
+            "operator": "includes",
+            "value": "vip"
+          }
+        ],
+        "actions": [
+          {
+            "field": "priority",
+            "value": "high"
+          }
+        ]
+      },
+      {
+        "title": "Auto set Priority to Normal (for SLA management)",
+        "all": [
+          {
+            "field": "status",
+            "operator": "is",
+            "value": "new"
+          },
+          {
+            "field": "priority",
+            "operator": "is",
+            "value": ""
+          }
+        ],
+        "actions": [
+          {
+            "field": "priority",
+            "value": "normal"
+          }
+        ]
+      },
+      {
+        "title": "CSAT :: Send CSAT Survey",
+        "all": [
+          {
+            "field": "status",
+            "operator": "is",
+            "value": "solved"
+          },
+          {
+            "field": "current_tags",
+            "operator": "includes",
+            "value": "csat"
+          },
+          {
+            "field": "current_tags",
+            "operator": "not_includes",
+            "value": "smooch supportkit"
+          },
+          {
+            "field": "comment_is_public",
+            "operator": "is",
+            "value": "true"
+          }
+        ],
+        "actions": [
+          {
+            "field": "notification_user",
+            "value": [
+              "requester_and_ccs",
+              "Request #{{ticket.id}}: How would you rate the support you received?",
+              "Hello {{ticket.requester.name}},\n\nWe'd love to hear what you think of our customer service. Please take a moment to answer one simple question by clicking either link below:\n\n{{satisfaction.rating_section}}\n\nHere's a reminder of what your ticket was about:\n\n{{ticket.comments_formatted}}"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "apps": {
+    "add_private_apps": [
+      {
+        "app_name": "hr-360-v1",
+        "name": "HR 360",
+        "short_description": "HR 360"
+      }
+    ]
+  },
+  "tickets": {
+    "generate_tickets": {
+      "statuses": {
+        "solved": 100,
+        "open": 100,
+        "pending": 100
+      },
+      "ticket_payload": {
+        "requester": {
+          "name": "Employee Name",
+          "email": "kaws@kaws.com"
+        },
+        "tags": ["autogenerated"]
+      }
+    },
+    "add_ticket_fields": [
+      {
+        "type": "date",
+        "title": "Leave Start Date",
+        "reference_id": "ticket_field_leave_start_date"
+      },
+      {
+        "type": "date",
+        "title": "Leave End Date",
+        "reference_id": "ticket_field_leave_end_date"
+      },
+      {
+        "type": "tagger",
+        "title": "Leave Type",
+        "reference_id": "ticket_field_leave_type",
+        "custom_field_options": [
+          {
+            "name": "Annual",
+            "value": "lt_annual"
+          },
+          {
+            "name": "Compassionate",
+            "value": "lt_compassionate"
+          },
+          {
+            "name": "Parental",
+            "value": "lt_parental"
+          },
+          {
+            "name": "Caregiver",
+            "value": "lt_caregiver"
+          },
+          {
+            "name": "Jury Duty",
+            "value": "lt_jury_duty"
+          },
+          {
+            "name": "Sick",
+            "value": "lt_sick"
+          },
+          {
+            "name": "Study",
+            "value": "lt_study"
+          }
+        ]
+      },
+      {
+        "type": "date",
+        "title": "New Hire Start Date",
+        "reference_id": "ticket_field_new_hire_start_date"
+      },
+      {
+        "type": "tagger",
+        "title": "Office",
+        "reference_id": "ticket_field_office",
+        "custom_field_options": [
+          {
+            "name": "UK::London",
+            "value": "office_london"
+          },
+          {
+            "name": "UK::Manchester",
+            "value": "office_manchester"
+          },
+          {
+            "name": "US::New York",
+            "value": "office_new_york"
+          },
+          {
+            "name": "US::LA",
+            "value": "office_la"
+          },
+          {
+            "name": "Japan::Tokyo",
+            "value": "office_tokyo"
+          },
+          {
+            "name": "France::Paris",
+            "value": "office_paris"
+          },
+          {
+            "name": "Germany::Berlin",
+            "value": "office_berlin"
+          },
+          {
+            "name": "Spain::Madrid",
+            "value": "office_madrid"
+          },
+          {
+            "name": "Italy::Rome",
+            "value": "office_rome"
+          },
+          {
+            "name": "Remote",
+            "value": "remote"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "title": "Manager?",
+        "reference_id": "is_manager",
+        "tag": "is_manager"
+      },
+      {
+        "type": "tagger",
+        "title": "Type of Benefit",
+        "reference_id": "ticket_field_type_of_benefit",
+        "custom_field_options": [
+          {
+            "name": "Medical::Private Health Care",
+            "value": "private_health_care"
+          },
+          {
+            "name": "Medical::Dental",
+            "value": "dental"
+          },
+          {
+            "name": "Medical::Eye Care Vouchers",
+            "value": "eye_care_vouchers"
+          },
+          {
+            "name": "Insurance and Policies::Life",
+            "value": "life_insurance"
+          },
+          {
+            "name": "Insurance and Policies::Critical Illness",
+            "value": "critical_illness"
+          },
+          {
+            "name": "Financial::Stock",
+            "value": "stock"
+          },
+          {
+            "name": "Financial::Pension",
+            "value": "pension"
+          }
+        ]
+      },
+      {
+        "type": "tagger",
+        "title": "Individual or Group Grievance",
+        "reference_id": "ticket_field_individual_or_group",
+        "custom_field_options": [
+          {
+            "name": "Individual",
+            "value": "grievance_individual"
+          },
+          {
+            "name": "Group",
+            "value": "grievance_group"
+          }
+        ]
+      },
+      {
+        "type": "tagger",
+        "title": "Type of Grievance",
+        "reference_id": "ticket_field_grievance_type",
+        "custom_field_options": [
+          {
+            "name": "Discrimination",
+            "value": "grievance_discrimination"
+          },
+          {
+            "name": "Physical Abuse",
+            "value": "grievance_physical_abuse"
+          },
+          {
+            "name": "Bullying",
+            "value": "grievance_bullying"
+          },
+          {
+            "name": "Compensation",
+            "value": "grievance_compensation"
+          },
+          {
+            "name": "Other",
+            "value": "grievance_other"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "title": "Share with manager?",
+        "reference_id": "share_with_manager",
+        "tag": "share_with_manager"
+      },
+      {
+        "type": "date",
+        "title": "Termination Date",
+        "reference_id": "ticket_field_termination_date"
+      },
+      {
+        "type": "tagger",
+        "title": "Reason for termination",
+        "reference_id": "ticket_field_reason_for_termination",
+        "custom_field_options": [
+          {
+            "name": "Voluntary",
+            "value": "termination_voluntary"
+          },
+          {
+            "name": "Misconduct",
+            "value": "termination_misconduct"
+          },
+          {
+            "name": "Redundancy",
+            "value": "termination_redundancy"
+          },
+          {
+            "name": "Performance",
+            "value": "termination_performance"
+          },
+          {
+            "name": "Medical",
+            "value": "termination_medical"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "title": "Exit interview required?",
+        "reference_id": "exit_interview_required",
+        "tag": "exit_interview_required"
+      }
+    ],
+    "add_ticket_forms": [
+      {
+        "name": "Leave",
+        "end_user_visible": true,
+        "active": true,
+        "in_all_brands": true,
+        "ticket_field_ids": [
+          "{{ticket_field_leave_start_date}}",
+          "{{ticket_field_leave_end_date}}",
+          "{{ticket_field_leave_type}}"
+        ],
+        "reference_id": "ticket-form-leave"
+      },
+      {
+        "name": "New Hire",
+        "end_user_visible": true,
+        "active": true,
+        "in_all_brands": true,
+        "ticket_field_ids": [
+          "{{ticket_field_new_hire_start_date}}",
+          "{{ticket_field_office}}",
+          "{{is_manager}}"
+        ],
+        "reference_id": "ticket-form-new-hire"
+      },
+      {
+        "name": "Benefits",
+        "end_user_visible": true,
+        "active": true,
+        "in_all_brands": true,
+        "ticket_field_ids": ["{{ticket_field_type_of_benefit}}"],
+        "reference_id": "ticket-form-benefits"
+      },
+      {
+        "name": "Grievance",
+        "end_user_visible": true,
+        "active": true,
+        "in_all_brands": true,
+        "ticket_field_ids": [
+          "{{ticket_field_individual_or_group}}",
+          "{{ticket_field_grievance_type}}",
+          "{{share_with_manager}}"
+        ],
+        "reference_id": "ticket-form-grievance"
+      },
+      {
+        "name": "Termination",
+        "end_user_visible": true,
+        "active": true,
+        "in_all_brands": true,
+        "ticket_field_ids": [
+          "{{ticket_field_termination_date}}",
+          "{{ticket_field_reason_for_termination}}",
+          "{{exit_interview_required}}"
+        ],
+        "reference_id": "ticket-form-termination"
+      }
+    ]
+  },
+  "macros": {
+    "disable_default_macros": true,
+    "add_macros": [
+      {
+        "title": "Leave::Approve",
+        "actions": [
+          {
+            "field": "status",
+            "value": "solved"
+          },
+          {
+            "field": "priority",
+            "value": "normal"
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": "true"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "Your leave request has been approved"
+          },
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket-form-leave}}"
+          },
+          {
+            "field": "subject",
+            "value": "Leave - Approved"
+          }
+        ]
+      },
+      {
+        "title": "Leave::Reject",
+        "actions": [
+          {
+            "field": "status",
+            "value": "solved"
+          },
+          {
+            "field": "priority",
+            "value": "normal"
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": "true"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "We are sorry to inform you that your leave request has been rejected because <insert reason>"
+          },
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket-form-leave}}"
+          },
+          {
+            "field": "subject",
+            "value": "Leave - Rejected"
+          }
+        ]
+      },
+      {
+        "title": "Benefits::Medical::Refer to policies",
+        "actions": [
+          {
+            "field": "status",
+            "value": "solved"
+          },
+          {
+            "field": "priority",
+            "value": "normal"
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": "true"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "Thanks for your request. Please refer to our policies online which address your question. The specifc part you need to look at is <provide link>"
+          },
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket_field_type_of_benefit}}"
+          }
+        ]
+      },
+      {
+        "title": "Benefits::Financial::Stock - Opt In",
+        "actions": [
+          {
+            "field": "status",
+            "value": "solved"
+          },
+          {
+            "field": "priority",
+            "value": "normal"
+          },
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket_field_type_of_benefit}}"
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": "true"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "<p>Hi {{ticket.requester.first_name}},</p><p><br></p><p>I understand you want to opt into the Employee Stock Purchase Plan.</p><p><br></p><p>Please follow the instructions in our Help Center article called ESPP, to do so.</p><p><br></p><p>We are here if you have any specific questions about this procedure.</p><p><br></p><p>Best,</p><p><br></p><p><span class=\"atwho-inserted\">{{ticket.assignee.name}}</span>‍</p>"
+          }
+        ]
+      },
+      {
+        "title": "Benefits::Financial::Stock - Opt Out",
+        "actions": [
+          {
+            "field": "status",
+            "value": "solved"
+          },
+          {
+            "field": "priority",
+            "value": "high"
+          },
+          {
+            "field": "ticket_form_id",
+            "value": "{{ticket_field_type_of_benefit}}"
+          },
+          {
+            "field": "comment_mode_is_public",
+            "value": "true"
+          },
+          {
+            "field": "comment_value_html",
+            "value": "<p>Hi {{ticket.requester.first_name}},</p><p><br></p><p>I understand you want to opt out of the Employee Stock Purchase Plan.</p><p><br></p><p>Please follow the instructions in our Help Center article called ESPP, to do so.</p><p><br></p><p>We are here if you have any specific questions about this procedure.</p><p><br></p><p>Best,</p><p><br></p><p><span class=\"atwho-inserted\">{{ticket.assignee.name}}</span>‍</p>"
+          }
+        ]
+      }
+    ]
+  },
+  "guide": {
+    "activate_guide": "{{bootstrapper-guide-default-brand-id}}",
+    "publish_theme": "{{generic-template}}",
+    "import_themes": [
+      {
+        "theme_name": "demo-builder",
+        "reference_id": "generic-template"
+      }
+    ],
+    "add_categories": [
+      {
+        "locale": "en-us",
+        "name": "Onboarding",
+        "description": "Everything you will need to know in your first few weeks of joining",
+        "reference_id": "category-1"
+      },
+      {
+        "locale": "en-us",
+        "name": "Policies and Benefits",
+        "description": "Find out more about the benefits that you are entitled to",
+        "reference_id": "category-2",
+        "ignore": "{{category-1}}"
+      },
+      {
+        "locale": "en-us",
+        "name": "Performance and Rewards",
+        "description": "Learn about goal setting, giving and receiving feedback, promotions and rewards",
+        "reference_id": "category-3",
+        "ignore": "{{category-2}}"
+      }
+    ],
+    "add_sections": [
+      {
+        "locale": "en-us",
+        "category_id": "{{category-1}}",
+        "name": "Orientation",
+        "description": "Find out dates for orientation sessions and the details of what is covered",
+        "reference_id": "section-1"
+      },
+      {
+        "locale": "en-us",
+        "category_id": "{{category-2}}",
+        "name": "Policies",
+        "description": "Find out more about our global and local policies",
+        "reference_id": "section-2",
+        "ignore": "{{section-1}}"
+      },
+      {
+        "locale": "en-us",
+        "category_id": "{{category-2}}",
+        "name": "Benefits",
+        "description": "Find out more about our global and local benefits",
+        "reference_id": "section-3",
+        "ignore": "{{section-2}}"
+      },
+      {
+        "locale": "en-us",
+        "category_id": "{{category-3}}",
+        "name": "Performance",
+        "description": "Find out about performance expectations and providing feedback",
+        "reference_id": "section-4",
+        "ignore": "{{section-3}}"
+      },
+      {
+        "locale": "en-us",
+        "category_id": "{{category-3}}",
+        "name": "Rewards",
+        "description": "Find out about rewards and recognition",
+        "reference_id": "section-5",
+        "ignore": "{{section-4}}"
+      }
+    ],
+    "add_articles": [
+      {
+        "section_id": "{{section-1}}",
+        "title": "Orientation Sessions",
+        "body": "<p>Orientation sessions are run quarterly during the first week of the quarter. They will begin on the Monday and run through until the Friday.</p><p>Sessions  will include: <ul><li>Company overview</li><li>Employee expectations</li><li>Employee benefits</li><li>Employee Tools and Processes</li><li>Product Overview</li><li>What to expect on your first day</li></ul></p>",
+        "reference_id": "article-1"
+      },
+      {
+        "section_id": "{{section-2}}",
+        "title": "Travel and Expense Policy",
+        "body": "<p>All travel over £20 should be purchased via the company travel booking system and claimed for within 4 weeks.</p><p>The following are acceptable expenses to claim:<ul><li>Overnight accommodation - under £150 per night without manager approval</li><li>Travel to customer meetings</li><li>Meals while on customer travel - under £50 per head</li><li>Laundry for stays over 4 days</li></ul>",
+        "reference_id": "article-2",
+        "ignore": "{{article-1}}"
+      },
+      {
+        "section_id": "{{section-3}}",
+        "title": "Parental Leave",
+        "body": "<p>Parents are able to take up to 16 weeks paid for the birth of their child.</p><p>Our philosophy is that families these days are unique and diverse and we want to recognize the changing roles parents play in the family unit, no matter how your family is structured.</p><p>Some notes:<ul><li>You may take 16 weeks of paid leave at (or very shortly after) the time of the birth of the child.</li><li>This must be taken in up to two blocks within a 12 month period of the birth.</li><li>Salespeople may be required to take this leave in one block - speak to your leadership to determine what is permissable. The paid element of a qualifying leave for a sales employee consists of base salary only; no OTI payment will be made while on leave. A qualifying sales employee will receive this benefit during the paid leave period only if the leave is taken all at once. If the paid leave is broken up into multiple periods, the qualifying employee will only receive the benefit for the first paid leave period. All subsequent paid leave periods will not be eligible for this benefit.</li></ul>",
+        "reference_id": "article-3",
+        "ignore": "{{article-2}}"
+      },
+      {
+        "section_id": "{{section-4}}",
+        "title": "Providing Feedback",
+        "body": "Every employee is encouraged to provide constructive feedback on their colleagues via the /feedback option available in Slack. This feedback can be shared with the employee themselves or the employee and their manager if you prefer.",
+        "reference_id": "article-4",
+        "ignore": "{{article-3}}"
+      },
+      {
+        "section_id": "{{section-5}}",
+        "title": "Promotion",
+        "body": "<p>Employees can choose to be either individual contributors or take a management position.</p> <p>Individual contributors are either: <ul><li>Junior</li><li>Senior</li><li>Principal</li></ul></p><p>Managers can either be: <ul><li>First Line</li><li>Second Line</li><li>Director</li><li>Senior Director</li></ul><p>Details of how to get promoted between the various levels can be discussed with your manager or viewed in the employee handbook.</p>",
+        "reference_id": "article-5",
+        "ignore": "{{article-4}}"
+      },
+      {
+        "section_id": "{{section-5}}",
+        "title": "Compensation",
+        "body": "Details of your compensation are specific to you and should be discussed either with your manager or the HR team. Generally your compensation will be broken down into: <ul><li>Base Pay</li><li>Performance Related Pay</li><li>Bonuses</li></ul>",
+        "reference_id": "article-6",
+        "ignore": "{{article-5}}"
+      },
+      {
+        "section_id": "{{section-5}}",
+        "title": "ESPP",
+        "body": "Our ESPP allows you as employees to buy stock at a discounted rate of 10%. You can choose how much of your salary to sacrifice for company stock up to a limit of 10%. <p>To opt in to the plan you need to email the payroll team who can set this up for you.</p><p>To opt out you can simply go to your stock poortal and choose the opt out option</p>",
+        "reference_id": "article-7",
+        "ignore": "{{article-6}}"
+      }
+    ]
   }
-  
+}

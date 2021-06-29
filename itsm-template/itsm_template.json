@@ -8,6 +8,9 @@
     "customer": {
       "name": "IT Demo Account",
       "locale": "en"
+    },
+    "requirements": {
+      "subscription": { "support_enterprise": true }
     }
   },
   "settings": {
@@ -841,9 +844,7 @@
           "name": "Employee Name",
           "email": "kaws@kaws.com"
         },
-        "tags": [
-          "testing123"
-        ]
+        "tags": ["testing123"]
       }
     },
     "add_ticket_fields": [
@@ -1325,10 +1326,7 @@
         "end_user_visible": true,
         "active": true,
         "in_all_brands": true,
-        "ticket_field_ids": [
-          "{{change_status}}",
-          "{{ticket_field_approved}}"
-        ],
+        "ticket_field_ids": ["{{change_status}}", "{{ticket_field_approved}}"],
         "reference_id": "ticket-form-general-support"
       },
       {
@@ -1353,9 +1351,7 @@
         "end_user_visible": true,
         "active": true,
         "in_all_brands": true,
-        "ticket_field_ids": [
-          "{{hr_issue_type}}"
-        ],
+        "ticket_field_ids": ["{{hr_issue_type}}"],
         "reference_id": "ticket-form-hr-support"
       },
       {

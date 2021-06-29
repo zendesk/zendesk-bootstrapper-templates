@@ -9,8 +9,10 @@
       "name": "IT Demo",
       "locale": "en"
     },
-    "require_support_ent": true,
-    "require_side_conversations": true
+    "requirements": {
+      "add_ons": { "side_conversation": { "email": true, "slack": true } },
+      "subscription": { "sunshine": false, "support_enterprise": true }
+    }
   },
   "settings": {
     "account_settings": {
