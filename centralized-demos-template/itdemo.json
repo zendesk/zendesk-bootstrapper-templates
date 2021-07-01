@@ -10,7 +10,7 @@
       "locale": "en"
     },
     "requirements": {
-      "add_ons": { "side_conversation": { "email": true, "slack": true } },
+      "add_on": { "side_conversation": { "email": true, "slack": true } },
       "subscription": { "sunshine": false, "support_enterprise": true }
     }
   },
