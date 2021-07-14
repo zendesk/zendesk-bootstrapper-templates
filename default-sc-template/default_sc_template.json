@@ -16,7 +16,7 @@
         "header_color": "ffdc0f"
       },
       "tickets": {
-        "emoji_autocompletion": true  
+        "emoji_autocompletion": true
       },
       "agents": {
         "agent_workspace": true
@@ -36,14 +36,14 @@
     "security_settings": {
       "admins_can_set_user_passwords": true,
       "email_agent_when_sensitive_fields_changed": false,
-        "authentication": {
-            "end_user": {
-                "google_login": true,
-                "office_365_login": true,
-                "twitter_login": true,
-                "facebook_login": true
-            }
+      "authentication": {
+        "end_user": {
+          "google_login": true,
+          "office_365_login": true,
+          "twitter_login": true,
+          "facebook_login": true
         }
+      }
     },
     "support_settings": {
       "update_default_support_email": {
@@ -71,7 +71,7 @@
         "reorder_newly_added_to_first": true
       },
       "views": [
-        { 
+        {
           "title": "📧 Email Tickets",
           "active": true,
           "position": 1,
@@ -89,16 +89,16 @@
             ]
           },
           "all": [
-              {
-                  "field": "status",
-                  "operator": "less_than",
-                  "value": "solved"
-              },
-              {
-                  "field": "via_id",
-                  "operator": "is",
-                  "value": "4"
-              }
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "via_id",
+              "operator": "is",
+              "value": "4"
+            }
           ],
           "any": []
         },
@@ -120,16 +120,16 @@
             ]
           },
           "all": [
-              {
-                  "field": "status",
-                  "operator": "less_than",
-                  "value": "solved"
-              },
-              {
-                  "field": "via_id",
-                  "operator": "is",
-                  "value": "0"
-              }
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "via_id",
+              "operator": "is",
+              "value": "0"
+            }
           ],
           "any": []
         },
@@ -143,47 +143,47 @@
             "sort_by": "updated",
             "sort_order": "asc",
             "columns": [
-                "via",
-                "subject",
-                "requester",
-                "created",
-                "assignee",
-                "satisfaction_score"
+              "via",
+              "subject",
+              "requester",
+              "created",
+              "assignee",
+              "satisfaction_score"
             ]
           },
           "all": [
-              {
-                  "field": "status",
-                  "operator": "greater_than",
-                  "value": "new"
-              },
-              {
-                  "field": "SOLVED",
-                  "operator": "less_than",
-                  "value": "169"
-              }
+            {
+              "field": "status",
+              "operator": "greater_than",
+              "value": "new"
+            },
+            {
+              "field": "SOLVED",
+              "operator": "less_than",
+              "value": "169"
+            }
           ],
           "any": [
-              {
-                  "field": "satisfaction_score",
-                  "operator": "is",
-                  "value": "good"
-              },
-              {
-                  "field": "satisfaction_score",
-                  "operator": "is",
-                  "value": "good_with_comment"
-              },
-              {
-                  "field": "satisfaction_score",
-                  "operator": "is",
-                  "value": "bad"
-              },
-              {
-                  "field": "satisfaction_score",
-                  "operator": "is",
-                  "value": "bad_with_comment"
-              }
+            {
+              "field": "satisfaction_score",
+              "operator": "is",
+              "value": "good"
+            },
+            {
+              "field": "satisfaction_score",
+              "operator": "is",
+              "value": "good_with_comment"
+            },
+            {
+              "field": "satisfaction_score",
+              "operator": "is",
+              "value": "bad"
+            },
+            {
+              "field": "satisfaction_score",
+              "operator": "is",
+              "value": "bad_with_comment"
+            }
           ]
         },
         {
@@ -204,16 +204,16 @@
             ]
           },
           "all": [
-              {
-                  "field": "status",
-                  "operator": "is",
-                  "value": "open"
-              },
-              {
-                  "field": "priority",
-                  "operator": "is",
-                  "value": "urgent"
-              }
+            {
+              "field": "status",
+              "operator": "is",
+              "value": "open"
+            },
+            {
+              "field": "priority",
+              "operator": "is",
+              "value": "urgent"
+            }
           ],
           "any": []
         },
@@ -237,11 +237,11 @@
             ]
           },
           "all": [
-              {
-                  "field": "status",
-                  "operator": "less_than",
-                  "value": "solved"
-              }
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            }
           ],
           "any": []
         },
@@ -265,16 +265,16 @@
             ]
           },
           "all": [
-              {
-                  "field": "status",
-                  "operator": "less_than",
-                  "value": "solved"
-              },
-              {
-                  "field": "assignee_id",
-                  "operator": "is",
-                  "value": "current_user"
-              }
+            {
+              "field": "status",
+              "operator": "less_than",
+              "value": "solved"
+            },
+            {
+              "field": "assignee_id",
+              "operator": "is",
+              "value": "current_user"
+            }
           ],
           "any": []
         },
@@ -402,18 +402,46 @@
         "description": "For urgent incidents, we will respond to tickets in 10 minutes",
         "position": 1,
         "filter": {
-          "all": [
-            { "field": "type", "operator": "is", "value": "incident" }
-          ],
+          "all": [{ "field": "type", "operator": "is", "value": "incident" }],
           "any": []
         },
         "policy_metrics": [
-          { "priority": "normal", "metric": "first_reply_time", "target": 30, "business_hours": false },
-          { "priority": "urgent", "metric": "first_reply_time", "target": 10, "business_hours": false },
-          { "priority": "low", "metric": "requester_wait_time", "target": 180, "business_hours": false },
-          { "priority": "normal", "metric": "requester_wait_time", "target": 160, "business_hours": false },
-          { "priority": "high", "metric": "requester_wait_time", "target": 140, "business_hours": false },
-          { "priority": "urgent", "metric": "requester_wait_time", "target": 120, "business_hours": false }
+          {
+            "priority": "normal",
+            "metric": "first_reply_time",
+            "target": 30,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "first_reply_time",
+            "target": 10,
+            "business_hours": false
+          },
+          {
+            "priority": "low",
+            "metric": "requester_wait_time",
+            "target": 180,
+            "business_hours": false
+          },
+          {
+            "priority": "normal",
+            "metric": "requester_wait_time",
+            "target": 160,
+            "business_hours": false
+          },
+          {
+            "priority": "high",
+            "metric": "requester_wait_time",
+            "target": 140,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "requester_wait_time",
+            "target": 120,
+            "business_hours": false
+          }
         ]
       },
       {
@@ -427,12 +455,42 @@
           "any": []
         },
         "policy_metrics": [
-          { "priority": "normal", "metric": "first_reply_time", "target": 30, "business_hours": false },
-          { "priority": "urgent", "metric": "first_reply_time", "target": 10, "business_hours": false },
-          { "priority": "low", "metric": "requester_wait_time", "target": 180, "business_hours": false },
-          { "priority": "normal", "metric": "requester_wait_time", "target": 160, "business_hours": false },
-          { "priority": "high", "metric": "requester_wait_time", "target": 140, "business_hours": false },
-          { "priority": "urgent", "metric": "requester_wait_time", "target": 120, "business_hours": false }
+          {
+            "priority": "normal",
+            "metric": "first_reply_time",
+            "target": 30,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "first_reply_time",
+            "target": 10,
+            "business_hours": false
+          },
+          {
+            "priority": "low",
+            "metric": "requester_wait_time",
+            "target": 180,
+            "business_hours": false
+          },
+          {
+            "priority": "normal",
+            "metric": "requester_wait_time",
+            "target": 160,
+            "business_hours": false
+          },
+          {
+            "priority": "high",
+            "metric": "requester_wait_time",
+            "target": 140,
+            "business_hours": false
+          },
+          {
+            "priority": "urgent",
+            "metric": "requester_wait_time",
+            "target": 120,
+            "business_hours": false
+          }
         ]
       }
     ],
@@ -446,9 +504,9 @@
             "value": "Create"
           },
           {
-              "field": "current_tags",
-              "operator": "includes",
-              "value": "vip"
+            "field": "current_tags",
+            "operator": "includes",
+            "value": "vip"
           }
         ],
         "actions": [
@@ -467,28 +525,28 @@
             "value": "solved"
           },
           {
-              "field": "current_tags",
-              "operator": "includes",
-              "value": "csat"
+            "field": "current_tags",
+            "operator": "includes",
+            "value": "csat"
           },
           {
-              "field": "current_tags",
-              "operator": "not_includes",
-              "value": "smooch supportkit"
+            "field": "current_tags",
+            "operator": "not_includes",
+            "value": "smooch supportkit"
           },
           {
-              "field": "comment_is_public",
-              "operator": "is",
-              "value": "true"
+            "field": "comment_is_public",
+            "operator": "is",
+            "value": "true"
           }
         ],
         "actions": [
           {
             "field": "notification_user",
             "value": [
-                "requester_and_ccs",
-                "Request #{{ticket.id}}: How would you rate the support you received?",
-                "Hello {{ticket.requester.name}},\n\nWe'd love to hear what you think of our customer service. Please take a moment to answer one simple question by clicking either link below:\n\n{{satisfaction.rating_section}}\n\nHere's a reminder of what your ticket was about:\n\n{{ticket.comments_formatted}}"
+              "requester_and_ccs",
+              "Request #{{ticket.id}}: How would you rate the support you received?",
+              "Hello {{ticket.requester.name}},\n\nWe'd love to hear what you think of our customer service. Please take a moment to answer one simple question by clicking either link below:\n\n{{satisfaction.rating_section}}\n\nHere's a reminder of what your ticket was about:\n\n{{ticket.comments_formatted}}"
             ]
           }
         ]
@@ -525,19 +583,17 @@
   },
   "tickets": {
     "generate_tickets": {
-        "statuses": {
-            "open": 100,
-            "pending": 100
+      "statuses": {
+        "open": 100,
+        "pending": 100
+      },
+      "ticket_payload": {
+        "requester": {
+          "name": "Zendesk Bootstrapper",
+          "email": "bootstrapper@zendesk.com"
         },
-        "ticket_payload": {
-          "requester": {
-            "name": "Zendesk Bootstrapper",
-            "email": "bootstrapper@zendesk.com"
-          },
-            "tags": [
-                "retail"
-            ]
-        }
+        "tags": ["retail"]
+      }
     }
   },
   "guide": {
@@ -560,7 +616,8 @@
         "locale": "en-us",
         "name": "Promotions",
         "description": "Latest promotions to help save your wallet!",
-        "reference_id": "category-2"
+        "reference_id": "category-2",
+        "ignore": "{{category-1}}"
       }
     ],
     "add_sections": [
@@ -583,12 +640,15 @@
       {
         "section_id": "{{section-1}}",
         "title": "Proof of Purchase",
-        "body": "Your Proof of Purchase must be dated within 14 days of the refund date"
+        "body": "Your Proof of Purchase must be dated within 14 days of the refund date",
+        "reference_id": "article-1"
       },
       {
         "section_id": "{{section-2}}",
         "title": "1 for 1 Deal",
-        "body": "Buy 2 at the price of 1!"
+        "body": "Buy 2 at the price of 1!",
+        "reference_id": "article-2",
+        "ignore": "{{article-1}}"
       }
     ]
   }
